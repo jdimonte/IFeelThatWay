@@ -112,6 +112,7 @@ Anonymous forums for women discussing common problems and solutions. An environm
 <img src="https://github.com/jdimonte/IFeelThatWay/blob/main/digitalwireframe.png" width=600>
 
 ### [BONUS] Interactive Prototype
+<img src="https://github.com/jdimonte/IFeelThatWay/blob/main/walkthrough.gif" width=250>
 
 ## Schema 
 [This section will be completed in Unit 9]
