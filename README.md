@@ -109,6 +109,7 @@ Anonymous forums for women discussing common problems and solutions. An environm
 <img src="https://github.com/jdimonte/IFeelThatWay/blob/main/wireframe.jpeg" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+<img src="https://github.com/jdimonte/IFeelThatWay/blob/main/digitalwireframe.png" width=600>
 
 ### [BONUS] Interactive Prototype
 
