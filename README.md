@@ -176,12 +176,16 @@ Comment/Replies
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
 * Login Screen
    * (READ) User information. Takes in username and password and knows which user is signed in.
+<img width="769" alt="login" src="https://user-images.githubusercontent.com/67511953/125112063-8d4b3100-e09b-11eb-801e-dbe85a455c5a.png">
 * Create Account Screen
    * (CREATE) User. Sets the user's username, password, and email information.
+<img width="767" alt="newuser" src="https://user-images.githubusercontent.com/67511953/125112034-7f95ab80-e09b-11eb-9f1a-74e5711bc477.png">
 * Topics Screen
    * (READ) Topics. Grabs all of the topics from the Query. Set each topic in a table view, that leads to the specific prompts screen.
+<img width="653" alt="gettingtopics" src="https://user-images.githubusercontent.com/67511953/125112110-9936f300-e09b-11eb-9eff-03e1a3372cff.png">
 * Prompts Screen
    * (READ) Prompts. Grabs all of the prompts from within a specific topic from the query.
+<img width="615" alt="gettingprompts" src="https://user-images.githubusercontent.com/67511953/125112105-976d2f80-e09b-11eb-9036-fef0e184e01b.png">
 * Prompt Screen
    * (READ) Comments. Grabs all of the comments from a specific prompt from the query.
 #### Extra
