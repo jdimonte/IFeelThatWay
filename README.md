@@ -14,7 +14,6 @@ Original App Design Project - README Template
 Anonymous forums for women discussing common problems and solutions. An environment for advice from other individuals on issues related to your period, your relationship, or anything you are struggling with. This is a space to get relief about your feelings, knowing you are not alone.
 
 ### App Evaluation
-[Evaluation of your app across the following attributes]
 - **Category:** Mental Wellbeing and Social
 - **Mobile:** There is reacting and commenting, which is perfect for a mobile environment.
 - **Story:** Targets individuals who have new or uncomfortable feelings and want to see if there are others who feel the same way. They are also seeking advice on these issues or being relieved that these feelings are normal.
@@ -171,9 +170,6 @@ Comment/Replies
 
 
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
 * Login Screen
    * (READ) User information. Takes in username and password and knows which user is signed in.
 <img width="769" alt="login" src="https://user-images.githubusercontent.com/67511953/125112063-8d4b3100-e09b-11eb-801e-dbe85a455c5a.png">
@@ -203,3 +199,5 @@ Comment/Replies
 * Profile Screen
     * (READ) User information. Grabs their profile color.
     * (Update) User information. Changes their profile color.
+
+### [Optional] APIs Requests
