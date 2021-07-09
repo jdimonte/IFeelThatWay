@@ -115,10 +115,80 @@ Anonymous forums for women discussing common problems and solutions. An environm
 <img src="https://github.com/jdimonte/IFeelThatWay/blob/main/walkthrough.gif" width=250>
 
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+User
+| Property  | Type     | Description |
+| --------  | -------- | --------    |
+| objectId | String | unique id for the user (default field) |
+| username | String | user's username |
+| password | String (hidden) | user's password |
+| email | String | user's email |
+| profilePicture | Color | color of the user's profile picture |
+| topicsFollowing | Array of Topics | all of the topcis a user is following |
+| savedFeelings | Array of Strings | all of the comments the user has saved |
+
+Topic
+| Property  | Type     | Description |
+| --------  | -------- | --------    |
+| objectId  | String | unique id for the user post (default field) |
+| category | String | category of the topic |
+| Prompts | Array of Prompts | all of the prompts within the topic |
+| createdAt | DateTime | date when post is created (default field) |
+
+Prompt
+| Property  | Type     | Description |
+| --------  | -------- | --------    |
+| objectId  | String | unique id for the user post (default field) |
+| topic | String | category prompt is in |
+| question | String | question by admin |
+| agreeCount| Number | number of people who have liked the question  |
+| comments| Array of Comments | all of the comments on the prompt  |
+| createdAt | DateTime | date when post is created (default field) |
+
+Poll
+| Property  | Type     | Description |
+| --------  | -------- | --------    |
+| objectId  | String | unique id for the user poll (default field) |
+| topic | String | category prompt is in |
+| question | String | question by admin |
+| agreeCount| Number | number of people who have liked the question |
+| firstAnswer| String | first answer to poll |
+| secondAnswer| String | second answer to poll |
+| thirdAnswer| String | third answer to poll |
+| firstCount| Number | number of users who have selected the first answer |
+| secondCount| Number | number of users who have selected the second answer |
+| thirdCount| Number | number of users who have selected the third answer |
+| interactionCount | Number | number of users who have answered the poll |
+| comments| Array of Comments | all of the comments on the poll  |
+| createdAt | DateTime | date when post is created (default field) |
+
+Comment/Replies
+| Property  | Type     | Description |
+| --------  | -------- | --------    |
+| objectId | String | unique id for the comment (default field) |
+| text | String | comment text |
+| agreeCount | Number | number of people who have agreed with (liked) the question |
+
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
+* Login Screen
+   * (READ) User information. Takes in username and password and knows which user is signed in.
+* Create Account Screen
+   * (CREATE) User. Sets the user's username, password, and email information.
+* Topics Screen
+   * (READ) Topics. Grabs all of the topics from the Query. Set each topic in a table view, that leads to the specific prompts screen.
+* Prompts Screen
+   * (READ) Prompts. Grabs all of the prompts from within a specific topic from the query.
+* Prompt Screen
+   * (READ) Comments. Grabs all of the comments from a specific prompt from the query.
+#### Extra
+* Saved Screen
+   * (READ) User's saved. Grabs all of the saved comments from the User with query.
+* Top Feelings Screen
+   * (READ) Comments by number of interactions. Sorts the comments by the top 10 for number of people who have positively interacted with it.
+* Profile Screen
+    * (READ) User information. Grabs their profile color.
+    * (Update) User information. Changes their profile color.
