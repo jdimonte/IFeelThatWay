@@ -167,6 +167,7 @@ Comment/Replies
 | objectId | String | unique id for the comment (default field) |
 | text | String | comment text |
 | agreeCount | Number | number of people who have agreed with (liked) the question |
+| promptId  | Type | unique id for the prompt the comment is associated with |
 
 
 ### Networking
