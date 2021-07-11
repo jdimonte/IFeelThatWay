@@ -202,3 +202,11 @@ Comment/Replies
     * (Update) User information. Changes their profile color.
 
 ### [Optional] APIs Requests
+
+### Colors
+
+8A81B1 //Light purple
+DEF8F5 //Light blue
+5C6199 //Dark blue
+020202 //Black
+E58B98 //pink
