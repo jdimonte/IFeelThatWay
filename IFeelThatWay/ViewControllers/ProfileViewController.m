@@ -7,9 +7,12 @@
 
 #import "ProfileViewController.h"
 #import "LoginViewController.h"
+#import "User.h"
 #import <Parse/Parse.h>
 
 @interface ProfileViewController ()
+@property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (strong, nonatomic) IBOutlet User *user;
 
 @end
 
@@ -17,7 +20,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.user = [PFUser currentUser];
+    NSString *colorSelected = self.user[@"profilePicture"];
+    if(!colorSelected){
+        colorSelected = @"red";
+    }
+    UIImage * colorPicture = [UIImage imageNamed:colorSelected];
+    [self.profilePicture setImage:colorPicture];
 }
 
 - (IBAction)backTapped:(id)sender {
@@ -32,6 +41,45 @@
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
     }];
 }
+
+- (void) updateProfilePicture: (NSString *)color {
+    UIImage * colorPicture = [UIImage imageNamed:color];
+    [self.profilePicture setImage:colorPicture];
+    self.user[@"profilePicture"] = color;
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (error != nil) {
+            NSLog(@"fail");
+        } else {
+            NSLog(@"success");
+        }
+    }];
+}
+
+- (IBAction)redTapped:(id)sender {
+    [self updateProfilePicture:@"red"];
+}
+- (IBAction)pinkTapped:(id)sender {
+    [self updateProfilePicture:@"pink"];
+}
+- (IBAction)orangeTapped:(id)sender {
+    [self updateProfilePicture:@"orange"];
+}
+- (IBAction)yellowTapped:(id)sender {
+    [self updateProfilePicture:@"yellow"];
+}
+- (IBAction)greenTapped:(id)sender {
+    [self updateProfilePicture:@"green"];
+}
+- (IBAction)lightBlueTapped:(id)sender {
+    [self updateProfilePicture:@"lightblue"];
+}
+- (IBAction)blueTapped:(id)sender {
+    [self updateProfilePicture:@"blue"];
+}
+- (IBAction)purpleTapped:(id)sender {
+    [self updateProfilePicture:@"purple"];
+}
+
 
 /*
 #pragma mark - Navigation

@@ -18,6 +18,10 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)cancelTapped:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 /*
 #pragma mark - Navigation
 
