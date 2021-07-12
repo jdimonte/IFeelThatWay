@@ -1,0 +1,6 @@
+framework module Pods_IFeelThatWayTests {
+  umbrella header "Pods-IFeelThatWayTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
