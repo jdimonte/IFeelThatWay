@@ -123,15 +123,13 @@ User
 | password | String (hidden) | user's password |
 | email | String | user's email |
 | profilePicture | Color | color of the user's profile picture |
-| topicsFollowing | Array of Topics | all of the topcis a user is following |
-| savedFeelings | Array of Strings | all of the comments the user has saved |
 
 Topic
 | Property  | Type     | Description |
 | --------  | -------- | --------    |
 | objectId  | String | unique id for the user post (default field) |
 | category | String | category of the topic |
-| Prompts | Array of Prompts | all of the prompts within the topic |
+| followersArray | Array of user IDs | users who are following this topic |
 | createdAt | DateTime | date when post is created (default field) |
 
 Prompt
@@ -141,7 +139,8 @@ Prompt
 | topic | String | category prompt is in |
 | question | String | question by admin |
 | agreeCount| Number | number of people who have liked the question  |
-| comments| Array of Comments | all of the comments on the prompt  |
+| agreeArray | Array of user IDs | users who are agree with this prompt |
+| savedArray | Array of user IDs | users who have saved this prompt |
 | createdAt | DateTime | date when post is created (default field) |
 
 Poll
@@ -151,23 +150,37 @@ Poll
 | topic | String | category prompt is in |
 | question | String | question by admin |
 | agreeCount| Number | number of people who have liked the question |
+| agreeArray | Array of user IDs | users who are agree with this poll |
+| savedArray | Array of user IDs | users who have saved this poll |
 | firstAnswer| String | first answer to poll |
 | secondAnswer| String | second answer to poll |
 | thirdAnswer| String | third answer to poll |
 | firstCount| Number | number of users who have selected the first answer |
 | secondCount| Number | number of users who have selected the second answer |
 | thirdCount| Number | number of users who have selected the third answer |
-| interactionCount | Number | number of users who have answered the poll |
-| comments| Array of Comments | all of the comments on the poll  |
 | createdAt | DateTime | date when post is created (default field) |
 
-Comment/Replies
+Comment
 | Property  | Type     | Description |
 | --------  | -------- | --------    |
 | objectId | String | unique id for the comment (default field) |
+| user  | Type Pointer | pointer to the user who commented |
+| post  | Type Pointer | pointer to the post the comment is for |
 | text | String | comment text |
 | agreeCount | Number | number of people who have agreed with (liked) the question |
-| promptId  | Type | unique id for the prompt the comment is associated with |
+| agreeArray | Array of user IDs | users who are agree with this comment |
+| savedArray | Array of user IDs | users who have saved this comment |
+
+Replies
+| Property  | Type     | Description |
+| --------  | -------- | --------    |
+| objectId | String | unique id for the reply (default field) |
+| user  | Type Pointer | pointer to the user who replied |
+| post  | Type Pointer | pointer to the post the reply is for |
+| text | String | comment text |
+| agreeCount | Number | number of people who have agreed with (liked) the question |
+| agreeArray | Array of user IDs | users who are agree with this reply |
+| savedArray | Array of user IDs | users who have saved this reply |
 
 
 ### Networking
