@@ -6,8 +6,11 @@
 //
 
 #import "LoginViewController.h"
+#import <Parse/Parse.h>
 
 @interface LoginViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *username;
+@property (strong, nonatomic) IBOutlet UITextField *password;
 
 @end
 
@@ -15,7 +18,41 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+}
+- (IBAction)loginTapped:(id)sender {
+    [self loginUser];
+}
+
+- (void)loginUser {
+    NSString *username = self.username.text;
+    NSString *password = self.password.text;
+    
+    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
+        if (error != nil) {
+            NSLog(@"User log in failed: %@", error.localizedDescription);
+            NSLog(@"Error: %@", error.localizedDescription);
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Try Again" preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                                style:UIAlertActionStyleCancel
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                              }];
+            [alert addAction:cancelAction];
+
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+    
+                                                             }];
+            [alert addAction:okAction];
+            
+            [self presentViewController:alert animated:YES completion:^{
+            }];
+        } else {
+            NSLog(@"User logged in successfully");
+            
+            [self performSegueWithIdentifier:@"login" sender:nil];
+        }
+    }];
 }
 
 /*
