@@ -6,10 +6,14 @@
 //
 
 #import "TopicViewController.h"
+#import "Prompt.h"
+#import "PromptCell.h"
 
-@interface TopicViewController ()
+@interface TopicViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *category;
 @property (strong, nonatomic) IBOutlet UIButton *followButton;
+@property (strong, nonatomic) IBOutlet UITableView *promptsTableView;
+@property (strong, nonatomic) NSArray *promptsArray;
 
 
 @end
@@ -18,8 +22,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.promptsTableView.delegate = self;
+    self.promptsTableView.dataSource = self;
     
     self.category.text = self.topic[@"category"];
+    
+    [self loadQueryPrompts];
 }
 
 - (IBAction)backTapped:(id)sender {
@@ -35,6 +43,36 @@
     }
 }
 
+- (void) loadQueryPrompts{
+    PFQuery *query = [PFQuery queryWithClassName:@"Prompt"];
+
+    [query includeKey:@"author"];
+    [query includeKey:self.topic.category];
+    [query orderByDescending:@"createdAt"];
+
+    query.limit = 20;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
+        if (prompts != nil) {
+            self.promptsArray = prompts;
+            [self.promptsTableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        //[self.refreshControl endRefreshing];
+    }];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    PromptCell *cell = (PromptCell *)[tableView dequeueReusableCellWithIdentifier:@"PromptCell" forIndexPath:indexPath];
+    Prompt *promptInfo = self.promptsArray[indexPath.row];
+    cell.question.text = promptInfo[@"question"];
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.promptsArray.count;
+}
 
 /*
 #pragma mark - Navigation
