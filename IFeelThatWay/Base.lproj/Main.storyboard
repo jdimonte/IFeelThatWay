@@ -82,6 +82,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="Bjy-5B-RKs">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnH-cX-3KR">
                                 <rect key="frame" x="20" y="64" width="20" height="20"/>
                                 <constraints>
@@ -185,6 +189,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Leaderboard" image="star" catalog="system" selectedImage="star.fill" id="qaS-Ue-swK"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Bjy-5B-RKs" id="1zm-0e-KSv"/>
                         <outlet property="topCommentsTableView" destination="u36-Y7-2Db" id="sBj-JB-SOO"/>
                     </connections>
                 </viewController>
@@ -396,6 +401,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="Qmf-T7-YVe">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wy9-RD-ouc">
                                 <rect key="frame" x="374" y="64" width="20" height="20"/>
                                 <constraints>
@@ -490,6 +499,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Topics" image="doc.text" catalog="system" selectedImage="doc.text.fill" id="grY-Ux-7xU"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Qmf-T7-YVe" id="l0J-Xg-3Ew"/>
                         <outlet property="searchBar" destination="eWE-Mz-JNO" id="6JG-0G-Spb"/>
                         <outlet property="topicsTableView" destination="QDV-d7-otS" id="7gt-ne-HaX"/>
                     </connections>
@@ -522,6 +532,10 @@
                                     <action selector="followTapped:" destination="e9D-fS-dI1" eventType="touchUpInside" id="Lh2-7p-QhO"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" id="hQb-84-cjM">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLr-DK-5WU">
                                 <rect key="frame" x="49" y="123" width="320" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -614,6 +628,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="hQb-84-cjM" id="NdD-RJ-yCs"/>
                         <outlet property="category" destination="oLr-DK-5WU" id="H0D-G8-Vf3"/>
                         <outlet property="followButton" destination="X3x-6D-jBu" id="Tcm-Yg-jwk"/>
                         <outlet property="promptsTableView" destination="pNT-Ef-qab" id="9hf-6G-vQE"/>
@@ -793,8 +808,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="UVq-QA-C4X"/>
-        <segue reference="poM-UT-Zps"/>
-        <segue reference="me4-JD-FzK"/>
+        <segue reference="6ee-1u-iPP"/>
+        <segue reference="MEm-fH-Wfb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.circle" catalog="system" width="128" height="121"/>

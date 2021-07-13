@@ -12,6 +12,9 @@
 @interface TopViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *topCommentsTableView;
 @property (strong, nonatomic) NSMutableArray *topCommentsArray;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+
 
 @end
 
@@ -19,10 +22,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.activityIndicator startAnimating];
+    
     self.topCommentsTableView.delegate = self;
     self.topCommentsTableView.dataSource = self;
     
     [self loadQueryTopComments];
+    
+    self.refreshControl = [[UIRefreshControl alloc ] init];
+    [self.refreshControl addTarget:self action:@selector(loadQueryTopComments) forControlEvents:UIControlEventValueChanged];
+    [self.topCommentsTableView insertSubview:self.refreshControl atIndex:0];
+    [self.topCommentsTableView addSubview:self.refreshControl];
 }
 
 - (void) loadQueryTopComments{
@@ -40,7 +50,8 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        //[self.refreshControl endRefreshing];
+        [self.activityIndicator stopAnimating];
+        [self.refreshControl endRefreshing];
     }];
 }
 

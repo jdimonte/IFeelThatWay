@@ -14,6 +14,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *followButton;
 @property (strong, nonatomic) IBOutlet UITableView *promptsTableView;
 @property (strong, nonatomic) NSMutableArray *promptsArray;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 @end
@@ -22,12 +24,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.activityIndicator startAnimating];
+    
     self.promptsTableView.delegate = self;
     self.promptsTableView.dataSource = self;
     
     self.category.text = self.topic[@"category"];
     
     [self loadQueryPrompts];
+    
+    self.refreshControl = [[UIRefreshControl alloc ] init];
+    [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
+    [self.promptsTableView insertSubview:self.refreshControl atIndex:0];
+    [self.promptsTableView addSubview:self.refreshControl];
 }
 
 - (IBAction)backTapped:(id)sender {
@@ -59,7 +68,8 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        //[self.refreshControl endRefreshing];
+        [self.activityIndicator stopAnimating];
+        [self.refreshControl endRefreshing];
     }];
 }
 

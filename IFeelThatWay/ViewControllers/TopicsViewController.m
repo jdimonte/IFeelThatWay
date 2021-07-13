@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSMutableArray *topicsArray;
 @property (strong, nonatomic) NSMutableArray *filteredTopicsArray;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -23,12 +25,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.activityIndicator startAnimating];
+    
     self.topicsTableView.delegate = self;
     self.topicsTableView.dataSource = self;
     self.searchBar.delegate = self;
 
     [self loadQueryTopics];
     self.filteredTopicsArray = self.topicsArray;
+    
+    self.refreshControl = [[UIRefreshControl alloc ] init];
+    [self.refreshControl addTarget:self action:@selector(loadQueryTopics) forControlEvents:UIControlEventValueChanged];
+    [self.topicsTableView insertSubview:self.refreshControl atIndex:0];
+    [self.topicsTableView addSubview:self.refreshControl];
 }
 
 - (void) loadQueryTopics{
@@ -46,7 +55,8 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        //[self.refreshControl endRefreshing];
+        [self.activityIndicator stopAnimating];
+        [self.refreshControl endRefreshing];
     }];
 }
 
