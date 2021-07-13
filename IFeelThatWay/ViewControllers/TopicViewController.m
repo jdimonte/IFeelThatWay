@@ -13,7 +13,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *category;
 @property (strong, nonatomic) IBOutlet UIButton *followButton;
 @property (strong, nonatomic) IBOutlet UITableView *promptsTableView;
-@property (strong, nonatomic) NSArray *promptsArray;
+@property (strong, nonatomic) NSMutableArray *promptsArray;
 
 
 @end
@@ -47,7 +47,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Prompt"];
 
     [query includeKey:@"author"];
-    [query includeKey:self.topic.category];
+    [query whereKey:@"topic" equalTo:self.topic.category];
     [query orderByDescending:@"createdAt"];
 
     query.limit = 20;

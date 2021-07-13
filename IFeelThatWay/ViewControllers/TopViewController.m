@@ -6,8 +6,12 @@
 //
 
 #import "TopViewController.h"
+#import "TopCommentCell.h"
+#import "Comment.h"
 
-@interface TopViewController ()
+@interface TopViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITableView *topCommentsTableView;
+@property (strong, nonatomic) NSMutableArray *topCommentsArray;
 
 @end
 
@@ -15,7 +19,49 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.topCommentsTableView.delegate = self;
+    self.topCommentsTableView.dataSource = self;
+    
+    [self loadQueryTopComments];
+}
+
+- (void) loadQueryTopComments{
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+
+    [query includeKey:@"author"];
+    [query orderByDescending:@"agreesCount"];
+
+    query.limit = 10;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        if (comments != nil) {
+            self.topCommentsArray = comments;
+            [self.topCommentsTableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+        //[self.refreshControl endRefreshing];
+    }];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    TopCommentCell *cell = (TopCommentCell *)[tableView dequeueReusableCellWithIdentifier:@"TopCommentCell" forIndexPath:indexPath];
+    //Comment *topComment = self.topCommentsArray[indexPath.row];
+    NSInteger *rank = indexPath.row + 1;
+    NSString *rankStr = [NSString stringWithFormat:@"%d", rank];
+    NSString *rankString = [rankStr stringByAppendingString:@". "];
+//    NSString *commentString = topComment[@"text"];
+//    if(commentString){
+//        cell.comment.text = [rankString stringByAppendingString:commentString];
+//    }
+//    else{
+        cell.comment.text = rankString;
+    //}
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10; //change to self.topCommentsArray.count eventually
 }
 
 /*
