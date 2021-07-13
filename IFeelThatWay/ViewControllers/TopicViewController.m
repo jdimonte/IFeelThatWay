@@ -8,6 +8,9 @@
 #import "TopicViewController.h"
 
 @interface TopicViewController ()
+@property (strong, nonatomic) IBOutlet UILabel *category;
+@property (strong, nonatomic) IBOutlet UIButton *followButton;
+
 
 @end
 
@@ -15,10 +18,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.category.text = self.topic[@"category"];
 }
 
+- (IBAction)backTapped:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
 
+- (IBAction)followTapped:(id)sender {
+    if([self.followButton.currentImage isEqual:[UIImage systemImageNamed:@"checkmark.circle"]]){
+        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.circle.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.circle"] forState:UIControlStateNormal];
+    }
+}
 
 
 /*

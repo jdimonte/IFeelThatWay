@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface TopicCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIView *topicImage;
 @property (strong, nonatomic) IBOutlet UILabel *topicCategory;
+@property (strong, nonatomic) IBOutlet UIButton *followButton;
+
 
 @end
 

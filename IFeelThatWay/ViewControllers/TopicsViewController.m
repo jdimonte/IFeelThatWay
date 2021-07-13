@@ -14,6 +14,8 @@
 @interface TopicsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *topicsTableView;
 @property (strong, nonatomic) NSMutableArray *topicsArray;
+@property (strong, nonatomic) NSMutableArray *filteredTopicsArray;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
 @end
 
@@ -23,7 +25,10 @@
     [super viewDidLoad];
     self.topicsTableView.delegate = self;
     self.topicsTableView.dataSource = self;
+    self.searchBar.delegate = self;
+
     [self loadQueryTopics];
+    self.filteredTopicsArray = self.topicsArray;
 }
 
 - (void) loadQueryTopics{
@@ -34,9 +39,9 @@
 
     query.limit = 20;
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        if (posts != nil) {
-            self.topicsArray = posts;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *topics, NSError *error) {
+        if (topics != nil) {
+            self.topicsArray = topics;
             [self.topicsTableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -48,13 +53,34 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TopicCell *cell = (TopicCell *)[tableView dequeueReusableCellWithIdentifier:@"TopicCell" forIndexPath:indexPath];
     Topic *topicInfo = self.topicsArray[indexPath.row];
+    if(self.filteredTopicsArray){
+        topicInfo = self.filteredTopicsArray[indexPath.row];
+    }
     NSString *category = topicInfo[@"category"];
     cell.topicCategory.text = category;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.topicsArray.count;
+    if(self.filteredTopicsArray){
+        return self.filteredTopicsArray.count;
+    }
+    else{
+        return self.topicsArray.count;
+    }
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    
+    if (searchText.length != 0) {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(category CONTAINS[cd] %@)", searchText];
+        self.filteredTopicsArray = [self.topicsArray filteredArrayUsingPredicate:predicate];
+    }
+    else {
+        self.filteredTopicsArray = self.topicsArray;
+    }
+    
+    [self.topicsTableView reloadData];
 }
 
 #pragma mark - Navigation
@@ -64,6 +90,9 @@
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.topicsTableView indexPathForCell:tappedCell];
         Topic *topic = self.topicsArray[indexPath.row];
+        if(self.filteredTopicsArray){
+            topic = self.filteredTopicsArray[indexPath.row];
+        }
         TopicViewController *topicViewController = [segue destinationViewController];
         topicViewController.topic = topic;
     }

@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Reply : PFObject
+@interface Reply : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *replyID;
 @property (nonatomic, strong) User *user;
