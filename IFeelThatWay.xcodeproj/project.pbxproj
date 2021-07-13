@@ -29,6 +29,8 @@
 		51815C29269CDFDA00BFCA08 /* SavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C28269CDFDA00BFCA08 /* SavedViewController.m */; };
 		51815C2C269CE77700BFCA08 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C2B269CE77700BFCA08 /* ProfileViewController.m */; };
 		51815C2F269CE78200BFCA08 /* RequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C2E269CE78200BFCA08 /* RequestViewController.m */; };
+		51815C32269D0C9900BFCA08 /* TopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C31269D0C9900BFCA08 /* TopicCell.m */; };
+		51815C35269D11DB00BFCA08 /* TopicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C34269D11DB00BFCA08 /* TopicViewController.m */; };
 		7755BAA090D8FE32DB3BB79D /* Pods_IFeelThatWay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6E105AF466943A03AD854 /* Pods_IFeelThatWay.framework */; };
 		C08B87D643BE0C2474D36057 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3349875ECD7295DE859E7493 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework */; };
 		C71C35C595BC313F17DE02EB /* Pods_IFeelThatWayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC832D4F1943C9725419EE29 /* Pods_IFeelThatWayTests.framework */; };
@@ -99,6 +101,10 @@
 		51815C2B269CE77700BFCA08 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		51815C2D269CE78200BFCA08 /* RequestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestViewController.h; sourceTree = "<group>"; };
 		51815C2E269CE78200BFCA08 /* RequestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestViewController.m; sourceTree = "<group>"; };
+		51815C30269D0C9900BFCA08 /* TopicCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicCell.h; sourceTree = "<group>"; };
+		51815C31269D0C9900BFCA08 /* TopicCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicCell.m; sourceTree = "<group>"; };
+		51815C33269D11DB00BFCA08 /* TopicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TopicViewController.h; sourceTree = "<group>"; };
+		51815C34269D11DB00BFCA08 /* TopicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TopicViewController.m; sourceTree = "<group>"; };
 		7CF6EB3FA15E166C26663A24 /* Pods-IFeelThatWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeelThatWay.debug.xcconfig"; path = "Target Support Files/Pods-IFeelThatWay/Pods-IFeelThatWay.debug.xcconfig"; sourceTree = "<group>"; };
 		997A21D4EACC33B87868D36D /* Pods-IFeelThatWayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeelThatWayTests.release.xcconfig"; path = "Target Support Files/Pods-IFeelThatWayTests/Pods-IFeelThatWayTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC832D4F1943C9725419EE29 /* Pods_IFeelThatWayTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeelThatWayTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -217,6 +223,8 @@
 		51815BEF269CAD0900BFCA08 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				51815C30269D0C9900BFCA08 /* TopicCell.h */,
+				51815C31269D0C9900BFCA08 /* TopicCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -240,6 +248,8 @@
 				51815C2B269CE77700BFCA08 /* ProfileViewController.m */,
 				51815C2D269CE78200BFCA08 /* RequestViewController.h */,
 				51815C2E269CE78200BFCA08 /* RequestViewController.m */,
+				51815C33269D11DB00BFCA08 /* TopicViewController.h */,
+				51815C34269D11DB00BFCA08 /* TopicViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -518,6 +528,7 @@
 				51815C16269CB37000BFCA08 /* Topic.m in Sources */,
 				51815C19269CCFC700BFCA08 /* LoginViewController.m in Sources */,
 				51815C2F269CE78200BFCA08 /* RequestViewController.m in Sources */,
+				51815C32269D0C9900BFCA08 /* TopicCell.m in Sources */,
 				51815C0D269CB33F00BFCA08 /* Poll.m in Sources */,
 				51815BBB269CAC8100BFCA08 /* AppDelegate.m in Sources */,
 				51815BCC269CAC8200BFCA08 /* main.m in Sources */,
@@ -525,6 +536,7 @@
 				51815C29269CDFDA00BFCA08 /* SavedViewController.m in Sources */,
 				51815C23269CDFBD00BFCA08 /* TopicsViewController.m in Sources */,
 				51815C20269CDFA900BFCA08 /* TopViewController.m in Sources */,
+				51815C35269D11DB00BFCA08 /* TopicViewController.m in Sources */,
 				51815C13269CB35200BFCA08 /* Reply.m in Sources */,
 				51815C1C269CD02800BFCA08 /* SignUpViewController.m in Sources */,
 				51815BBE269CAC8100BFCA08 /* SceneDelegate.m in Sources */,
