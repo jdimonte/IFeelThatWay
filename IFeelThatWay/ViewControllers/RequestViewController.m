@@ -6,8 +6,11 @@
 //
 
 #import "RequestViewController.h"
+#import "Request.h"
 
 @interface RequestViewController ()
+@property (strong, nonatomic) IBOutlet UITextView *request;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *type;
 
 @end
 
@@ -20,6 +23,23 @@
 
 - (IBAction)cancelTapped:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)submitTapped:(id)sender {
+    if(![self.request.text isEqual: @""]){
+        Request *request = [Request new];
+        request.request = self.request.text;
+        NSString *requestTypes[] = {@"topic", @"prompt"};
+        request.type = requestTypes[self.type.selectedSegmentIndex];
+        [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // The object has been saved.
+            }
+            else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
 }
 
 /*
