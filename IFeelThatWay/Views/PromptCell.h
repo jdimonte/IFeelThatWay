@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIButton *comment;
 @property (strong, nonatomic) IBOutlet UIButton *save;
 @property (strong, nonatomic) IBOutlet UILabel *featuredComment;
+@property (strong, nonatomic) IBOutlet UIImageView *featuredProfilePic;
 
 @end
 

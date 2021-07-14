@@ -38,6 +38,7 @@
 		51815C47269E680A00BFCA08 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C46269E680A00BFCA08 /* CommentCell.m */; };
 		51815C4A269F20CA00BFCA08 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C49269F20CA00BFCA08 /* CommentViewController.m */; };
 		51815C4D269F23A200BFCA08 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C4C269F23A200BFCA08 /* ReplyCell.m */; };
+		51815C50269F504500BFCA08 /* FollowingPromptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C4F269F504500BFCA08 /* FollowingPromptCell.m */; };
 		7755BAA090D8FE32DB3BB79D /* Pods_IFeelThatWay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6E105AF466943A03AD854 /* Pods_IFeelThatWay.framework */; };
 		C08B87D643BE0C2474D36057 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3349875ECD7295DE859E7493 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework */; };
 		C71C35C595BC313F17DE02EB /* Pods_IFeelThatWayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC832D4F1943C9725419EE29 /* Pods_IFeelThatWayTests.framework */; };
@@ -126,6 +127,8 @@
 		51815C49269F20CA00BFCA08 /* CommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		51815C4B269F23A200BFCA08 /* ReplyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
 		51815C4C269F23A200BFCA08 /* ReplyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
+		51815C4E269F504500BFCA08 /* FollowingPromptCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FollowingPromptCell.h; sourceTree = "<group>"; };
+		51815C4F269F504500BFCA08 /* FollowingPromptCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FollowingPromptCell.m; sourceTree = "<group>"; };
 		7CF6EB3FA15E166C26663A24 /* Pods-IFeelThatWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeelThatWay.debug.xcconfig"; path = "Target Support Files/Pods-IFeelThatWay/Pods-IFeelThatWay.debug.xcconfig"; sourceTree = "<group>"; };
 		997A21D4EACC33B87868D36D /* Pods-IFeelThatWayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeelThatWayTests.release.xcconfig"; path = "Target Support Files/Pods-IFeelThatWayTests/Pods-IFeelThatWayTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC832D4F1943C9725419EE29 /* Pods_IFeelThatWayTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeelThatWayTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,6 +259,8 @@
 				51815C46269E680A00BFCA08 /* CommentCell.m */,
 				51815C4B269F23A200BFCA08 /* ReplyCell.h */,
 				51815C4C269F23A200BFCA08 /* ReplyCell.m */,
+				51815C4E269F504500BFCA08 /* FollowingPromptCell.h */,
+				51815C4F269F504500BFCA08 /* FollowingPromptCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -574,6 +579,7 @@
 				51815C23269CDFBD00BFCA08 /* TopicsViewController.m in Sources */,
 				51815C41269E20D700BFCA08 /* TopCommentCell.m in Sources */,
 				51815C20269CDFA900BFCA08 /* TopViewController.m in Sources */,
+				51815C50269F504500BFCA08 /* FollowingPromptCell.m in Sources */,
 				51815C35269D11DB00BFCA08 /* TopicViewController.m in Sources */,
 				51815C47269E680A00BFCA08 /* CommentCell.m in Sources */,
 				51815C13269CB35200BFCA08 /* Reply.m in Sources */,

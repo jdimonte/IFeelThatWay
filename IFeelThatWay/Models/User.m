@@ -9,7 +9,7 @@
 
 @implementation User
 
-@dynamic userID;
+@dynamic objectId;
 @dynamic username;
 @dynamic email;
 @dynamic profilePicture;

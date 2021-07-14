@@ -9,6 +9,7 @@
 #import "Prompt.h"
 #import "PromptCell.h"
 #import "PostViewController.h"
+#import "Comment.h"
 
 @interface TopicViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *category;
@@ -78,6 +79,26 @@
     PromptCell *cell = (PromptCell *)[tableView dequeueReusableCellWithIdentifier:@"PromptCell" forIndexPath:indexPath];
     Prompt *promptInfo = self.promptsArray[indexPath.row];
     cell.question.text = promptInfo[@"question"];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    [query includeKey:@"author"];
+    [query includeKey:@"user"];
+    [query whereKey:@"post" equalTo:promptInfo];
+    [query orderByDescending:@"agreesCount"];
+    query.limit = 1;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        if (comments != nil) {
+            Comment *featuredComment = comments[0];
+            cell.featuredComment.text = featuredComment[@"text"];
+            UIImage * colorPicture = [UIImage imageNamed:featuredComment[@"user"][@"profilePicture"]];
+            [cell.featuredProfilePic setImage:colorPicture];
+            cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
+            cell.featuredProfilePic.clipsToBounds = true;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    
     return cell;
 }
 

@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface User : PFObject
 
-@property (nonatomic, strong) NSString *userID;
+@property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *profilePicture;

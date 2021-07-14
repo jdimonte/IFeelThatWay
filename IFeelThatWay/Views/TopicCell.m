@@ -25,9 +25,12 @@
 - (IBAction)followTapped:(id)sender {
     if([self.followButton.currentImage isEqual:[UIImage systemImageNamed:@"checkmark.square"]]){
         [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square.fill"] forState:UIControlStateNormal];
+        //follow topic
+        
     }
     else{
         [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
+        //unfollow topic
     }
 }
 
