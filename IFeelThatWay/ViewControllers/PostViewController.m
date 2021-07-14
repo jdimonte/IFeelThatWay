@@ -52,7 +52,8 @@
         
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                // The object has been saved.
+                [self loadQueryComments];
+                self.commentText.text = @"";
             }
             else {
                 NSLog(@"%@", error.localizedDescription);
@@ -68,7 +69,7 @@
     [query includeKey:@"author"];
     [query includeKey:@"user"];
     [query whereKey:@"post" equalTo:self.prompt];
-    [query orderByDescending:@"createdAt"];
+    [query orderByAscending:@"createdAt"];
 
     query.limit = 20;
     
@@ -93,13 +94,6 @@
     Comment *commentInfo = self.commentsArray[indexPath.row];
     
     cell.text.text = commentInfo[@"text"];
-    
-    NSLog(@"%@", commentInfo[@"user"]);
-//    User *user = commentInfo[@"user"];
-//    PFUser *pfuser = commentInfo[@"user"];
-//    NSLog(@"%@", user.profilePicture);
-//    NSLog(@"%@", pfuser[@"profilePicture"]);
-
     
     UIImage * colorPicture = [UIImage imageNamed:commentInfo[@"user"][@"profilePicture"]];
     [cell.profilePic setImage:colorPicture];
