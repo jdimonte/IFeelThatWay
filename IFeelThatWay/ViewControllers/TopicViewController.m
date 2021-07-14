@@ -8,6 +8,7 @@
 #import "TopicViewController.h"
 #import "Prompt.h"
 #import "PromptCell.h"
+#import "PostViewController.h"
 
 @interface TopicViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *category;
@@ -84,14 +85,17 @@
     return self.promptsArray.count;
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"promptsToQuestion"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.promptsTableView indexPathForCell:tappedCell];
+        Prompt *prompt = self.promptsArray[indexPath.row];
+        PostViewController *postViewController = [segue destinationViewController];
+        postViewController.prompt = prompt;
+    }
 }
-*/
 
 @end
