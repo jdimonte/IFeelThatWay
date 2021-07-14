@@ -12,6 +12,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *commentsTableView;
 @property (strong, nonatomic) NSMutableArray *repliesArray;
 @property (strong, nonatomic) IBOutlet UILabel *commentPrompt;
+@property (strong, nonatomic) IBOutlet UITextView *replyText;
+@property (strong, nonatomic) IBOutlet UIButton *replyButton;
 
 @end
 
@@ -27,11 +29,15 @@
     [self loadQueryReplies];
 }
 
+- (IBAction)backTapped:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 - (void) loadQueryReplies{
-    PFQuery *query = [PFQuery queryWithClassName:@"Prompt"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Reply"];
 
     [query includeKey:@"author"];
-    [query whereKey:@"comment" equalTo:self.comment]; //fix
+    [query whereKey:@"comment" equalTo:self.comment];
     [query orderByDescending:@"createdAt"];
 
     query.limit = 20;

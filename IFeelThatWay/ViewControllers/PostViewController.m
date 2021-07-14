@@ -14,6 +14,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *question;
 @property (strong, nonatomic) IBOutlet UITableView *questionTableView;
 @property (strong, nonatomic) NSMutableArray *commentsArray;
+@property (strong, nonatomic) IBOutlet UITextView *commentText;
+@property (strong, nonatomic) IBOutlet UIButton *commentButton;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
@@ -37,11 +39,35 @@
     [self.questionTableView addSubview:self.refreshControl];
 }
 
+- (IBAction)commentTapped:(id)sender {
+    if(![self.commentText.text isEqual:@""]){
+        Comment *comment = [Comment new];
+        
+        comment.text = self.commentText.text;
+        User *user = [PFUser currentUser];
+        comment.user = user;
+        Prompt *prompt = self.prompt;
+        comment.post = prompt;
+        comment.agreesCount = 0;
+        
+        [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // The object has been saved.
+            }
+            else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
+}
+
+
 - (void) loadQueryComments{
-    PFQuery *query = [PFQuery queryWithClassName:@"Prompt"];
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
 
     [query includeKey:@"author"];
-    [query whereKey:@"post" equalTo:self.prompt]; //fix
+    [query includeKey:@"user"];
+    [query whereKey:@"post" equalTo:self.prompt];
     [query orderByDescending:@"createdAt"];
 
     query.limit = 20;
@@ -65,7 +91,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentCell *cell = (CommentCell *)[tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     Comment *commentInfo = self.commentsArray[indexPath.row];
-    cell.text = commentInfo[@"text"];
+    
+    cell.text.text = commentInfo[@"text"];
+    
+    NSLog(@"%@", commentInfo[@"user"]);
+//    User *user = commentInfo[@"user"];
+//    PFUser *pfuser = commentInfo[@"user"];
+//    NSLog(@"%@", user.profilePicture);
+//    NSLog(@"%@", pfuser[@"profilePicture"]);
+
+    
+    UIImage * colorPicture = [UIImage imageNamed:commentInfo[@"user"][@"profilePicture"]];
+    [cell.profilePic setImage:colorPicture];
+    cell.profilePic.layer.cornerRadius =  cell.profilePic.frame.size.width / 2;
+    cell.profilePic.clipsToBounds = true;
+    
     return cell;
 }
 
