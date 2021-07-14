@@ -57,22 +57,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TopCommentCell *cell = (TopCommentCell *)[tableView dequeueReusableCellWithIdentifier:@"TopCommentCell" forIndexPath:indexPath];
-    //Comment *topComment = self.topCommentsArray[indexPath.row];
+    Comment *topComment = self.topCommentsArray[indexPath.row];
     NSInteger *rank = indexPath.row + 1;
     NSString *rankStr = [NSString stringWithFormat:@"%d", rank];
     NSString *rankString = [rankStr stringByAppendingString:@". "];
-//    NSString *commentString = topComment[@"text"];
-//    if(commentString){
-//        cell.comment.text = [rankString stringByAppendingString:commentString];
-//    }
-//    else{
+    NSString *commentString = topComment[@"text"];
+    if(commentString){
+        cell.comment.text = [rankString stringByAppendingString:commentString];
+    }
+    else{
         cell.comment.text = rankString;
-    //}
+    }
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10; //change to self.topCommentsArray.count eventually
+    return self.topCommentsArray.count;
 }
 
 /*
