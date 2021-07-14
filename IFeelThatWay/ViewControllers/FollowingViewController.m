@@ -16,6 +16,7 @@
 @interface FollowingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *followingTableView;
 @property (strong, nonatomic) NSMutableArray *promptsArray;
+@property (strong, nonatomic) NSMutableArray *topicsArray;
 
 @end
 
@@ -31,21 +32,25 @@
 }
 
 - (void) loadQueryPrompts{
-    PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
+    PFQuery *topicsQuery = [PFQuery queryWithClassName:@"Topic"];
+    [topicsQuery includeKey:@"author"];
+    [topicsQuery includeKey:@"followersArray"];
     User *user = [PFUser currentUser];
+    [topicsQuery whereKey:@"followersArray" equalTo:user[@"objectID"]];
+    topicsQuery.limit = 20;
+    [topicsQuery findObjectsInBackgroundWithBlock:^(NSArray *topics, NSError *error) {
+        if (topics != nil) {
+            self.topicsArray = topics;
+            [self.followingTableView reloadData];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
     [postQuery includeKey:@"author"];
-    [postQuery includeKey:@"followersArray"];
-    NSLog(@"%@", user.objectId);
-    
-    [postQuery whereKey:@"followerArray" containsString:user.objectId];
-//    [topicQuery whereKey:@"followersArray"  containedIn:[@"followersArray"]]
-//    [postQuery whereKey:@"followersArray" matchesKey:@"objectId" inQuery: userQuery];
-//    [query whereKey:user[@"objectID"] containedIn:[@"topic"][@"followersArray"]];
-    
+    [postQuery whereKey:user[@"objectID"] containedIn:self.topicsArray];
     [postQuery orderByDescending:@"createdAt"];
-
     postQuery.limit = 20;
-    
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
         if (prompts != nil) {
             self.promptsArray = prompts;

@@ -33,6 +33,8 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryTopComments) forControlEvents:UIControlEventValueChanged];
     [self.topCommentsTableView insertSubview:self.refreshControl atIndex:0];
     [self.topCommentsTableView addSubview:self.refreshControl];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadQueryTopComments) userInfo:nil repeats:true];
 }
 
 - (void) loadQueryTopComments{

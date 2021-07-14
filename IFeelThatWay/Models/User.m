@@ -11,6 +11,7 @@
 
 @dynamic objectId;
 @dynamic username;
+@dynamic password;
 @dynamic email;
 @dynamic profilePicture;
 @dynamic createdAt;

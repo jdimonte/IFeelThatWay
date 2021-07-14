@@ -1,37 +1,20 @@
 //
-//  LoginViewController.m
+//  LoginUtil.m
 //  IFeelThatWay
 //
-//  Created by Jacqueline DiMonte on 7/12/21.
+//  Created by Jacqueline DiMonte on 7/14/21.
 //
 
+#import "LoginUtil.h"
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
-#import "LoginUtil.h"
+#import <UIKit/UIKit.h>
 
-@interface LoginViewController ()
-@property (strong, nonatomic) IBOutlet UITextField *username;
-@property (strong, nonatomic) IBOutlet UITextField *password;
+@implementation LoginUtil
 
-@end
-
-@implementation LoginViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
-- (IBAction)loginTapped:(id)sender {
-    User *user = [User new];
-    user.username = self.username.text;
-    user.password = self.password.text;
-    //[LoginUtil loginUser:user :self];
-    [self loginUser];
-}
-
-- (void)loginUser {
-    NSString *username = self.username.text;
-    NSString *password = self.password.text;
++ (void)loginUserloginUser:(User*)user:(UIViewController*)currentViewController {
+    NSString *username = user.username;
+    NSString *password = user.password;
     
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
@@ -51,24 +34,14 @@
                                                              }];
             [alert addAction:okAction];
             
-            [self presentViewController:alert animated:YES completion:^{
+            [currentViewController presentViewController:alert animated:YES completion:^{
             }];
         } else {
             NSLog(@"User logged in successfully");
             
-            [self performSegueWithIdentifier:@"login" sender:nil];
+            [currentViewController performSegueWithIdentifier:@"login" sender:nil];
         }
     }];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
