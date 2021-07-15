@@ -6,6 +6,7 @@
 //
 
 #import "SignUpViewController.h"
+#import "SignUpUtil.h"
 #import <Parse/Parse.h>
 
 @interface SignUpViewController ()
@@ -27,59 +28,11 @@
 }
 
 - (IBAction)signUpTapped:(id)sender {
-    [self registerUser];
-}
-
-- (void)registerUser {
     PFUser *newUser = [PFUser user];
-    
     newUser.email = self.email.text;
     newUser.username = self.username.text;
     newUser.password = self.password.text;
-    
-    if([newUser.username isEqual: @""] || [newUser.password isEqual: @""]){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"noText" message:@"Input Text" preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                            style:UIAlertActionStyleCancel
-                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                          }];
-        [alert addAction:cancelAction];
-
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                         }];
-        [alert addAction:okAction];
-        
-        [self presentViewController:alert animated:YES completion:^{
-        }];
-    }
-    else{
-        [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-            if (error != nil) {
-                NSLog(@"Error: %@", error.localizedDescription);
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Try Again" preferredStyle:(UIAlertControllerStyleAlert)];
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                    style:UIAlertActionStyleCancel
-                                                                  handler:^(UIAlertAction * _Nonnull action) {
-                                                                  }];
-                [alert addAction:cancelAction];
-
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                   style:UIAlertActionStyleDefault
-                                                                 handler:^(UIAlertAction * _Nonnull action) {
-                                                                 }];
-                [alert addAction:okAction];
-                
-                [self presentViewController:alert animated:YES completion:^{
-                }];
-            } else {
-                NSLog(@"User registered successfully");
-
-                [self performSegueWithIdentifier:@"signUp" sender:nil];
-            }
-        }];
-    }
+    [SignUpUtil registerUser:newUser:self];
 }
 
 /*

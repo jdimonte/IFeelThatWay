@@ -12,7 +12,7 @@
 
 @implementation LoginUtil
 
-+ (void)loginUserloginUser:(User*)user:(UIViewController*)currentViewController {
++ (void)loginUser:(User *)user :(UIViewController *)currentViewController{
     NSString *username = user.username;
     NSString *password = user.password;
     

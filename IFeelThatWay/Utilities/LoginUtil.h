@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LoginUtil : NSObject
 
-+ (void)loginUser:(User*)user:(UIViewController*)currentViewController;
++ (void)loginUser:(User*)user: (UIViewController*)currentViewController;
 
 @end
 

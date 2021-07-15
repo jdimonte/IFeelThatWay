@@ -22,45 +22,11 @@
 }
 
 - (IBAction)loginTapped:(id)sender {
-    User *user = [User new];
-    user.username = self.username.text;
-    user.password = self.password.text;
-    //[LoginUtil loginUser:user :self];
-    [self loginUser];
+    User *currentUser = [User new];
+    currentUser.username = self.username.text;
+    currentUser.password = self.password.text;
+    [LoginUtil loginUser:currentUser:self];
 }
-
-- (void)loginUser {
-    NSString *username = self.username.text;
-    NSString *password = self.password.text;
-    
-    [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
-        if (error != nil) {
-            NSLog(@"User log in failed: %@", error.localizedDescription);
-            NSLog(@"Error: %@", error.localizedDescription);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Try Again" preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                style:UIAlertActionStyleCancel
-                                                              handler:^(UIAlertAction * _Nonnull action) {
-                                                              }];
-            [alert addAction:cancelAction];
-
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-    
-                                                             }];
-            [alert addAction:okAction];
-            
-            [self presentViewController:alert animated:YES completion:^{
-            }];
-        } else {
-            NSLog(@"User logged in successfully");
-            
-            [self performSegueWithIdentifier:@"login" sender:nil];
-        }
-    }];
-}
-
 /*
 #pragma mark - Navigation
 

@@ -41,6 +41,7 @@
 		51815C50269F504500BFCA08 /* FollowingPromptCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C4F269F504500BFCA08 /* FollowingPromptCell.m */; };
 		51815C53269F805500BFCA08 /* LoginUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C52269F805500BFCA08 /* LoginUtil.m */; };
 		51815C5926A0B69500BFCA08 /* SavedCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C5826A0B69500BFCA08 /* SavedCommentCell.m */; };
+		51815C5C26A0E70B00BFCA08 /* SignUpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C5B26A0E70B00BFCA08 /* SignUpUtil.m */; };
 		7755BAA090D8FE32DB3BB79D /* Pods_IFeelThatWay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6E105AF466943A03AD854 /* Pods_IFeelThatWay.framework */; };
 		C08B87D643BE0C2474D36057 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3349875ECD7295DE859E7493 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework */; };
 		C71C35C595BC313F17DE02EB /* Pods_IFeelThatWayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC832D4F1943C9725419EE29 /* Pods_IFeelThatWayTests.framework */; };
@@ -135,6 +136,8 @@
 		51815C52269F805500BFCA08 /* LoginUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginUtil.m; sourceTree = "<group>"; };
 		51815C5726A0B69500BFCA08 /* SavedCommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedCommentCell.h; sourceTree = "<group>"; };
 		51815C5826A0B69500BFCA08 /* SavedCommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedCommentCell.m; sourceTree = "<group>"; };
+		51815C5A26A0E70B00BFCA08 /* SignUpUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpUtil.h; sourceTree = "<group>"; };
+		51815C5B26A0E70B00BFCA08 /* SignUpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpUtil.m; sourceTree = "<group>"; };
 		7CF6EB3FA15E166C26663A24 /* Pods-IFeelThatWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeelThatWay.debug.xcconfig"; path = "Target Support Files/Pods-IFeelThatWay/Pods-IFeelThatWay.debug.xcconfig"; sourceTree = "<group>"; };
 		997A21D4EACC33B87868D36D /* Pods-IFeelThatWayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeelThatWayTests.release.xcconfig"; path = "Target Support Files/Pods-IFeelThatWayTests/Pods-IFeelThatWayTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC832D4F1943C9725419EE29 /* Pods_IFeelThatWayTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeelThatWayTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -307,6 +310,8 @@
 			children = (
 				51815C51269F805500BFCA08 /* LoginUtil.h */,
 				51815C52269F805500BFCA08 /* LoginUtil.m */,
+				51815C5A26A0E70B00BFCA08 /* SignUpUtil.h */,
+				51815C5B26A0E70B00BFCA08 /* SignUpUtil.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51815C10269CB34700BFCA08 /* Comment.m in Sources */,
+				51815C5C26A0E70B00BFCA08 /* SignUpUtil.m in Sources */,
 				51815C38269DDD7B00BFCA08 /* Request.m in Sources */,
 				51815C07269CB32B00BFCA08 /* User.m in Sources */,
 				51815C2C269CE77700BFCA08 /* ProfileViewController.m in Sources */,

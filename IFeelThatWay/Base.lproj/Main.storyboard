@@ -1179,11 +1179,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oll-m8-a9W">
+                                                    <rect key="frame" x="373" y="76" width="21" height="22"/>
+                                                    <state key="normal" image="paperplane" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="FEe-4s-W4O" firstAttribute="leading" secondItem="Ln9-gl-5L3" secondAttribute="leading" constant="20" id="EXA-KQ-Bhl"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="FEe-4s-W4O" secondAttribute="bottom" constant="20" id="TjQ-hc-fVb"/>
+                                                <constraint firstAttribute="trailing" secondItem="Oll-m8-a9W" secondAttribute="trailing" constant="20" id="WLN-Lo-NVy"/>
+                                                <constraint firstItem="Oll-m8-a9W" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FEe-4s-W4O" secondAttribute="bottom" constant="10" id="aYr-wJ-d8y"/>
                                                 <constraint firstAttribute="trailing" secondItem="FEe-4s-W4O" secondAttribute="trailing" constant="20" id="dBl-TI-WSm"/>
+                                                <constraint firstAttribute="bottom" secondItem="Oll-m8-a9W" secondAttribute="bottom" constant="10" id="u2p-7Y-h9b"/>
                                                 <constraint firstItem="FEe-4s-W4O" firstAttribute="top" secondItem="Ln9-gl-5L3" secondAttribute="top" constant="20" id="xLx-O2-RAA"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1296,8 +1303,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="UVq-QA-C4X"/>
         <segue reference="FOe-03-tAH"/>
-        <segue reference="poM-UT-Zps"/>
-        <segue reference="me4-JD-FzK"/>
+        <segue reference="cKO-66-dIc"/>
+        <segue reference="xL8-Ki-VTb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.circle" catalog="system" width="128" height="121"/>
@@ -1314,6 +1321,7 @@
         <image name="hand.raised" catalog="system" width="128" height="128"/>
         <image name="lightblue" width="750" height="739"/>
         <image name="orange" width="750" height="738"/>
+        <image name="paperplane" catalog="system" width="128" height="118"/>
         <image name="pencil.circle" catalog="system" width="128" height="121"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
         <image name="pink" width="750" height="738"/>
