@@ -44,7 +44,7 @@
     PFQuery *topicsQuery = [PFQuery queryWithClassName:@"Topic"];
     [topicsQuery includeKey:@"author"];
     [topicsQuery includeKey:@"followersArray"];
-    //[topicsQuery whereKey:@"followersArray" equalTo:user.objectId]; fix
+    [topicsQuery whereKey:@"followersArray" equalTo:user.objectId];
     topicsQuery.limit = 20;
     [topicsQuery findObjectsInBackgroundWithBlock:^(NSArray *topics, NSError *error) {
         if (topics != nil) {
@@ -53,9 +53,11 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    NSLog(@"%@", self.topicsArray);
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
     [postQuery includeKey:@"author"];
-    //[postQuery whereKey:@"topic" containedIn:self.topicsArray]; fix
+    [postQuery includeKey:@"topic"];
+    [postQuery whereKey:@"topic" matchesKey:@"category" inQuery:topicsQuery];
     [postQuery orderByDescending:@"createdAt"];
     postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
