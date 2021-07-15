@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Topic : PFObject<PFSubclassing>
 
-@property (nonatomic, strong) NSString *topicID;
+@property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) NSMutableArray *followersArray;
 @property (nonatomic, strong) PFFileObject *topicImage;

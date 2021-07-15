@@ -9,7 +9,7 @@
 
 @implementation Topic
 
-@dynamic topicID;
+@dynamic objectId;
 @dynamic category;
 @dynamic followersArray;
 @dynamic topicImage;

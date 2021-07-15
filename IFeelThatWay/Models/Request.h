@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Request : PFObject<PFSubclassing>
 
-@property (nonatomic, strong) NSString *requestID;
+@property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *request;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSDate *createdAt;

@@ -9,7 +9,7 @@
 
 @implementation Request
 
-@dynamic requestID;
+@dynamic objectId;
 @dynamic request;
 @dynamic type;
 @dynamic createdAt;

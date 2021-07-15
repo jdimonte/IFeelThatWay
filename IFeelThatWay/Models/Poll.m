@@ -9,7 +9,7 @@
 
 @implementation Poll
 
-@dynamic pollID;
+@dynamic objectId;
 @dynamic topic;
 @dynamic question;
 @dynamic agreesCount;

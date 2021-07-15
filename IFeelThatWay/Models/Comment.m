@@ -9,7 +9,7 @@
 
 @implementation Comment
 
-@dynamic commentID;
+@dynamic objectId;
 @dynamic user;
 @dynamic post;
 @dynamic text;

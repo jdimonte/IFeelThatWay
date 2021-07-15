@@ -9,7 +9,7 @@
 
 @implementation Prompt
 
-@dynamic promptID;
+@dynamic objectId;
 @dynamic topic;
 @dynamic question;
 @dynamic agreesCount;

@@ -32,23 +32,23 @@
 }
 
 - (void) loadQueryPrompts{
+    User *user = [PFUser currentUser];
     PFQuery *topicsQuery = [PFQuery queryWithClassName:@"Topic"];
     [topicsQuery includeKey:@"author"];
     [topicsQuery includeKey:@"followersArray"];
-    User *user = [PFUser currentUser];
-    [topicsQuery whereKey:@"followersArray" equalTo:user[@"objectID"]];
+    //[topicsQuery whereKey:@"followersArray" equalTo:user.objectId]; fix
     topicsQuery.limit = 20;
     [topicsQuery findObjectsInBackgroundWithBlock:^(NSArray *topics, NSError *error) {
         if (topics != nil) {
             self.topicsArray = topics;
-            [self.followingTableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    NSLog(@"%@", self.topicsArray);
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
     [postQuery includeKey:@"author"];
-    [postQuery whereKey:user[@"objectID"] containedIn:self.topicsArray];
+    //[postQuery whereKey:@"topic" containedIn:self.topicsArray]; fix
     [postQuery orderByDescending:@"createdAt"];
     postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {

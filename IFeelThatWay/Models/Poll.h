@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Poll : PFObject
 
-@property (nonatomic, strong) NSString *pollID;
+@property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *topic;
 @property (nonatomic, strong) NSString *question;
 @property (nonatomic, strong) NSNumber *agreesCount;

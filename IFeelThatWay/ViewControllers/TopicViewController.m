@@ -39,6 +39,15 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
     [self.promptsTableView insertSubview:self.refreshControl atIndex:0];
     [self.promptsTableView addSubview:self.refreshControl];
+    
+    User *user = [PFUser currentUser];
+    if([self.topic[@"followersArray"] containsObject: user.objectId]){
+        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
+    }
+
 }
 
 - (IBAction)backTapped:(id)sender {
@@ -46,12 +55,25 @@
 }
 
 - (IBAction)followTapped:(id)sender {
-    if([self.followButton.currentImage isEqual:[UIImage systemImageNamed:@"checkmark.circle"]]){
-        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.circle.fill"] forState:UIControlStateNormal];
+    User *user = [PFUser currentUser];
+    if(![self.topic[@"followersArray"] containsObject: user.objectId]){
+        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square.fill"] forState:UIControlStateNormal];
+        //follow topic
+        [self.topic addUniqueObject:user.objectId forKey:@"followersArray"];
     }
     else{
-        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.circle"] forState:UIControlStateNormal];
+        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
+        //unfollow topic
+        [self.topic removeObject:user.objectId forKey:@"followersArray"];
     }
+    [self.topic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            // The object has been saved.
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void) loadQueryPrompts{

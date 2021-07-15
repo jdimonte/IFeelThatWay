@@ -10,6 +10,7 @@
 #import "TopicCell.h"
 #import "Topic.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface TopicsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *topicsTableView;
@@ -44,6 +45,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Topic"];
 
     [query includeKey:@"author"];
+    [query includeKey:@"followersArray"];
     [query orderByAscending:@"createdAt"];
 
     query.limit = 20;
@@ -62,12 +64,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TopicCell *cell = (TopicCell *)[tableView dequeueReusableCellWithIdentifier:@"TopicCell" forIndexPath:indexPath];
-    Topic *topicInfo = self.topicsArray[indexPath.row];
+    cell.topic = self.topicsArray[indexPath.row];
     if(self.filteredTopicsArray){
-        topicInfo = self.filteredTopicsArray[indexPath.row];
+        cell.topic = self.filteredTopicsArray[indexPath.row];
     }
-    NSString *category = topicInfo[@"category"];
+    NSString *category = cell.topic[@"category"];
     cell.topicCategory.text = category;
+    User *user = [PFUser currentUser];
+    if([cell.topic[@"followersArray"] containsObject: user.objectId]){
+        [cell.followButton setImage:[UIImage systemImageNamed:@"checkmark.square.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
+    }
+    
     return cell;
 }
 

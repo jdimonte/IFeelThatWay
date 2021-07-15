@@ -9,7 +9,7 @@
 
 @implementation Reply
 
-@dynamic replyID;
+@dynamic objectId;
 @dynamic user;
 @dynamic comment;
 @dynamic text;
