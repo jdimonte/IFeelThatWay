@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Prompt.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UIImageView *featuredProfilePic;
 @property (strong, nonatomic) IBOutlet UILabel *featuredComment;
+@property (strong, nonatomic) Prompt *promptCell;
 
 @end
 

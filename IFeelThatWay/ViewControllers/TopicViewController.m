@@ -100,6 +100,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PromptCell *cell = (PromptCell *)[tableView dequeueReusableCellWithIdentifier:@"PromptCell" forIndexPath:indexPath];
     Prompt *promptInfo = self.promptsArray[indexPath.row];
+    cell.promptCell = promptInfo;
     cell.question.text = promptInfo[@"question"];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
@@ -120,6 +121,20 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    
+    User *user = [PFUser currentUser];
+    if([cell.promptCell[@"agreesArray"] containsObject: user.objectId]){
+        [cell.handRaise setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.handRaise setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
+    }
+    if([cell.promptCell[@"savesArray"] containsObject: user.objectId]){
+        [cell.save setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.save setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
+    }
     
     return cell;
 }
