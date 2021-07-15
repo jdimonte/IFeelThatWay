@@ -92,6 +92,7 @@
     ReplyCell *cell = (ReplyCell *)[tableView dequeueReusableCellWithIdentifier:@"ReplyCell" forIndexPath:indexPath];
     
     Reply *replyInfo = self.repliesArray[indexPath.row];
+    cell.replyCell = replyInfo;
     
     cell.text.text = replyInfo[@"text"];
     
@@ -99,6 +100,20 @@
     [cell.profilePic setImage:colorPicture];
     cell.profilePic.layer.cornerRadius =  cell.profilePic.frame.size.width / 2;
     cell.profilePic.clipsToBounds = true;
+    
+    User *user = [PFUser currentUser];
+    if([cell.replyCell[@"agreesArray"] containsObject: user.objectId]){
+        [cell.handRaiseButton setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.handRaiseButton setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
+    }
+    if([cell.replyCell[@"savesArray"] containsObject: user.objectId]){
+        [cell.saveButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.saveButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
+    }
     
     return cell;
 }

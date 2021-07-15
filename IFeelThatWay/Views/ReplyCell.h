@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reply.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,8 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *text;
 @property (strong, nonatomic) IBOutlet UIButton *handRaiseButton;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
-
-//profilePic, text, saveButton, handRaiseButton
+@property (strong, nonatomic) Comment *replyCell;
 
 @end
 

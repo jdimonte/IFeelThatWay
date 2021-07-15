@@ -92,14 +92,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentCell *cell = (CommentCell *)[tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     Comment *commentInfo = self.commentsArray[indexPath.row];
-    
+    cell.commentCell = commentInfo;
     cell.text.text = commentInfo[@"text"];
     
     UIImage * colorPicture = [UIImage imageNamed:commentInfo[@"user"][@"profilePicture"]];
     [cell.profilePic setImage:colorPicture];
     cell.profilePic.layer.cornerRadius =  cell.profilePic.frame.size.width / 2;
     cell.profilePic.clipsToBounds = true;
-    
+    User *user = [PFUser currentUser];
+    if([cell.commentCell[@"agreesArray"] containsObject: user.objectId]){
+        [cell.handRaiseButton setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.handRaiseButton setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
+    }
+    if([cell.commentCell[@"savesArray"] containsObject: user.objectId]){
+        [cell.saveButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.saveButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
+    }
     return cell;
 }
 

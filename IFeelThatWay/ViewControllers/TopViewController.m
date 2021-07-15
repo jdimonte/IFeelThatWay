@@ -60,6 +60,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TopCommentCell *cell = (TopCommentCell *)[tableView dequeueReusableCellWithIdentifier:@"TopCommentCell" forIndexPath:indexPath];
     Comment *topComment = self.topCommentsArray[indexPath.row];
+    cell.commentCell = topComment;
     NSInteger *rank = indexPath.row + 1;
     NSString *rankStr = [NSString stringWithFormat:@"%d", rank];
     NSString *rankString = [rankStr stringByAppendingString:@". "];
@@ -69,6 +70,19 @@
     }
     else{
         cell.comment.text = rankString;
+    }
+    User *user = [PFUser currentUser];
+    if([cell.commentCell[@"agreesArray"] containsObject: user.objectId]){
+        [cell.raiseHandButton setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.raiseHandButton setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
+    }
+    if([cell.commentCell[@"savesArray"] containsObject: user.objectId]){
+        [cell.saveButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.saveButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
     }
     return cell;
 }

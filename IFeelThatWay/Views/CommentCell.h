@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Comment.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *text;
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) IBOutlet UIButton *handRaiseButton;
+@property (strong, nonatomic) Comment *commentCell;
 
 @end
 
