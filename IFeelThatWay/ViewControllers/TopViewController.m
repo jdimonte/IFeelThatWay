@@ -61,6 +61,7 @@
     TopCommentCell *cell = (TopCommentCell *)[tableView dequeueReusableCellWithIdentifier:@"TopCommentCell" forIndexPath:indexPath];
     Comment *topComment = self.topCommentsArray[indexPath.row];
     cell.commentCell = topComment;
+    cell.agreesCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)cell.commentCell.agreesArray.count];
     NSInteger *rank = indexPath.row + 1;
     NSString *rankStr = [NSString stringWithFormat:@"%d", rank];
     NSString *rankString = [rankStr stringByAppendingString:@". "];

@@ -94,6 +94,7 @@
     Comment *commentInfo = self.commentsArray[indexPath.row];
     cell.commentCell = commentInfo;
     cell.text.text = commentInfo[@"text"];
+    cell.agreesCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)cell.commentCell.agreesArray.count];
     
     UIImage * colorPicture = [UIImage imageNamed:commentInfo[@"user"][@"profilePicture"]];
     [cell.profilePic setImage:colorPicture];

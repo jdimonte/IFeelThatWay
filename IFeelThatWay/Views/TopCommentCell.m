@@ -30,6 +30,7 @@
         [self.raiseHandButton setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
         [self.commentCell removeObject:user.objectId forKey:@"agreesArray"];
     }
+    self.commentCell.agreesCount = [NSNumber numberWithInt:self.commentCell.agreesArray.count];
     [self.commentCell saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             // The object has been saved.
@@ -38,6 +39,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    self.agreesCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.commentCell.agreesArray.count];
 }
 
 - (IBAction)saveButtonTapped:(id)sender {

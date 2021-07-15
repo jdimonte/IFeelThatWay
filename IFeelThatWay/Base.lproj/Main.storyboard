@@ -147,11 +147,20 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cZ-4A-tNW">
+                                                    <rect key="frame" x="293" y="10" width="41" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="5cZ-4A-tNW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JNO-WQ-FGB" secondAttribute="leading" constant="20" id="2cq-Bm-fw8"/>
                                                 <constraint firstItem="nlf-2M-zeu" firstAttribute="leading" secondItem="UIZ-72-MvI" secondAttribute="trailing" constant="10" id="Ekr-08-AeZ"/>
                                                 <constraint firstItem="UIZ-72-MvI" firstAttribute="top" secondItem="JNO-WQ-FGB" secondAttribute="top" constant="10" id="Ewh-gY-F5N"/>
+                                                <constraint firstItem="5cZ-4A-tNW" firstAttribute="top" secondItem="JNO-WQ-FGB" secondAttribute="top" constant="10" id="Fvf-fo-bQm"/>
                                                 <constraint firstItem="Be4-Fl-5F0" firstAttribute="top" secondItem="UIZ-72-MvI" secondAttribute="bottom" constant="8" id="H2O-Q4-So8"/>
+                                                <constraint firstItem="UIZ-72-MvI" firstAttribute="leading" secondItem="5cZ-4A-tNW" secondAttribute="trailing" constant="10" id="ROw-N2-Hg3"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Be4-Fl-5F0" secondAttribute="bottom" constant="20" id="V4n-M1-Vjm"/>
                                                 <constraint firstAttribute="trailing" secondItem="nlf-2M-zeu" secondAttribute="trailing" constant="20" id="d8q-nJ-fGS"/>
                                                 <constraint firstItem="Be4-Fl-5F0" firstAttribute="leading" secondItem="JNO-WQ-FGB" secondAttribute="leading" constant="20" id="h6H-mw-kF9"/>
@@ -160,6 +169,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="agreesCount" destination="5cZ-4A-tNW" id="KBh-SR-ZyN"/>
                                             <outlet property="comment" destination="Be4-Fl-5F0" id="zhb-1x-59z"/>
                                             <outlet property="raiseHandButton" destination="UIZ-72-MvI" id="yEa-sj-FBi"/>
                                             <outlet property="saveButton" destination="nlf-2M-zeu" id="KI3-cw-59a"/>
@@ -746,13 +756,21 @@
                                                         <action selector="handRaiseButtonTapped:" destination="Vwp-Tw-FNW" eventType="touchUpInside" id="siC-Fi-Fmg"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6F-5f-qGE">
+                                                    <rect key="frame" x="273" y="66" width="41" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="mWn-9y-F3j" firstAttribute="leading" secondItem="O6F-5f-qGE" secondAttribute="trailing" constant="10" id="1hE-Wu-9LS"/>
                                                 <constraint firstAttribute="trailing" secondItem="I3U-wq-Ae1" secondAttribute="trailing" constant="10" id="3tC-g1-Wmu"/>
                                                 <constraint firstItem="I3U-wq-Ae1" firstAttribute="leading" secondItem="6IR-e2-X84" secondAttribute="trailing" constant="10" id="8y7-iW-K4J"/>
                                                 <constraint firstItem="I3U-wq-Ae1" firstAttribute="centerY" secondItem="6IR-e2-X84" secondAttribute="centerY" id="9ha-cV-CJe"/>
                                                 <constraint firstItem="6IR-e2-X84" firstAttribute="leading" secondItem="rfS-iX-6Op" secondAttribute="leading" constant="10" id="DpY-zE-mnc"/>
                                                 <constraint firstItem="mWn-9y-F3j" firstAttribute="top" relation="greaterThanOrEqual" secondItem="I3U-wq-Ae1" secondAttribute="bottom" constant="10" id="FqG-HJ-oG6"/>
+                                                <constraint firstItem="O6F-5f-qGE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rfS-iX-6Op" secondAttribute="leading" constant="10" id="IYR-GS-d6x"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6IR-e2-X84" secondAttribute="bottom" constant="10" id="JBf-UR-QJd"/>
                                                 <constraint firstAttribute="bottom" secondItem="5WW-2p-ynd" secondAttribute="bottom" constant="10" id="JEk-Lg-JwW"/>
                                                 <constraint firstItem="5WW-2p-ynd" firstAttribute="leading" secondItem="mWn-9y-F3j" secondAttribute="trailing" constant="10" id="Kbr-tR-lbG"/>
@@ -762,10 +780,12 @@
                                                 <constraint firstItem="Q3j-EK-R1R" firstAttribute="leading" secondItem="5WW-2p-ynd" secondAttribute="trailing" constant="10" id="f7L-gU-afl"/>
                                                 <constraint firstAttribute="bottom" secondItem="Q3j-EK-R1R" secondAttribute="bottom" constant="10" id="mPx-Hd-KC1"/>
                                                 <constraint firstItem="6IR-e2-X84" firstAttribute="leading" secondItem="rfS-iX-6Op" secondAttribute="leading" constant="10" id="qU0-MN-j2U"/>
+                                                <constraint firstItem="mWn-9y-F3j" firstAttribute="centerY" secondItem="O6F-5f-qGE" secondAttribute="centerY" id="vPY-Td-J1a"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="I3U-wq-Ae1" secondAttribute="bottom" constant="10" id="yia-hI-jpe"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="agreesCount" destination="O6F-5f-qGE" id="B76-NG-aaF"/>
                                             <outlet property="handRaiseButton" destination="mWn-9y-F3j" id="igu-Ek-rXt"/>
                                             <outlet property="profilePic" destination="6IR-e2-X84" id="tKo-ZP-19U"/>
                                             <outlet property="saveButton" destination="Q3j-EK-R1R" id="hSu-Jb-fJ7"/>
@@ -874,8 +894,15 @@
                                                         <action selector="handRaiseButtonTapped:" destination="ZpT-vD-AYN" eventType="touchUpInside" id="PCJ-y2-55n"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f14-lQ-J7f">
+                                                    <rect key="frame" x="303" y="80" width="41" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="f14-lQ-J7f" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oIr-Vp-kaP" secondAttribute="leading" constant="10" id="0bV-HE-aes"/>
                                                 <constraint firstAttribute="trailing" secondItem="h1Z-4Y-Bxi" secondAttribute="trailing" constant="10" id="22w-vw-wAD"/>
                                                 <constraint firstAttribute="bottom" secondItem="IwL-9W-h2n" secondAttribute="bottom" constant="10" id="2f9-gH-39S"/>
                                                 <constraint firstItem="IwL-9W-h2n" firstAttribute="top" relation="greaterThanOrEqual" secondItem="GfX-fx-fZ6" secondAttribute="bottom" constant="10" id="6db-CJ-p1G"/>
@@ -885,12 +912,15 @@
                                                 <constraint firstAttribute="trailing" secondItem="GfX-fx-fZ6" secondAttribute="trailing" constant="10" id="VTu-uB-YTh"/>
                                                 <constraint firstAttribute="bottom" secondItem="h1Z-4Y-Bxi" secondAttribute="bottom" constant="10" id="Vce-3s-t3p"/>
                                                 <constraint firstItem="Jbe-Jm-jzd" firstAttribute="leading" secondItem="oIr-Vp-kaP" secondAttribute="leading" constant="10" id="ifi-xS-7ko"/>
+                                                <constraint firstItem="IwL-9W-h2n" firstAttribute="leading" secondItem="f14-lQ-J7f" secondAttribute="trailing" constant="10" id="j52-Hp-ydu"/>
+                                                <constraint firstItem="IwL-9W-h2n" firstAttribute="centerY" secondItem="f14-lQ-J7f" secondAttribute="centerY" id="rgp-lZ-OrA"/>
                                                 <constraint firstItem="GfX-fx-fZ6" firstAttribute="centerY" secondItem="Jbe-Jm-jzd" secondAttribute="centerY" id="sLv-0b-aoU"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Jbe-Jm-jzd" secondAttribute="bottom" constant="10" id="thR-vU-hkq"/>
                                                 <constraint firstItem="Jbe-Jm-jzd" firstAttribute="leading" secondItem="oIr-Vp-kaP" secondAttribute="leading" constant="10" id="wMv-k1-kVM"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="agreesCount" destination="f14-lQ-J7f" id="4fJ-Bz-Bg8"/>
                                             <outlet property="handRaiseButton" destination="IwL-9W-h2n" id="88y-3w-LaV"/>
                                             <outlet property="profilePic" destination="Jbe-Jm-jzd" id="KP8-5r-jJZ"/>
                                             <outlet property="saveButton" destination="h1Z-4Y-Bxi" id="mUk-yD-OHo"/>
@@ -1145,7 +1175,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEe-4s-W4O">
                                                     <rect key="frame" x="20" y="20" width="374" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1266,8 +1296,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="UVq-QA-C4X"/>
         <segue reference="FOe-03-tAH"/>
-        <segue reference="cKO-66-dIc"/>
-        <segue reference="xL8-Ki-VTb"/>
+        <segue reference="poM-UT-Zps"/>
+        <segue reference="me4-JD-FzK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.circle" catalog="system" width="128" height="121"/>

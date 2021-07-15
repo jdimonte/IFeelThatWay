@@ -96,6 +96,8 @@
     
     cell.text.text = replyInfo[@"text"];
     
+    cell.agreesCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)cell.replyCell.agreesArray.count];
+    
     UIImage * colorPicture = [UIImage imageNamed:replyInfo[@"user"][@"profilePicture"]];
     [cell.profilePic setImage:colorPicture];
     cell.profilePic.layer.cornerRadius =  cell.profilePic.frame.size.width / 2;

@@ -25,11 +25,13 @@
     if(![self.replyCell[@"agreesArray"] containsObject: user.objectId]){
         [self.handRaiseButton setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
         [self.replyCell addUniqueObject:user.objectId forKey:@"agreesArray"];
+        
     }
     else{
         [self.handRaiseButton setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
         [self.replyCell removeObject:user.objectId forKey:@"agreesArray"];
     }
+    self.replyCell.agreesCount = [NSNumber numberWithInt:self.replyCell.agreesArray.count];
     [self.replyCell saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             // The object has been saved.
@@ -38,6 +40,7 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    self.agreesCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)self.replyCell.agreesArray.count];
 }
 
 - (IBAction)saveButtonTapped:(id)sender {
