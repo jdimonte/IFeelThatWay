@@ -53,7 +53,6 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    NSLog(@"%@", self.topicsArray);
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
     [postQuery includeKey:@"author"];
     //[postQuery whereKey:@"topic" containedIn:self.topicsArray]; fix
