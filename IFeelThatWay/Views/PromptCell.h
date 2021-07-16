@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PromptCell : UITableViewCell
+
 @property (strong, nonatomic) IBOutlet UILabel *question;
 @property (strong, nonatomic) IBOutlet UIButton *handRaise;
 @property (strong, nonatomic) IBOutlet UIButton *comment;

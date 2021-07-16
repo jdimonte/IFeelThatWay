@@ -7,6 +7,8 @@ target 'IFeelThatWay' do
 
   # Pods for IFeelThatWay
   pod 'Parse'
+  pod 'PKHUD'
+  pod 'MBProgressHUD', '~> 1.2.0'
 
   target 'IFeelThatWayTests' do
     inherit! :search_paths

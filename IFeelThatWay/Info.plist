@@ -3,7 +3,10 @@
 <plist version="1.0">
 <dict>
     <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>instagram</string>
         <string>instagram-stories</string>
+    </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

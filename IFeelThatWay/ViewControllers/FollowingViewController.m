@@ -12,12 +12,12 @@
 #import "PostViewController.h"
 #import "User.h"
 #import "Comment.h"
+#import "MBProgressHUD.h"
 
 @interface FollowingViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *followingTableView;
 @property (strong, nonatomic) NSMutableArray *promptsArray;
 @property (strong, nonatomic) NSMutableArray *topicsArray;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.activityIndicator startAnimating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.followingTableView.dataSource = self;
     self.followingTableView.delegate = self;
@@ -66,8 +66,8 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        [self.activityIndicator stopAnimating];
         [self.refreshControl endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

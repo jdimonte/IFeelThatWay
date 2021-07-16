@@ -35,6 +35,10 @@
     [SignUpUtil registerUser:newUser:self];
 }
 
+- (IBAction)screenTapped:(id)sender {
+    [self.view endEditing:true];
+}
+
 /*
 #pragma mark - Navigation
 

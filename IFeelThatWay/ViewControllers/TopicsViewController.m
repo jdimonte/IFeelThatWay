@@ -11,6 +11,7 @@
 #import "Topic.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "MBProgressHUD.h"
 
 @interface TopicsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *topicsTableView;
@@ -18,7 +19,6 @@
 @property (strong, nonatomic) NSMutableArray *filteredTopicsArray;
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.activityIndicator startAnimating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.topicsTableView.delegate = self;
     self.topicsTableView.dataSource = self;
@@ -57,8 +57,8 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        [self.activityIndicator stopAnimating];
         [self.refreshControl endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

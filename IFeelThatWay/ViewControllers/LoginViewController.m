@@ -27,6 +27,10 @@
     currentUser.password = self.password.text;
     [LoginUtil loginUser:currentUser:self];
 }
+
+- (IBAction)screenTapped:(id)sender {
+    [self.view endEditing:true];
+}
 /*
 #pragma mark - Navigation
 

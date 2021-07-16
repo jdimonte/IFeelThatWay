@@ -25,6 +25,10 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
+- (IBAction)screenTapped:(id)sender {
+    [self.view endEditing:true];
+}
+
 - (IBAction)submitTapped:(id)sender {
     if(![self.request.text isEqual: @""]){
         Request *request = [Request new];

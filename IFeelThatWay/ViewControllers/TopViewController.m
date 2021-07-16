@@ -8,13 +8,12 @@
 #import "TopViewController.h"
 #import "TopCommentCell.h"
 #import "Comment.h"
+#import "MBProgressHUD.h"
 
 @interface TopViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *topCommentsTableView;
 @property (strong, nonatomic) NSMutableArray *topCommentsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
-
 
 @end
 
@@ -22,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.activityIndicator startAnimating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.topCommentsTableView.delegate = self;
     self.topCommentsTableView.dataSource = self;
@@ -52,8 +51,8 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        [self.activityIndicator stopAnimating];
         [self.refreshControl endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

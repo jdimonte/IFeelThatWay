@@ -9,6 +9,7 @@
 #import "CommentCell.h"
 #import "Comment.h"
 #import "CommentViewController.h"
+#import "MBProgressHUD.h"
 
 @interface PostViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *question;
@@ -16,7 +17,6 @@
 @property (strong, nonatomic) NSMutableArray *commentsArray;
 @property (strong, nonatomic) IBOutlet UITextView *commentText;
 @property (strong, nonatomic) IBOutlet UIButton *commentButton;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.activityIndicator startAnimating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.questionTableView.delegate = self;
     self.questionTableView.dataSource = self;
@@ -80,13 +80,17 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        [self.activityIndicator stopAnimating];
         [self.refreshControl endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
 - (IBAction)backTapped:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)screenTapped:(id)sender {
+    [self.view endEditing:true];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

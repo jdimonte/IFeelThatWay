@@ -10,6 +10,7 @@
 #import "PromptCell.h"
 #import "PostViewController.h"
 #import "Comment.h"
+#import "MBProgressHUD.h"
 
 @interface TopicViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *category;
@@ -17,7 +18,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *promptsTableView;
 @property (strong, nonatomic) NSMutableArray *promptsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 
 @end
@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.activityIndicator startAnimating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.promptsTableView.delegate = self;
     self.promptsTableView.dataSource = self;
@@ -95,8 +95,8 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        [self.activityIndicator stopAnimating];
         [self.refreshControl endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 

@@ -8,11 +8,11 @@
 #import "SavedViewController.h"
 #import "SavedCommentCell.h"
 #import "Comment.h"
+#import "MBProgressHUD.h"
 
 @interface SavedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *savedTableView;
 @property (strong, nonatomic) NSMutableArray *savedArray;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.activityIndicator startAnimating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.savedTableView.dataSource = self;
     self.savedTableView.delegate = self;
     
@@ -47,8 +47,8 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        [self.activityIndicator stopAnimating];
         [self.refreshControl endRefreshing];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
