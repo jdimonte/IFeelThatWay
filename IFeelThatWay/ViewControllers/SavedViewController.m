@@ -25,11 +25,21 @@
     self.savedTableView.dataSource = self;
     self.savedTableView.delegate = self;
     
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:swipeRight];
+    
     [self loadQueryComments];
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryComments) forControlEvents:UIControlEventValueChanged];
     [self.savedTableView insertSubview:self.refreshControl atIndex:0];
     [self.savedTableView addSubview:self.refreshControl];
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {
+    if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        self.tabBarController.selectedIndex = 2;
+    }
 }
 
 - (void) loadQueryComments{

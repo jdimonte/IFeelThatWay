@@ -33,10 +33,26 @@
     
     [self loadQueryPrompts];
     
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:swipeLeft];
+    [self.view addGestureRecognizer:swipeRight];
+    
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
     [self.followingTableView insertSubview:self.refreshControl atIndex:0];
     [self.followingTableView addSubview:self.refreshControl];
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {
+    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
+        self.tabBarController.selectedIndex = 3;
+    }
+    if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
+        self.tabBarController.selectedIndex = 1;
+    }
 }
 
 - (void) loadQueryPrompts{

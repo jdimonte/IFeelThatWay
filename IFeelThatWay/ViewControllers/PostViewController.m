@@ -37,6 +37,14 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryComments) forControlEvents:UIControlEventValueChanged];
     [self.questionTableView insertSubview:self.refreshControl atIndex:0];
     [self.questionTableView addSubview:self.refreshControl];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
+    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    [self.view addGestureRecognizer:swipeRight];
+}
+
+- (void)handleSwipe {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)commentTapped:(id)sender {

@@ -9,6 +9,7 @@
 #import "TopCommentCell.h"
 #import "Comment.h"
 #import "MBProgressHUD.h"
+#import "SceneDelegate.h"
 
 @interface TopViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *topCommentsTableView;
@@ -33,7 +34,17 @@
     [self.topCommentsTableView insertSubview:self.refreshControl atIndex:0];
     [self.topCommentsTableView addSubview:self.refreshControl];
     
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.view addGestureRecognizer:swipeLeft];
+    
     [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadQueryTopComments) userInfo:nil repeats:true];
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {
+    if (swipe.direction == UISwipeGestureRecognizerDirectionLeft) {
+        self.tabBarController.selectedIndex = 1;
+    }
 }
 
 - (void) loadQueryTopComments{
