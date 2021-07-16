@@ -53,7 +53,6 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
-    NSLog(@"%@", self.topicsArray);
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
     [postQuery includeKey:@"author"];
     [postQuery includeKey:@"topic"];
@@ -87,17 +86,17 @@
     [query orderByDescending:@"agreesCount"];
     query.limit = 1;
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        if (comments != nil) {
+        if (comments != nil && comments.count != 0) {
             Comment *featuredComment = comments[0];
             cell.featuredComment.text = featuredComment[@"text"];
             UIImage * colorPicture = [UIImage imageNamed:featuredComment[@"user"][@"profilePicture"]];
             [cell.featuredProfilePic setImage:colorPicture];
-            cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
-            cell.featuredProfilePic.clipsToBounds = true;
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
+    cell.featuredProfilePic.clipsToBounds = true;
     
     User *user = [PFUser currentUser];
     if([cell.promptCell[@"agreesArray"] containsObject: user.objectId]){
