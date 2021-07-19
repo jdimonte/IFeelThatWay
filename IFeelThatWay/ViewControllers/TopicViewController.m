@@ -47,14 +47,6 @@
     else{
         [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
     }
-    
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
-    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.view addGestureRecognizer:swipeRight];
-}
-
-- (void)handleSwipe {
-    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)backTapped:(id)sender {

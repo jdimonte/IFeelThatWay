@@ -10,7 +10,8 @@
 #import "Comment.h"
 #import "MBProgressHUD.h"
 
-@interface SavedViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@interface SavedViewController () <UITableViewDelegate, UITableViewDataSource, SavedViewControllerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *savedTableView;
 @property (strong, nonatomic) NSMutableArray *savedArray;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -22,24 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     self.savedTableView.dataSource = self;
     self.savedTableView.delegate = self;
-    
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
-    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.view addGestureRecognizer:swipeRight];
     
     [self loadQueryComments];
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryComments) forControlEvents:UIControlEventValueChanged];
     [self.savedTableView insertSubview:self.refreshControl atIndex:0];
     [self.savedTableView addSubview:self.refreshControl];
-}
-
-- (void)handleSwipe:(UISwipeGestureRecognizer *)swipe {
-    if (swipe.direction == UISwipeGestureRecognizerDirectionRight) {
-        self.tabBarController.selectedIndex = 2;
-    }
 }
 
 - (void) loadQueryComments{
@@ -66,6 +58,8 @@
     SavedCommentCell *cell = (SavedCommentCell *)[tableView dequeueReusableCellWithIdentifier:@"SavedCommentCell" forIndexPath:indexPath];
     Comment *comment = self.savedArray[indexPath.row];
     cell.text.text = comment[@"text"];
+    cell.comment = comment;
+    cell.savedViewController = self;
     return cell;
 }
 

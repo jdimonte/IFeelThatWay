@@ -18,14 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe)];
-    [swipeRight setDirection:UISwipeGestureRecognizerDirectionRight];
-    [self.view addGestureRecognizer:swipeRight];
-}
-
-- (void)handleSwipe {
-    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (IBAction)cancelTapped:(id)sender {

@@ -9,6 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SavedViewControllerDelegate
+
+ - (void)loadQueryComments;
+
+@end
+
 @interface SavedViewController : UIViewController
 
 @end

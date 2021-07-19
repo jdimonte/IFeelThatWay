@@ -6,11 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Comment.h"
+#import "SavedViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SavedCommentCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *text;
+@property (strong, nonatomic) Comment *comment;
+@property (nonatomic, weak) id <SavedViewControllerDelegate> savedViewController;
 
 @end
 
