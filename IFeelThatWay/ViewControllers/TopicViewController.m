@@ -19,7 +19,6 @@
 @property (strong, nonatomic) NSMutableArray *promptsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
-
 @end
 
 @implementation TopicViewController
@@ -31,9 +30,9 @@
     self.promptsTableView.delegate = self;
     self.promptsTableView.dataSource = self;
     
-    self.category.text = self.topic[@"category"];
-    
     [self loadQueryPrompts];
+    
+    self.category.text = self.topic[@"category"];
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
@@ -57,17 +56,14 @@
     User *user = [PFUser currentUser];
     if(![self.topic[@"followersArray"] containsObject: user.objectId]){
         [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square.fill"] forState:UIControlStateNormal];
-        //follow topic
         [self.topic addUniqueObject:user.objectId forKey:@"followersArray"];
     }
     else{
         [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
-        //unfollow topic
         [self.topic removeObject:user.objectId forKey:@"followersArray"];
     }
     [self.topic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            // The object has been saved.
         }
         else {
             NSLog(@"%@", error.localizedDescription);
@@ -89,7 +85,6 @@
     [query findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
         if (prompts != nil) {
             self.promptsArray = prompts;
-            NSLog(@"%@", self.promptsArray);
             [self.promptsTableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);

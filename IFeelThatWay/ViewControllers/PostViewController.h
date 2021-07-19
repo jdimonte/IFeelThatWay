@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PostViewController : UIViewController
+
 @property (strong, nonatomic) Prompt *prompt;
 
 @end

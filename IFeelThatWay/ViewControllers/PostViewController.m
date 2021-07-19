@@ -39,7 +39,52 @@
     [self.questionTableView addSubview:self.refreshControl];
 }
 
+- (IBAction)commentTextBoxTapped:(id)sender {
+    [self.commentText becomeFirstResponder];
+    [self moveTextUp];
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    [self moveTextDown];
+}
+
 - (IBAction)commentTapped:(id)sender {
+    [self.view endEditing:YES];
+    [self moveTextDown];
+    [self createNewComment];
+}
+
+- (void) moveTextUp{
+    CGRect billFrame = self.commentText.frame;
+    if(billFrame.origin.y > 500){ //change values to work on any device
+        [UIView animateWithDuration: 0.2 animations:^{
+            CGRect textFrame = self.commentText.frame;
+            textFrame.origin.y -= 320;
+            self.commentText.frame = textFrame;
+            CGRect buttonFrame = self.commentButton.frame;
+            buttonFrame.origin.y -= 320;
+            self.commentButton.frame = buttonFrame;
+        }];
+    }
+}
+
+- (void) moveTextDown{
+    CGRect billFrame = self.commentText.frame;
+    if(billFrame.origin.y < 500){
+        [UIView animateWithDuration: 0.2 animations:^{
+            CGRect textFrame = self.commentText.frame;
+            textFrame.origin.y += 320;
+            self.commentText.frame = textFrame;
+            CGRect buttonFrame = self.commentButton.frame;
+            buttonFrame.origin.y += 320;
+            self.commentButton.frame = buttonFrame;
+        }];
+    }
+}
+
+- (void) createNewComment {
     if(![self.commentText.text isEqual:@""]){
         Comment *comment = [Comment new];
         
@@ -61,7 +106,6 @@
         }];
     }
 }
-
 
 - (void) loadQueryComments{
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
@@ -87,10 +131,6 @@
 
 - (IBAction)backTapped:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
-}
-
-- (IBAction)screenTapped:(id)sender {
-    [self.view endEditing:true];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

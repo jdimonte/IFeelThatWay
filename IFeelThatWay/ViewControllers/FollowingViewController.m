@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSMutableArray *promptsArray;
 @property (strong, nonatomic) NSMutableArray *topicsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) PFQuery *topicsFollowingQuery;
 
 @end
 
@@ -40,6 +41,11 @@
 }
 
 - (void) loadQueryPrompts{
+    [self loadTopicsFollowing];
+    [self loadPromptsFollowing];
+}
+
+- (void) loadTopicsFollowing {
     User *user = [PFUser currentUser];
     PFQuery *topicsQuery = [PFQuery queryWithClassName:@"Topic"];
     [topicsQuery includeKey:@"author"];
@@ -53,10 +59,14 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+    self.topicsFollowingQuery = topicsQuery;
+}
+
+- (void) loadPromptsFollowing {
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
     [postQuery includeKey:@"author"];
     [postQuery includeKey:@"topic"];
-    [postQuery whereKey:@"topic" matchesKey:@"category" inQuery:topicsQuery];
+    [postQuery whereKey:@"topic" matchesKey:@"category" inQuery:self.topicsFollowingQuery];
     [postQuery orderByDescending:@"createdAt"];
     postQuery.limit = 20;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {

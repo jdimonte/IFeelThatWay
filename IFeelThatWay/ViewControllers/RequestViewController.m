@@ -36,7 +36,6 @@
         request.type = requestTypes[self.type.selectedSegmentIndex];
         [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                // The object has been saved.
             }
             else {
                 NSLog(@"%@", error.localizedDescription);

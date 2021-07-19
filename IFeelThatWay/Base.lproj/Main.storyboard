@@ -696,12 +696,6 @@
                                                         <action selector="saveButtonTapped:" destination="XSA-cF-FQV" eventType="touchUpInside" id="RyX-b4-Uw4"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be the first to comment!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apk-fB-WAf">
-                                                    <rect key="frame" x="80" y="310" width="314" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSk-xY-6Tm">
                                                     <rect key="frame" x="192" y="260" width="30" height="20"/>
                                                     <constraints>
@@ -714,30 +708,36 @@
                                                     <rect key="frame" x="10" y="290" width="60" height="60"/>
                                                     <color key="backgroundColor" red="1" green="0.82428103080000004" blue="0.87779848270000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="60" id="M7N-Ll-qV2"/>
-                                                        <constraint firstAttribute="width" constant="60" id="hd7-yh-bCo"/>
+                                                        <constraint firstAttribute="height" constant="60" id="6hl-hk-ADn"/>
+                                                        <constraint firstAttribute="width" constant="60" id="7Ta-9F-Bee"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Be the first to comment!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apk-fB-WAf">
+                                                    <rect key="frame" x="80" y="310" width="324" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="apk-fB-WAf" firstAttribute="leading" secondItem="9e3-K0-yVw" secondAttribute="trailing" constant="10" id="3di-dI-pqk"/>
+                                                <constraint firstItem="apk-fB-WAf" firstAttribute="leading" secondItem="9e3-K0-yVw" secondAttribute="trailing" constant="10" id="1I9-1E-xbk"/>
                                                 <constraint firstItem="vSk-xY-6Tm" firstAttribute="top" secondItem="wrC-a2-LNV" secondAttribute="bottom" constant="10" id="3hb-ir-x8Z"/>
                                                 <constraint firstItem="vSk-xY-6Tm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGv-DW-HRu" secondAttribute="trailing" constant="20" id="6Jr-ia-7Hg"/>
+                                                <constraint firstItem="9e3-K0-yVw" firstAttribute="leading" secondItem="LPH-iu-2WQ" secondAttribute="leading" constant="10" id="9zk-5v-JDr"/>
                                                 <constraint firstItem="vSk-xY-6Tm" firstAttribute="centerX" secondItem="LPH-iu-2WQ" secondAttribute="centerX" id="AyL-5z-5Jn"/>
-                                                <constraint firstItem="9e3-K0-yVw" firstAttribute="top" secondItem="RGv-DW-HRu" secondAttribute="bottom" constant="10" id="EbK-4X-JTo"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="apk-fB-WAf" secondAttribute="bottom" constant="20" id="NFS-eD-1RY"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="apk-fB-WAf" secondAttribute="bottom" constant="10" id="DXq-tN-Qk3"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9e3-K0-yVw" secondAttribute="bottom" constant="10" id="NzJ-Yp-apM"/>
                                                 <constraint firstItem="RGv-DW-HRu" firstAttribute="leading" secondItem="LPH-iu-2WQ" secondAttribute="leading" constant="20" id="QfA-eZ-Bzo"/>
                                                 <constraint firstAttribute="trailing" secondItem="9Le-SD-mvx" secondAttribute="trailing" constant="20" id="RgF-Qb-T7T"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9e3-K0-yVw" secondAttribute="bottom" constant="10" id="Vwp-3r-VVZ"/>
+                                                <constraint firstItem="9e3-K0-yVw" firstAttribute="top" secondItem="RGv-DW-HRu" secondAttribute="bottom" constant="10" id="Y4x-3D-aj4"/>
+                                                <constraint firstItem="apk-fB-WAf" firstAttribute="top" secondItem="9Le-SD-mvx" secondAttribute="bottom" constant="30" id="b6j-Ka-diP"/>
                                                 <constraint firstItem="wrC-a2-LNV" firstAttribute="leading" secondItem="LPH-iu-2WQ" secondAttribute="leading" constant="20" id="bLD-Gs-pmh"/>
                                                 <constraint firstItem="RGv-DW-HRu" firstAttribute="top" secondItem="wrC-a2-LNV" secondAttribute="bottom" constant="10" id="dPV-rT-rtP"/>
-                                                <constraint firstItem="9e3-K0-yVw" firstAttribute="leading" secondItem="LPH-iu-2WQ" secondAttribute="leading" constant="10" id="fS6-w4-HOU"/>
-                                                <constraint firstAttribute="trailing" secondItem="apk-fB-WAf" secondAttribute="trailing" constant="20" id="iqc-2E-aqF"/>
+                                                <constraint firstAttribute="trailing" secondItem="apk-fB-WAf" secondAttribute="trailing" constant="10" id="kH7-Yc-fcw"/>
                                                 <constraint firstItem="wrC-a2-LNV" firstAttribute="top" secondItem="LPH-iu-2WQ" secondAttribute="top" id="qEQ-1z-hE5"/>
                                                 <constraint firstItem="9Le-SD-mvx" firstAttribute="top" secondItem="wrC-a2-LNV" secondAttribute="bottom" constant="10" id="vDQ-2r-BVb"/>
                                                 <constraint firstAttribute="trailing" secondItem="wrC-a2-LNV" secondAttribute="trailing" constant="20" id="wEX-t8-2oh"/>
                                                 <constraint firstItem="9Le-SD-mvx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vSk-xY-6Tm" secondAttribute="trailing" constant="20" id="yrT-UF-KCY"/>
-                                                <constraint firstItem="apk-fB-WAf" firstAttribute="centerY" secondItem="9e3-K0-yVw" secondAttribute="centerY" id="zSl-Rf-Wzc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -806,11 +806,8 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n5M-X8-aHU">
-                                <rect key="frame" x="0.0" y="294" width="414" height="500"/>
+                                <rect key="frame" x="0.0" y="294" width="414" height="498"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="TU4-u7-vw3"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="96" id="Vwp-Tw-FNW" customClass="CommentCell">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="96"/>
@@ -903,15 +900,24 @@
                                 </prototypes>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-Lu-bpn">
-                                <rect key="frame" x="0.0" y="794" width="339" height="68"/>
+                                <rect key="frame" x="0.0" y="792" width="339" height="70"/>
                                 <color key="backgroundColor" red="1" green="0.82428103080000004" blue="0.87779848270000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Cic-Bj-BKp"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="54t-nn-Cbi" appends="YES" id="wLR-JL-gH4"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPZ-aN-38F">
-                                <rect key="frame" x="339" y="794" width="75" height="68"/>
+                                <rect key="frame" x="339" y="792" width="75" height="70"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="2Ak-N4-keF"/>
                                     <constraint firstAttribute="width" constant="75" id="fcF-tg-qF8"/>
                                 </constraints>
                                 <state key="normal" title="Comment"/>
@@ -926,9 +932,10 @@
                         <constraints>
                             <constraint firstItem="n5M-X8-aHU" firstAttribute="trailing" secondItem="bnb-Wl-war" secondAttribute="trailing" id="B9e-dH-mJS"/>
                             <constraint firstItem="n5M-X8-aHU" firstAttribute="top" secondItem="uuZ-kY-p75" secondAttribute="bottom" id="DDO-Na-WlM"/>
+                            <constraint firstItem="eIG-Lu-bpn" firstAttribute="top" secondItem="n5M-X8-aHU" secondAttribute="bottom" id="HXf-HM-Dpw"/>
                             <constraint firstItem="eIG-Lu-bpn" firstAttribute="leading" secondItem="bnb-Wl-war" secondAttribute="leading" id="Kbn-Ss-erf"/>
                             <constraint firstItem="haE-F1-ru4" firstAttribute="leading" secondItem="bnb-Wl-war" secondAttribute="leading" constant="20" id="KnZ-Ly-PnC"/>
-                            <constraint firstItem="eIG-Lu-bpn" firstAttribute="bottom" secondItem="bnb-Wl-war" secondAttribute="bottom" id="QJb-Hv-Cqm"/>
+                            <constraint firstItem="eIG-Lu-bpn" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bnb-Wl-war" secondAttribute="bottom" id="OL1-96-sxX"/>
                             <constraint firstItem="kPZ-aN-38F" firstAttribute="top" secondItem="n5M-X8-aHU" secondAttribute="bottom" id="SgH-T8-wmS"/>
                             <constraint firstItem="n5M-X8-aHU" firstAttribute="top" secondItem="bnb-Wl-war" secondAttribute="top" constant="250" id="Ti4-jB-NLp"/>
                             <constraint firstItem="kPZ-aN-38F" firstAttribute="trailing" secondItem="bnb-Wl-war" secondAttribute="trailing" id="WEE-qa-B4O"/>
@@ -936,16 +943,13 @@
                             <constraint firstItem="eIG-Lu-bpn" firstAttribute="top" secondItem="n5M-X8-aHU" secondAttribute="bottom" id="aUM-VG-bSq"/>
                             <constraint firstItem="kPZ-aN-38F" firstAttribute="trailing" secondItem="bnb-Wl-war" secondAttribute="trailing" id="bav-Nm-99o"/>
                             <constraint firstItem="kPZ-aN-38F" firstAttribute="leading" secondItem="eIG-Lu-bpn" secondAttribute="trailing" id="bg0-S5-Hya"/>
-                            <constraint firstItem="bnb-Wl-war" firstAttribute="bottom" secondItem="kPZ-aN-38F" secondAttribute="bottom" id="eIO-7i-6q3"/>
+                            <constraint firstItem="bnb-Wl-war" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kPZ-aN-38F" secondAttribute="bottom" id="eIO-7i-6q3"/>
                             <constraint firstItem="haE-F1-ru4" firstAttribute="top" secondItem="bnb-Wl-war" secondAttribute="top" constant="20" id="eZu-e7-8TX"/>
                             <constraint firstItem="uuZ-kY-p75" firstAttribute="top" secondItem="bnb-Wl-war" secondAttribute="top" id="eu3-Ky-kXy"/>
                             <constraint firstItem="bnb-Wl-war" firstAttribute="trailing" secondItem="uuZ-kY-p75" secondAttribute="trailing" constant="20" id="gyY-Nd-cbq"/>
                             <constraint firstItem="eIG-Lu-bpn" firstAttribute="top" secondItem="n5M-X8-aHU" secondAttribute="bottom" id="jAD-k5-KlO"/>
                             <constraint firstItem="uuZ-kY-p75" firstAttribute="leading" secondItem="bnb-Wl-war" secondAttribute="leading" constant="20" id="mCb-by-NWC"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Qrf-zv-Zq9" appends="YES" id="dxN-Qt-qYO"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="commentButton" destination="kPZ-aN-38F" id="lqn-aP-3uw"/>
@@ -955,9 +959,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ntY-l3-urv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Qrf-zv-Zq9">
+                <tapGestureRecognizer id="54t-nn-Cbi">
                     <connections>
-                        <action selector="screenTapped:" destination="vZc-L1-zlJ" id="yxA-v8-r2E"/>
+                        <action selector="commentTextBoxTapped:" destination="vZc-L1-zlJ" id="fxM-zK-5E9"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -978,11 +982,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wpw-qo-0Wo">
-                                <rect key="frame" x="0.0" y="294" width="414" height="500"/>
+                                <rect key="frame" x="0.0" y="294" width="414" height="498"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="500" id="D4J-FG-UTM"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReplyCell" rowHeight="110" id="ZpT-vD-AYN" customClass="ReplyCell">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="110"/>
@@ -1063,15 +1064,23 @@
                                 </prototypes>
                             </tableView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X69-5r-EDx">
-                                <rect key="frame" x="0.0" y="794" width="339" height="68"/>
+                                <rect key="frame" x="0.0" y="792" width="339" height="70"/>
                                 <color key="backgroundColor" red="1" green="0.82428103080000004" blue="0.87779848270000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="g98-OB-vxi"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="zmx-hb-eB8" appends="YES" id="n8I-0l-NHi"/>
+                                </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jar-rf-9Cd">
-                                <rect key="frame" x="339" y="794" width="75" height="68"/>
+                                <rect key="frame" x="339" y="792" width="75" height="70"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="lxm-Lu-YFr"/>
                                     <constraint firstAttribute="width" constant="75" id="toc-kf-5jT"/>
                                 </constraints>
                                 <state key="normal" title="Reply"/>
@@ -1100,6 +1109,7 @@
                             <constraint firstItem="Jar-rf-9Cd" firstAttribute="trailing" secondItem="B4Q-c2-nlu" secondAttribute="trailing" id="Cni-9O-JBb"/>
                             <constraint firstItem="WUV-yh-qGF" firstAttribute="leading" secondItem="B4Q-c2-nlu" secondAttribute="leading" constant="20" id="FbH-Oi-pAc"/>
                             <constraint firstItem="Wpw-qo-0Wo" firstAttribute="trailing" secondItem="B4Q-c2-nlu" secondAttribute="trailing" id="HLK-13-YhP"/>
+                            <constraint firstItem="X69-5r-EDx" firstAttribute="top" secondItem="Wpw-qo-0Wo" secondAttribute="bottom" id="I6g-OH-sqY"/>
                             <constraint firstItem="Jar-rf-9Cd" firstAttribute="top" secondItem="Wpw-qo-0Wo" secondAttribute="bottom" id="Lqa-uY-gy1"/>
                             <constraint firstItem="Jar-rf-9Cd" firstAttribute="leading" secondItem="X69-5r-EDx" secondAttribute="trailing" id="NFI-25-Q2L"/>
                             <constraint firstItem="8PX-gN-V5z" firstAttribute="leading" secondItem="WUV-yh-qGF" secondAttribute="trailing" constant="20" id="Syx-oK-iIu"/>
@@ -1112,9 +1122,6 @@
                             <constraint firstItem="X69-5r-EDx" firstAttribute="leading" secondItem="B4Q-c2-nlu" secondAttribute="leading" id="pwp-hK-lWz"/>
                             <constraint firstItem="Jar-rf-9Cd" firstAttribute="bottom" secondItem="B4Q-c2-nlu" secondAttribute="bottom" id="vuW-Tx-pmT"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="7g3-j9-OFV" appends="YES" id="Uel-0Y-LdJ"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="commentPrompt" destination="8PX-gN-V5z" id="3gq-t3-5I9"/>
@@ -1124,9 +1131,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s8d-6a-Ri4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="7g3-j9-OFV">
+                <tapGestureRecognizer id="zmx-hb-eB8">
                     <connections>
-                        <action selector="screenTapped:" destination="1QX-tD-5lO" id="MAq-2p-ff6"/>
+                        <action selector="replyTextBoxTapped:" destination="1QX-tD-5lO" id="lcl-dv-1Zu"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -1522,10 +1529,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ht6-Xe-jh9"/>
-        <segue reference="FOe-03-tAH"/>
-        <segue reference="cKO-66-dIc"/>
-        <segue reference="xL8-Ki-VTb"/>
+        <segue reference="UVq-QA-C4X"/>
+        <segue reference="0pi-b0-hrH"/>
+        <segue reference="lgL-1y-FT5"/>
+        <segue reference="bVk-KI-TS4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.circle" catalog="system" width="128" height="121"/>

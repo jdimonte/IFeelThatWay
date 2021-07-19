@@ -42,11 +42,50 @@
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
-- (IBAction)screenTapped:(id)sender {
-    [self.view endEditing:true];
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+    [self moveTextDown];
+}
+
+- (IBAction)replyTextBoxTapped:(id)sender {
+    [self.replyText becomeFirstResponder];
+    [self moveTextUp];
+}
+
+- (void) moveTextUp{
+    CGRect billFrame = self.replyText.frame;
+    if(billFrame.origin.y > 500){ //change values to work on any device
+        [UIView animateWithDuration: 0.2 animations:^{
+            CGRect textFrame = self.replyText.frame;
+            textFrame.origin.y -= 320;
+            self.replyText.frame = textFrame;
+            CGRect buttonFrame = self.replyButton.frame;
+            buttonFrame.origin.y -= 320;
+            self.replyButton.frame = buttonFrame;
+        }];
+    }
+}
+
+- (void) moveTextDown{
+    CGRect billFrame = self.replyText.frame;
+    if(billFrame.origin.y < 500){
+        [UIView animateWithDuration: 0.2 animations:^{
+            CGRect textFrame = self.replyText.frame;
+            textFrame.origin.y += 320;
+            self.replyText.frame = textFrame;
+            CGRect buttonFrame = self.replyButton.frame;
+            buttonFrame.origin.y += 320;
+            self.replyButton.frame = buttonFrame;
+        }];
+    }
 }
 
 - (IBAction)replyTapped:(id)sender {
+    [self moveTextDown];
+    [self createNewReply];
+}
+
+- (void) createNewReply {
     if(![self.replyText.text isEqual:@""]){
         Reply *reply = [Reply new];
         
@@ -68,7 +107,6 @@
         }];
     }
 }
-
 
 - (void) loadQueryReplies{
     PFQuery *query = [PFQuery queryWithClassName:@"Reply"];
