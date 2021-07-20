@@ -34,7 +34,6 @@
     self.commentCell.agreesCount = [NSNumber numberWithInt:self.commentCell.agreesArray.count];
     [self.commentCell saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
-            // The object has been saved.
         }
         else {
             NSLog(@"%@", error.localizedDescription);

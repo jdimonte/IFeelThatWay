@@ -20,12 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *firstAnswer;
 @property (nonatomic, strong) NSString *secondAnswer;
 @property (nonatomic, strong) NSString *thirdAnswer;
+@property (nonatomic, strong) NSString *fourthAnswer;
 @property (nonatomic, strong) NSMutableArray *firstArray;
 @property (nonatomic, strong) NSMutableArray *secondArray;
 @property (nonatomic, strong) NSMutableArray *thirdArray;
+@property (nonatomic, strong) NSMutableArray *fourthArray;
 @property (nonatomic, strong) NSNumber *firstCount;
 @property (nonatomic, strong) NSNumber *secondCount;
 @property (nonatomic, strong) NSNumber *thirdCount;
+@property (nonatomic, strong) NSNumber *fourthCount;
 @property (nonatomic, strong) NSDate *createdAt;
 
 @end

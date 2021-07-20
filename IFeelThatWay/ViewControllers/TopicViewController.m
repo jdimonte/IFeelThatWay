@@ -7,7 +7,9 @@
 
 #import "TopicViewController.h"
 #import "Prompt.h"
+#import "Poll.h"
 #import "PromptCell.h"
+#import "PollCell.h"
 #import "PostViewController.h"
 #import "Comment.h"
 #import "MBProgressHUD.h"
@@ -17,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *followButton;
 @property (strong, nonatomic) IBOutlet UITableView *promptsTableView;
 @property (strong, nonatomic) NSMutableArray *promptsArray;
+@property (strong, nonatomic) NSMutableArray *pollsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) Comment *featuredComment;
 
@@ -90,42 +93,111 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
+    }];
+    
+    PFQuery *queryPoll = [PFQuery queryWithClassName:@"Poll"];
+
+    [queryPoll includeKey:@"author"];
+    [queryPoll includeKey:@"topic"];
+    [queryPoll includeKey:@"question"];
+    [queryPoll includeKey:@"firstAnswer"];
+    [queryPoll includeKey:@"secondAnswer"];
+    [queryPoll includeKey:@"thirdAnswer"];
+    [queryPoll includeKey:@"fourthAnswer"];
+    [queryPoll includeKey:@"firstArray"];
+    [queryPoll includeKey:@"secondArray"];
+    [queryPoll includeKey:@"thirdArray"];
+    [queryPoll includeKey:@"fourthArray"];
+    [queryPoll whereKey:@"topic" equalTo:self.topic.category];
+    [queryPoll orderByDescending:@"createdAt"];
+
+    queryPoll.limit = 1;
+    [queryPoll findObjectsInBackgroundWithBlock:^(NSArray *polls, NSError *error) {
+        if (polls != nil) {
+            self.pollsArray = polls;
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
         [self.refreshControl endRefreshing];
+        [self.promptsTableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    PromptCell *cell = (PromptCell *)[tableView dequeueReusableCellWithIdentifier:@"PromptCell" forIndexPath:indexPath];
-    Prompt *promptInfo = self.promptsArray[indexPath.row];
-    cell.promptCell = promptInfo;
-    cell.question.text = promptInfo[@"question"];
+    if(indexPath.row == 0){
+        PollCell *cell = (PromptCell *)[tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
+        Poll *pollInfo = self.pollsArray[indexPath.row];
+        cell.poll = pollInfo;
+        cell.question.text = pollInfo[@"question"];
+        [cell.optionOne setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
+        [cell.optionTwo setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
+        [cell.optionThree setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
+        [cell.optionFour setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
+        
+        //set percents
+        //cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu",(unsigned long)cell.poll.thirdArray.count];
+        
+        User *user = [PFUser currentUser];
+        
+        cell.optionOnePercent.textColor = [UIColor blackColor];
+        cell.optionTwoPercent.textColor = [UIColor blackColor];
+        cell.optionThreePercent.textColor = [UIColor blackColor];
+        cell.optionFourPercent.textColor = [UIColor blackColor];
+        
+        if([pollInfo[@"firstArray"] containsObject:user.objectId]){
+            cell.firstView.backgroundColor = [UIColor lightGrayColor];
+        } else if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
+            cell.secondView.backgroundColor = [UIColor lightGrayColor];
+        } else if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
+            cell.thirdView.backgroundColor = [UIColor lightGrayColor];
+        } else if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
+            cell.fourthView.backgroundColor = [UIColor lightGrayColor];;
+        } else {
+            cell.optionOnePercent.textColor = [UIColor whiteColor];
+            cell.optionTwoPercent.textColor = [UIColor whiteColor];
+            cell.optionThreePercent.textColor = [UIColor whiteColor];
+            cell.optionFourPercent.textColor = [UIColor whiteColor];
+        }
+        
+        cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
+        cell.featuredProfilePic.clipsToBounds = true;
 
-    self.featuredComment = [self getFeaturedComment:promptInfo];
-    if(self.featuredComment){
-        cell.featuredComment.text = self.featuredComment[@"text"];
-        UIImage * colorPicture = [UIImage imageNamed:self.featuredComment[@"user"][@"profilePicture"]];
-        [cell.featuredProfilePic setImage:colorPicture];
-    }
-    
-    cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
-    cell.featuredProfilePic.clipsToBounds = true;
-    
-    User *user = [PFUser currentUser];
-    if([cell.promptCell[@"agreesArray"] containsObject: user.objectId]){
-        [cell.handRaise setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
+        
+        return cell;
     }
     else{
-        [cell.handRaise setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
+        PromptCell *cell = (PromptCell *)[tableView dequeueReusableCellWithIdentifier:@"PromptCell" forIndexPath:indexPath];
+        Prompt *promptInfo = self.promptsArray[indexPath.row-1];
+        cell.promptCell = promptInfo;
+        cell.question.text = promptInfo[@"question"];
+
+        self.featuredComment = [self getFeaturedComment:promptInfo];
+        if(self.featuredComment){
+            cell.featuredComment.text = self.featuredComment[@"text"];
+            UIImage * colorPicture = [UIImage imageNamed:self.featuredComment[@"user"][@"profilePicture"]];
+            [cell.featuredProfilePic setImage:colorPicture];
+        }
+        
+        cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
+        cell.featuredProfilePic.clipsToBounds = true;
+        
+        User *user = [PFUser currentUser];
+        if([cell.promptCell[@"agreesArray"] containsObject: user.objectId]){
+            [cell.handRaise setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
+        }
+        else{
+            [cell.handRaise setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
+        }
+        if([cell.promptCell[@"savesArray"] containsObject: user.objectId]){
+            [cell.save setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
+        }
+        else{
+            [cell.save setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
+        }
+        
+        return cell;
     }
-    if([cell.promptCell[@"savesArray"] containsObject: user.objectId]){
-        [cell.save setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
-    }
-    else{
-        [cell.save setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
-    }
-    
-    return cell;
 }
 
 - (Comment *) getFeaturedComment:(Prompt *)promptInfo{
@@ -146,7 +218,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.promptsArray.count;
+    return self.promptsArray.count + 1;
 }
 
 #pragma mark - Navigation
