@@ -19,16 +19,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y7H-N1-SIC">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I Feel That Way" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC0-mO-evc">
-                                        <rect key="frame" x="68" y="422.5" width="278.5" height="51.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="That Way" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC0-mO-evc">
+                                        <rect key="frame" x="120" y="422.5" width="174" height="51.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="43"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.85098039215686272" green="0.5607843137254902" blue="0.59607843137254901" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I Feel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flh-hC-JyR">
+                                        <rect key="frame" x="10" y="366" width="394" height="51.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="43"/>
+                                        <color key="textColor" red="0.85098039219999999" green="0.56078431370000004" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.82428103080000004" blue="0.87779848270000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.53333333333333333" green="0.50980392156862742" blue="0.68235294117647061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="flh-hC-JyR" secondAttribute="trailing" constant="10" id="3g0-wI-62d"/>
+                                    <constraint firstItem="rC0-mO-evc" firstAttribute="top" secondItem="flh-hC-JyR" secondAttribute="bottom" constant="5" id="5Gc-yK-osR"/>
                                     <constraint firstItem="rC0-mO-evc" firstAttribute="centerY" secondItem="y7H-N1-SIC" secondAttribute="centerY" id="KPM-z1-H9L"/>
+                                    <constraint firstItem="flh-hC-JyR" firstAttribute="leading" secondItem="y7H-N1-SIC" secondAttribute="leading" constant="10" id="Rip-LD-Uoz"/>
                                     <constraint firstItem="rC0-mO-evc" firstAttribute="centerX" secondItem="y7H-N1-SIC" secondAttribute="centerX" id="bd8-YQ-RZt"/>
                                 </constraints>
                             </view>
