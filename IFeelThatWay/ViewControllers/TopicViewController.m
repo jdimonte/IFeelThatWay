@@ -99,15 +99,15 @@
 
     [queryPoll includeKey:@"author"];
     [queryPoll includeKey:@"topic"];
-    [queryPoll includeKey:@"question"];
-    [queryPoll includeKey:@"firstAnswer"];
-    [queryPoll includeKey:@"secondAnswer"];
-    [queryPoll includeKey:@"thirdAnswer"];
-    [queryPoll includeKey:@"fourthAnswer"];
-    [queryPoll includeKey:@"firstArray"];
-    [queryPoll includeKey:@"secondArray"];
-    [queryPoll includeKey:@"thirdArray"];
-    [queryPoll includeKey:@"fourthArray"];
+//    [queryPoll includeKey:@"question"];
+//    [queryPoll includeKey:@"firstAnswer"];
+//    [queryPoll includeKey:@"secondAnswer"];
+//    [queryPoll includeKey:@"thirdAnswer"];
+//    [queryPoll includeKey:@"fourthAnswer"];
+//    [queryPoll includeKey:@"firstArray"];
+//    [queryPoll includeKey:@"secondArray"];
+//    [queryPoll includeKey:@"thirdArray"];
+//    [queryPoll includeKey:@"fourthArray"];
     [queryPoll whereKey:@"topic" equalTo:self.topic.category];
     [queryPoll orderByDescending:@"createdAt"];
 
@@ -135,8 +135,17 @@
         [cell.optionThree setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
         [cell.optionFour setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
         
-        //set percents
-        //cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu",(unsigned long)cell.poll.thirdArray.count];
+        unsigned long optionOneCount = (unsigned long)cell.poll.firstArray.count;
+        unsigned long optionTwoCount = (unsigned long)cell.poll.secondArray.count;
+        unsigned long optionThreeCount = (unsigned long)cell.poll.thirdArray.count;
+        unsigned long optionFourCount = (unsigned long)cell.poll.fourthArray.count;
+        unsigned long total = optionOneCount + optionTwoCount + optionThreeCount + optionFourCount;
+        if(total != 0){
+            cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
+            cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
+            cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
+            cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
+        }
         
         User *user = [PFUser currentUser];
         

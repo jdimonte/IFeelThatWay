@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Poll : PFObject
+@interface Poll : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *topic;
