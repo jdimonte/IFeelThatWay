@@ -90,12 +90,7 @@
     cell.topic.text = promptInfo[@"topic"];
     cell.question.text = promptInfo[@"question"];
     
-    self.featuredComment = [self getFeaturedComment:promptInfo];
-    if(self.featuredComment){
-        cell.featuredComment.text = self.featuredComment[@"text"];
-        UIImage * colorPicture = [UIImage imageNamed:self.featuredComment[@"user"][@"profilePicture"]];
-        [cell.featuredProfilePic setImage:colorPicture];
-    }
+    [self designFeaturedComment:promptInfo:cell];
     
     cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
     cell.featuredProfilePic.clipsToBounds = true;
@@ -117,21 +112,25 @@
     return cell;
 }
 
-- (Comment *) getFeaturedComment:(Prompt *)promptInfo{
+- (void) designFeaturedComment:(Prompt *)individualPrompt:(FollowingPromptCell *)cell{
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
     [query includeKey:@"author"];
     [query includeKey:@"user"];
-    [query whereKey:@"post" equalTo:promptInfo];
+    [query whereKey:@"post" equalTo:individualPrompt];
     [query orderByDescending:@"agreesCount"];
     query.limit = 1;
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
         if (comments != nil && comments.count != 0) {
-            self.featuredComment = comments[0];
+            Comment *featured = comments[0];
+            cell.featuredComment.text = featured[@"text"];
+            UIImage * colorPicture = [UIImage imageNamed:featured[@"user"][@"profilePicture"]];
+            [cell.featuredProfilePic setImage:colorPicture];
         } else {
             NSLog(@"%@", error.localizedDescription);
+            cell.featuredComment.text = @"Be the first to comment!";
+            [cell.featuredProfilePic setImage:[UIImage imageNamed:@"stickerBackgroundImage"]];
         }
     }];
-    return self.featuredComment;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

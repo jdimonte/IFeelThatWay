@@ -21,7 +21,6 @@
 @property (strong, nonatomic) NSMutableArray *promptsArray;
 @property (strong, nonatomic) NSMutableArray *pollsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) Comment *featuredComment;
 
 @end
 
@@ -99,15 +98,6 @@
 
     [queryPoll includeKey:@"author"];
     [queryPoll includeKey:@"topic"];
-//    [queryPoll includeKey:@"question"];
-//    [queryPoll includeKey:@"firstAnswer"];
-//    [queryPoll includeKey:@"secondAnswer"];
-//    [queryPoll includeKey:@"thirdAnswer"];
-//    [queryPoll includeKey:@"fourthAnswer"];
-//    [queryPoll includeKey:@"firstArray"];
-//    [queryPoll includeKey:@"secondArray"];
-//    [queryPoll includeKey:@"thirdArray"];
-//    [queryPoll includeKey:@"fourthArray"];
     [queryPoll whereKey:@"topic" equalTo:self.topic.category];
     [queryPoll orderByDescending:@"createdAt"];
 
@@ -172,7 +162,6 @@
         cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
         cell.featuredProfilePic.clipsToBounds = true;
 
-        
         return cell;
     }
     else{
@@ -181,12 +170,7 @@
         cell.promptCell = promptInfo;
         cell.question.text = promptInfo[@"question"];
 
-        self.featuredComment = [self getFeaturedComment:promptInfo];
-        if(self.featuredComment){
-            cell.featuredComment.text = self.featuredComment[@"text"];
-            UIImage * colorPicture = [UIImage imageNamed:self.featuredComment[@"user"][@"profilePicture"]];
-            [cell.featuredProfilePic setImage:colorPicture];
-        }
+        [self designFeaturedComment:promptInfo:cell];
         
         cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
         cell.featuredProfilePic.clipsToBounds = true;
@@ -209,21 +193,25 @@
     }
 }
 
-- (Comment *) getFeaturedComment:(Prompt *)promptInfo{
+- (void) designFeaturedComment:(Prompt *)individualPrompt:(PromptCell *)cell{
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
     [query includeKey:@"author"];
     [query includeKey:@"user"];
-    [query whereKey:@"post" equalTo:promptInfo];
+    [query whereKey:@"post" equalTo:individualPrompt];
     [query orderByDescending:@"agreesCount"];
     query.limit = 1;
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
         if (comments != nil && comments.count != 0) {
-            self.featuredComment = comments[0];
+            Comment *featured = comments[0];
+            cell.featuredComment.text = featured[@"text"];
+            UIImage * colorPicture = [UIImage imageNamed:featured[@"user"][@"profilePicture"]];
+            [cell.featuredProfilePic setImage:colorPicture];
         } else {
             NSLog(@"%@", error.localizedDescription);
+            cell.featuredComment.text = @"Be the first to comment!";
+            [cell.featuredProfilePic setImage:[UIImage imageNamed:@"stickerBackgroundImage"]];
         }
     }];
-    return self.featuredComment;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -237,7 +225,7 @@
     if ([segue.identifier isEqual:@"promptsToQuestion"]){
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.promptsTableView indexPathForCell:tappedCell];
-        Prompt *prompt = self.promptsArray[indexPath.row];
+        Prompt *prompt = self.promptsArray[indexPath.row-1];
         PostViewController *postViewController = [segue destinationViewController];
         postViewController.prompt = prompt;
     }

@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *topCommentsTableView;
 @property (strong, nonatomic) NSMutableArray *topCommentsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *topContent;
 
 @end
 
@@ -38,7 +39,10 @@
 }
 
 - (void) loadQueryTopComments{
-    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    NSString *contentTypes[] = {@"Comment", @"Reply"};
+    NSString *contentType = contentTypes[self.topContent.selectedSegmentIndex];
+    
+    PFQuery *query = [PFQuery queryWithClassName:contentType];
 
     [query includeKey:@"author"];
     [query orderByDescending:@"agreesCount"];
