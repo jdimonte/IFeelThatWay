@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *promptsTableView;
 @property (strong, nonatomic) NSMutableArray *promptsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) Comment *featuredComment;
 
 @end
 
@@ -99,23 +100,14 @@
     Prompt *promptInfo = self.promptsArray[indexPath.row];
     cell.promptCell = promptInfo;
     cell.question.text = promptInfo[@"question"];
+
+    self.featuredComment = [self getFeaturedComment:promptInfo];
+    if(self.featuredComment){
+        cell.featuredComment.text = self.featuredComment[@"text"];
+        UIImage * colorPicture = [UIImage imageNamed:self.featuredComment[@"user"][@"profilePicture"]];
+        [cell.featuredProfilePic setImage:colorPicture];
+    }
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
-    [query includeKey:@"author"];
-    [query includeKey:@"user"];
-    [query whereKey:@"post" equalTo:promptInfo];
-    [query orderByDescending:@"agreesCount"];
-    query.limit = 1;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        if (comments != nil && comments.count != 0) {
-            Comment *featuredComment = comments[0];
-            cell.featuredComment.text = featuredComment[@"text"];
-            UIImage * colorPicture = [UIImage imageNamed:featuredComment[@"user"][@"profilePicture"]];
-            [cell.featuredProfilePic setImage:colorPicture];
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
     cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
     cell.featuredProfilePic.clipsToBounds = true;
     
@@ -134,6 +126,23 @@
     }
     
     return cell;
+}
+
+- (Comment *) getFeaturedComment:(Prompt *)promptInfo{
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    [query includeKey:@"author"];
+    [query includeKey:@"user"];
+    [query whereKey:@"post" equalTo:promptInfo];
+    [query orderByDescending:@"agreesCount"];
+    query.limit = 1;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        if (comments != nil && comments.count != 0) {
+            self.featuredComment = comments[0];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+    return self.featuredComment;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
