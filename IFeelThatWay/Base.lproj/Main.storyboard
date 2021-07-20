@@ -1411,7 +1411,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6EM-se-2Xe">
-                                <rect key="frame" x="0.0" y="144" width="414" height="752"/>
+                                <rect key="frame" x="0.0" y="175" width="414" height="721"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -1454,18 +1454,31 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ygw-Bd-4FI">
+                                <rect key="frame" x="0.0" y="144" width="414" height="32"/>
+                                <segments>
+                                    <segment title="Comments"/>
+                                    <segment title="Replies"/>
+                                </segments>
+                                <connections>
+                                    <action selector="contentTypeSwitched:" destination="Y9y-yy-Jax" eventType="valueChanged" id="dZe-Kg-hvQ"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W9E-pE-D8R"/>
                         <color key="backgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="6EM-se-2Xe" firstAttribute="trailing" secondItem="W9E-pE-D8R" secondAttribute="trailing" id="7Qh-aH-QGt"/>
+                            <constraint firstItem="6EM-se-2Xe" firstAttribute="top" secondItem="ygw-Bd-4FI" secondAttribute="bottom" id="9ig-PM-v3I"/>
                             <constraint firstItem="xUq-ru-xxV" firstAttribute="leading" secondItem="Gle-NL-Q0z" secondAttribute="trailing" constant="20" id="DGQ-fv-g7U"/>
+                            <constraint firstItem="ygw-Bd-4FI" firstAttribute="top" secondItem="xUq-ru-xxV" secondAttribute="bottom" id="HbP-Nh-6eL"/>
+                            <constraint firstItem="ygw-Bd-4FI" firstAttribute="top" secondItem="W9E-pE-D8R" secondAttribute="top" constant="100" id="IYy-N3-Ukh"/>
                             <constraint firstItem="xUq-ru-xxV" firstAttribute="top" secondItem="W9E-pE-D8R" secondAttribute="top" id="Mys-8Q-3P8"/>
-                            <constraint firstItem="6EM-se-2Xe" firstAttribute="top" secondItem="W9E-pE-D8R" secondAttribute="top" constant="100" id="Ogl-dg-yyd"/>
+                            <constraint firstItem="ygw-Bd-4FI" firstAttribute="leading" secondItem="W9E-pE-D8R" secondAttribute="leading" id="SV0-69-QA2"/>
                             <constraint firstItem="W9E-pE-D8R" firstAttribute="trailing" secondItem="gMA-hb-AVm" secondAttribute="trailing" constant="20" id="Z2q-O2-7no"/>
-                            <constraint firstItem="6EM-se-2Xe" firstAttribute="top" secondItem="xUq-ru-xxV" secondAttribute="bottom" id="aGn-bp-PvI"/>
                             <constraint firstItem="gMA-hb-AVm" firstAttribute="top" secondItem="W9E-pE-D8R" secondAttribute="top" constant="20" id="aYw-BN-4t0"/>
                             <constraint firstItem="Gle-NL-Q0z" firstAttribute="leading" secondItem="W9E-pE-D8R" secondAttribute="leading" constant="20" id="eoO-yQ-7Ln"/>
+                            <constraint firstItem="ygw-Bd-4FI" firstAttribute="trailing" secondItem="W9E-pE-D8R" secondAttribute="trailing" id="fCa-8P-XYP"/>
                             <constraint firstItem="Gle-NL-Q0z" firstAttribute="top" secondItem="W9E-pE-D8R" secondAttribute="top" constant="20" id="gSE-Y3-sH4"/>
                             <constraint firstItem="6EM-se-2Xe" firstAttribute="leading" secondItem="W9E-pE-D8R" secondAttribute="leading" id="lhL-4b-gse"/>
                             <constraint firstAttribute="bottom" secondItem="6EM-se-2Xe" secondAttribute="bottom" id="q7r-Cn-lMq"/>
@@ -1474,6 +1487,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Saved" image="bookmark" catalog="system" selectedImage="bookmark.fill" id="9G5-aC-Xow"/>
                     <connections>
+                        <outlet property="savedContent" destination="ygw-Bd-4FI" id="sBX-I8-L2E"/>
                         <outlet property="savedTableView" destination="6EM-se-2Xe" id="9s8-TG-naZ"/>
                     </connections>
                 </viewController>
@@ -1605,8 +1619,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="UVq-QA-C4X"/>
         <segue reference="FOe-03-tAH"/>
-        <segue reference="6ee-1u-iPP"/>
-        <segue reference="MEm-fH-Wfb"/>
+        <segue reference="cKO-66-dIc"/>
+        <segue reference="xL8-Ki-VTb"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrowshape.turn.up.backward.circle" catalog="system" width="128" height="121"/>

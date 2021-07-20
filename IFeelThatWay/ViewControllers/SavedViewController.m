@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *savedTableView;
 @property (strong, nonatomic) NSMutableArray *savedArray;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *savedContent;
 
 @end
 
@@ -34,17 +35,24 @@
     [self.savedTableView addSubview:self.refreshControl];
 }
 
+- (IBAction)contentTypeSwitched:(id)sender {
+    [self loadQueryComments];
+}
+
 - (void) loadQueryComments{
+    NSString *contentTypes[] = {@"Comment", @"Reply"};
+    NSString *contentType = contentTypes[self.savedContent.selectedSegmentIndex];
+    
     User *user = [PFUser currentUser];
-    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    PFQuery *query = [PFQuery queryWithClassName:contentType];
     [query includeKey:@"author"];
     [query includeKey:@"user"];
     [query includeKey:@"savesArray"];
     [query whereKey:@"savesArray" equalTo:user.objectId];
     query.limit = 20;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
-        if (comments != nil) {
-            self.savedArray = comments;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *content, NSError *error) {
+        if (content != nil) {
+            self.savedArray = content;
             [self.savedTableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
