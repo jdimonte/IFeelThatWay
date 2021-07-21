@@ -2,11 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>instagram</string>
-        <string>instagram-stories</string>
-    </array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>instagram</string>
+		<string>instagram-stories</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>BalooTamma2-Bold.ttf</string>
+		<string>BalooTamma2-ExtraBold.ttf</string>
+		<string>BalooTamma2-Medium.ttf</string>
+		<string>BalooTamma2-Regular.ttf</string>
+		<string>BalooTamma2-SemiBold.ttf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

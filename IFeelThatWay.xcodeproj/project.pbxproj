@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		511AC8EA26A718B30072762C /* PollCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 511AC8E926A718B30072762C /* PollCell.m */; };
+		512E480126A875CC00D64CD2 /* BalooTamma2-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 512E47FB26A875CB00D64CD2 /* BalooTamma2-Medium.ttf */; };
+		512E480226A875CC00D64CD2 /* BalooTamma2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 512E47FC26A875CB00D64CD2 /* BalooTamma2-Bold.ttf */; };
+		512E480326A875CC00D64CD2 /* BalooTamma2-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 512E47FD26A875CB00D64CD2 /* BalooTamma2-Regular.ttf */; };
+		512E480426A875CC00D64CD2 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 512E47FE26A875CB00D64CD2 /* OFL.txt */; };
+		512E480526A875CC00D64CD2 /* BalooTamma2-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 512E47FF26A875CB00D64CD2 /* BalooTamma2-ExtraBold.ttf */; };
+		512E480626A875CC00D64CD2 /* BalooTamma2-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 512E480026A875CB00D64CD2 /* BalooTamma2-SemiBold.ttf */; };
 		51815BBB269CAC8100BFCA08 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815BBA269CAC8100BFCA08 /* AppDelegate.m */; };
 		51815BBE269CAC8100BFCA08 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815BBD269CAC8100BFCA08 /* SceneDelegate.m */; };
 		51815BC4269CAC8100BFCA08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51815BC2269CAC8100BFCA08 /* Main.storyboard */; };
@@ -71,6 +77,12 @@
 		3349875ECD7295DE859E7493 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeelThatWay_IFeelThatWayUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		511AC8E826A718B30072762C /* PollCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PollCell.h; sourceTree = "<group>"; };
 		511AC8E926A718B30072762C /* PollCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PollCell.m; sourceTree = "<group>"; };
+		512E47FB26A875CB00D64CD2 /* BalooTamma2-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BalooTamma2-Medium.ttf"; sourceTree = "<group>"; };
+		512E47FC26A875CB00D64CD2 /* BalooTamma2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BalooTamma2-Bold.ttf"; sourceTree = "<group>"; };
+		512E47FD26A875CB00D64CD2 /* BalooTamma2-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BalooTamma2-Regular.ttf"; sourceTree = "<group>"; };
+		512E47FE26A875CB00D64CD2 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		512E47FF26A875CB00D64CD2 /* BalooTamma2-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BalooTamma2-ExtraBold.ttf"; sourceTree = "<group>"; };
+		512E480026A875CB00D64CD2 /* BalooTamma2-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BalooTamma2-SemiBold.ttf"; sourceTree = "<group>"; };
 		51815BB6269CAC8100BFCA08 /* IFeelThatWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IFeelThatWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51815BB9269CAC8100BFCA08 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51815BBA269CAC8100BFCA08 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -177,6 +189,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		512E47F926A875B100D64CD2 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				512E47FA26A875CB00D64CD2 /* Baloo_Tamma_2 */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		512E47FA26A875CB00D64CD2 /* Baloo_Tamma_2 */ = {
+			isa = PBXGroup;
+			children = (
+				512E47FB26A875CB00D64CD2 /* BalooTamma2-Medium.ttf */,
+				512E47FC26A875CB00D64CD2 /* BalooTamma2-Bold.ttf */,
+				512E47FD26A875CB00D64CD2 /* BalooTamma2-Regular.ttf */,
+				512E47FE26A875CB00D64CD2 /* OFL.txt */,
+				512E47FF26A875CB00D64CD2 /* BalooTamma2-ExtraBold.ttf */,
+				512E480026A875CB00D64CD2 /* BalooTamma2-SemiBold.ttf */,
+			);
+			name = Baloo_Tamma_2;
+			path = ../../../Baloo_Tamma_2;
+			sourceTree = "<group>";
+		};
 		51815BAD269CAC8100BFCA08 = {
 			isa = PBXGroup;
 			children = (
@@ -202,6 +236,7 @@
 		51815BB8269CAC8100BFCA08 /* IFeelThatWay */ = {
 			isa = PBXGroup;
 			children = (
+				512E47F926A875B100D64CD2 /* Fonts */,
 				51815C1D269CD9EF00BFCA08 /* Utilities */,
 				51815BF1269CAD1C00BFCA08 /* ViewControllers */,
 				51815BEF269CAD0900BFCA08 /* Views */,
@@ -453,9 +488,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				512E480426A875CC00D64CD2 /* OFL.txt in Resources */,
 				51815BC9269CAC8200BFCA08 /* LaunchScreen.storyboard in Resources */,
+				512E480326A875CC00D64CD2 /* BalooTamma2-Regular.ttf in Resources */,
+				512E480626A875CC00D64CD2 /* BalooTamma2-SemiBold.ttf in Resources */,
 				51815BC6269CAC8200BFCA08 /* Assets.xcassets in Resources */,
+				512E480226A875CC00D64CD2 /* BalooTamma2-Bold.ttf in Resources */,
 				51815BC4269CAC8100BFCA08 /* Main.storyboard in Resources */,
+				512E480526A875CC00D64CD2 /* BalooTamma2-ExtraBold.ttf in Resources */,
+				512E480126A875CC00D64CD2 /* BalooTamma2-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

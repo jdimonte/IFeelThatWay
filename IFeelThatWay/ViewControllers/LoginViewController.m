@@ -8,10 +8,12 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import "LoginUtil.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface LoginViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *username;
 @property (strong, nonatomic) IBOutlet UITextField *password;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
 
@@ -19,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.loginButton.layer.cornerRadius = 0.2 * self.loginButton.bounds.size.width;
 }
 
 - (IBAction)loginTapped:(id)sender {

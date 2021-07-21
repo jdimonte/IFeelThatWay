@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *username;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UITextField *confirmPassword;
+@property (strong, nonatomic) IBOutlet UIButton *signUpButton;
 
 @end
 
@@ -21,9 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.signUpButton.layer.cornerRadius = 0.2 * self.signUpButton.bounds.size.width;
 }
 
 - (IBAction)backTapped:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)signInTapped:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 

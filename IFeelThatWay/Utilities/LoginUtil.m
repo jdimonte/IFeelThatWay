@@ -20,7 +20,7 @@
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
             NSLog(@"Error: %@", error.localizedDescription);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Try Again" preferredStyle:(UIAlertControllerStyleAlert)];
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Wrong username or password" message:@"Try Again" preferredStyle:(UIAlertControllerStyleAlert)];
             UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                                 style:UIAlertActionStyleCancel
                                                               handler:^(UIAlertAction * _Nonnull action) {
