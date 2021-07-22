@@ -17,6 +17,9 @@
 @property (strong, nonatomic) IBOutlet UITextView *replyText;
 @property (strong, nonatomic) IBOutlet UIButton *replyButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property CGFloat keyboardHeight;
+@property (strong, nonatomic) NSNumber *keyboardDuration;
+@property bool keyboardUp;
 
 @end
 
@@ -28,7 +31,9 @@
     
     self.commentsTableView.delegate = self;
     self.commentsTableView.dataSource = self;
+    
     self.commentPrompt.text = self.comment[@"text"];
+    self.keyboardUp = NO;
     
     [self loadQueryReplies];
     
@@ -36,6 +41,15 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryReplies) forControlEvents:UIControlEventValueChanged];
     [self.commentsTableView insertSubview:self.refreshControl atIndex:0];
     [self.commentsTableView addSubview:self.refreshControl];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    self.keyboardDuration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    //NSNumber *curve = [notification.userInfo objectForKey: UIKeyboardAnimationCurveUserInfoKey];
+    self.keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
 }
 
 - (IBAction)backTapped:(id)sender {
@@ -53,35 +67,34 @@
 }
 
 - (void) moveTextUp{
-    CGRect billFrame = self.replyText.frame;
-    if(billFrame.origin.y > 500){ //change values to work on any device
-        [UIView animateWithDuration: 0.2 animations:^{
+    if(!self.keyboardUp){
+        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.replyText.frame;
-            textFrame.origin.y -= 320;
+            textFrame.origin.y -= self.keyboardHeight;
             self.replyText.frame = textFrame;
             CGRect buttonFrame = self.replyButton.frame;
-            buttonFrame.origin.y -= 320;
+            buttonFrame.origin.y -= self.keyboardHeight;
             self.replyButton.frame = buttonFrame;
         }];
+        self.keyboardUp = YES;
     }
 }
 
 - (void) moveTextDown{
-    CGRect billFrame = self.replyText.frame;
-    if(billFrame.origin.y < 500){
-        [UIView animateWithDuration: 0.2 animations:^{
+    if(self.keyboardUp){
+        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.replyText.frame;
-            textFrame.origin.y += 320;
+            textFrame.origin.y += self.keyboardHeight;;
             self.replyText.frame = textFrame;
             CGRect buttonFrame = self.replyButton.frame;
-            buttonFrame.origin.y += 320;
+            buttonFrame.origin.y += self.keyboardHeight;;
             self.replyButton.frame = buttonFrame;
         }];
+        self.keyboardUp = NO;
     }
 }
 
 - (IBAction)replyTapped:(id)sender {
-    [self moveTextDown];
     [self createNewReply];
 }
 
@@ -100,6 +113,8 @@
             if (succeeded) {
                 [self loadQueryReplies];
                 self.replyText.text = @"";
+                [self.view endEditing:YES];
+                [self moveTextDown];
             }
             else {
                 NSLog(@"%@", error.localizedDescription);

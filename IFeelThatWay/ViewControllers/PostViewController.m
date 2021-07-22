@@ -18,6 +18,9 @@
 @property (strong, nonatomic) IBOutlet UITextView *commentText;
 @property (strong, nonatomic) IBOutlet UIButton *commentButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property CGFloat keyboardHeight;
+@property (strong, nonatomic) NSNumber *keyboardDuration;
+@property bool keyboardUp;
 
 @end
 
@@ -31,6 +34,7 @@
     self.questionTableView.dataSource = self;
     
     self.question.text = self.prompt[@"question"];
+    self.keyboardUp = NO;
     
     [self loadQueryComments];
     
@@ -38,6 +42,14 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryComments) forControlEvents:UIControlEventValueChanged];
     [self.questionTableView insertSubview:self.refreshControl atIndex:0];
     [self.questionTableView addSubview:self.refreshControl];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    self.keyboardDuration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    self.keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
 }
 
 - (IBAction)commentTextBoxTapped:(id)sender {
@@ -45,43 +57,42 @@
     [self moveTextUp];
 }
 
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
     [self moveTextDown];
 }
 
 - (IBAction)commentTapped:(id)sender {
-    [self.view endEditing:YES];
-    [self moveTextDown];
     [self createNewComment];
 }
 
 - (void) moveTextUp{
-    CGRect billFrame = self.commentText.frame;
-    if(billFrame.origin.y > 500){ //change values to work on any device
-        [UIView animateWithDuration: 0.2 animations:^{
+    NSLog(@"%d", self.keyboardUp);
+    if(!self.keyboardUp){
+        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
-            textFrame.origin.y -= 320;
+            textFrame.origin.y -= self.keyboardHeight;
+            NSLog(@"%lg", self.keyboardHeight);
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
-            buttonFrame.origin.y -= 320;
+            buttonFrame.origin.y -= self.keyboardHeight;
             self.commentButton.frame = buttonFrame;
         }];
+        self.keyboardUp = YES;
     }
 }
 
 - (void) moveTextDown{
-    CGRect billFrame = self.commentText.frame;
-    if(billFrame.origin.y < 500){
-        [UIView animateWithDuration: 0.2 animations:^{
+    if(self.keyboardUp){
+        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
-            textFrame.origin.y += 320;
+            textFrame.origin.y += self.keyboardHeight;;
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
-            buttonFrame.origin.y += 320;
+            buttonFrame.origin.y += self.keyboardHeight;;
             self.commentButton.frame = buttonFrame;
         }];
+        self.keyboardUp = NO;
     }
 }
 
@@ -100,6 +111,8 @@
             if (succeeded) {
                 [self loadQueryComments];
                 self.commentText.text = @"";
+                [self.view endEditing:YES];
+                [self moveTextDown];
             }
             else {
                 NSLog(@"%@", error.localizedDescription);

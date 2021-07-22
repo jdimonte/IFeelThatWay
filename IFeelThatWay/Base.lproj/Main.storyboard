@@ -1108,7 +1108,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="pencil" catalog="system"/>
                                 <connections>
-                                    <action selector="commentTapped:" destination="xxz-Sg-4RZ" eventType="touchUpInside" id="31r-dS-Mz7"/>
+                                    <action selector="commentTapped:" destination="xxz-Sg-4RZ" eventType="touchUpInside" id="xrh-Au-cat"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t2F-AC-5W1">
@@ -1414,8 +1414,8 @@
                                     <action selector="backTapped:" destination="vZc-L1-zlJ" eventType="touchUpInside" id="saI-WS-fmy"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n5M-X8-aHU">
-                                <rect key="frame" x="0.0" y="294" width="414" height="498"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="n5M-X8-aHU">
+                                <rect key="frame" x="0.0" y="294" width="414" height="532"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -1502,8 +1502,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-Lu-bpn">
-                                <rect key="frame" x="0.0" y="792" width="339" height="70"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="eIG-Lu-bpn">
+                                <rect key="frame" x="0.0" y="826" width="339" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -1516,8 +1516,8 @@
                                     <outletCollection property="gestureRecognizers" destination="54t-nn-Cbi" appends="YES" id="wLR-JL-gH4"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPZ-aN-38F">
-                                <rect key="frame" x="339" y="792" width="75" height="70"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPZ-aN-38F">
+                                <rect key="frame" x="339" y="826" width="75" height="70"/>
                                 <color key="backgroundColor" red="0.54117647059999996" green="0.50588235290000005" blue="0.94081998030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="2Ak-N4-keF"/>
@@ -1526,7 +1526,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="pencil" catalog="system"/>
                                 <connections>
-                                    <action selector="commentTapped:" destination="vZc-L1-zlJ" eventType="touchUpInside" id="iwE-ln-QlS"/>
+                                    <action selector="commentTapped:" destination="vZc-L1-zlJ" eventType="touchUpInside" id="9AF-xt-ZY7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1536,7 +1536,6 @@
                         <constraints>
                             <constraint firstItem="n5M-X8-aHU" firstAttribute="trailing" secondItem="bnb-Wl-war" secondAttribute="trailing" id="B9e-dH-mJS"/>
                             <constraint firstItem="n5M-X8-aHU" firstAttribute="top" secondItem="uuZ-kY-p75" secondAttribute="bottom" id="DDO-Na-WlM"/>
-                            <constraint firstItem="eIG-Lu-bpn" firstAttribute="top" secondItem="n5M-X8-aHU" secondAttribute="bottom" id="HXf-HM-Dpw"/>
                             <constraint firstItem="eIG-Lu-bpn" firstAttribute="leading" secondItem="bnb-Wl-war" secondAttribute="leading" id="Kbn-Ss-erf"/>
                             <constraint firstItem="haE-F1-ru4" firstAttribute="leading" secondItem="bnb-Wl-war" secondAttribute="leading" constant="20" id="KnZ-Ly-PnC"/>
                             <constraint firstItem="eIG-Lu-bpn" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bnb-Wl-war" secondAttribute="bottom" id="OL1-96-sxX"/>
@@ -1551,7 +1550,6 @@
                             <constraint firstItem="haE-F1-ru4" firstAttribute="top" secondItem="bnb-Wl-war" secondAttribute="top" constant="20" id="eZu-e7-8TX"/>
                             <constraint firstItem="uuZ-kY-p75" firstAttribute="top" secondItem="bnb-Wl-war" secondAttribute="top" id="eu3-Ky-kXy"/>
                             <constraint firstItem="bnb-Wl-war" firstAttribute="trailing" secondItem="uuZ-kY-p75" secondAttribute="trailing" constant="20" id="gyY-Nd-cbq"/>
-                            <constraint firstItem="eIG-Lu-bpn" firstAttribute="top" secondItem="n5M-X8-aHU" secondAttribute="bottom" id="jAD-k5-KlO"/>
                             <constraint firstItem="uuZ-kY-p75" firstAttribute="leading" secondItem="bnb-Wl-war" secondAttribute="leading" constant="20" id="mCb-by-NWC"/>
                         </constraints>
                     </view>
@@ -1569,7 +1567,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1678" y="2277"/>
+            <point key="canvasLocation" x="1676.8115942028987" y="2276.7857142857142"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="xQ5-s8-pnH">
@@ -1585,8 +1583,8 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wpw-qo-0Wo">
-                                <rect key="frame" x="0.0" y="294" width="414" height="498"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wpw-qo-0Wo">
+                                <rect key="frame" x="0.0" y="294" width="414" height="532"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="sectionIndexBackgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
@@ -1671,8 +1669,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X69-5r-EDx">
-                                <rect key="frame" x="0.0" y="792" width="339" height="70"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="X69-5r-EDx">
+                                <rect key="frame" x="0.0" y="826" width="339" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -1685,19 +1683,6 @@
                                     <outletCollection property="gestureRecognizers" destination="zmx-hb-eB8" appends="YES" id="n8I-0l-NHi"/>
                                 </connections>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jar-rf-9Cd">
-                                <rect key="frame" x="339" y="792" width="75" height="70"/>
-                                <color key="backgroundColor" red="0.54117647059999996" green="0.50588235290000005" blue="0.94081998030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="lxm-Lu-YFr"/>
-                                    <constraint firstAttribute="width" constant="75" id="toc-kf-5jT"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="pencil" catalog="system"/>
-                                <connections>
-                                    <action selector="replyTapped:" destination="1QX-tD-5lO" eventType="touchUpInside" id="bBd-YJ-w5H"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WUV-yh-qGF">
                                 <rect key="frame" x="20" y="64" width="20" height="20"/>
                                 <constraints>
@@ -1708,6 +1693,19 @@
                                 <state key="normal" image="arrowshape.turn.up.backward.circle" catalog="system"/>
                                 <connections>
                                     <action selector="backTapped:" destination="1QX-tD-5lO" eventType="touchUpInside" id="9EX-Fa-eif"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jar-rf-9Cd">
+                                <rect key="frame" x="339" y="826" width="75" height="70"/>
+                                <color key="backgroundColor" red="0.54117647059999996" green="0.50588235290000005" blue="0.94081998030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="lxm-Lu-YFr"/>
+                                    <constraint firstAttribute="width" constant="75" id="toc-kf-5jT"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" image="pencil" catalog="system"/>
+                                <connections>
+                                    <action selector="replyTapped:" destination="1QX-tD-5lO" eventType="touchUpInside" id="OEH-wc-lz9"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1725,7 +1723,6 @@
                             <constraint firstItem="Jar-rf-9Cd" firstAttribute="leading" secondItem="X69-5r-EDx" secondAttribute="trailing" id="NFI-25-Q2L"/>
                             <constraint firstItem="WUV-yh-qGF" firstAttribute="top" secondItem="B4Q-c2-nlu" secondAttribute="top" constant="20" id="X3b-LN-syq"/>
                             <constraint firstItem="B4Q-c2-nlu" firstAttribute="trailing" secondItem="8PX-gN-V5z" secondAttribute="trailing" constant="20" id="cAr-CY-zRL"/>
-                            <constraint firstItem="X69-5r-EDx" firstAttribute="top" secondItem="Wpw-qo-0Wo" secondAttribute="bottom" id="e3D-c5-cqh"/>
                             <constraint firstItem="Wpw-qo-0Wo" firstAttribute="top" secondItem="B4Q-c2-nlu" secondAttribute="top" constant="250" id="iBb-vU-Q3a"/>
                             <constraint firstItem="Wpw-qo-0Wo" firstAttribute="top" secondItem="8PX-gN-V5z" secondAttribute="bottom" id="oyC-Bn-wCK"/>
                             <constraint firstItem="8PX-gN-V5z" firstAttribute="top" secondItem="B4Q-c2-nlu" secondAttribute="top" id="pSM-Mh-7Ms"/>
@@ -1748,7 +1745,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2490" y="2277"/>
+            <point key="canvasLocation" x="2489.8550724637685" y="2276.7857142857142"/>
         </scene>
         <!--Following-->
         <scene sceneID="FWd-nB-bPC">
@@ -2210,7 +2207,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="UVq-QA-C4X"/>
-        <segue reference="xDG-tx-SBe"/>
+        <segue reference="vtB-VV-XoR"/>
         <segue reference="0pi-b0-hrH"/>
         <segue reference="lgL-1y-FT5"/>
         <segue reference="bVk-KI-TS4"/>
