@@ -29,6 +29,7 @@
     
     self.questionTableView.delegate = self;
     self.questionTableView.dataSource = self;
+    
     self.question.text = self.prompt[@"question"];
     
     [self loadQueryComments];

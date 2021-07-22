@@ -8,6 +8,7 @@
 #import <Parse/Parse.h>
 #import "User.h"
 #import "Prompt.h"
+#import "Poll.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) Prompt *post;
+@property (nonatomic, strong) Poll *poll;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSNumber *agreesCount;
 @property (nonatomic, strong) NSMutableArray *agreesArray;

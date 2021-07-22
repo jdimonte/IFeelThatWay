@@ -22,8 +22,6 @@
 }
 
 - (IBAction)optionOneTapped:(id)sender {
-    NSLog(@"one");
-    
     User *user = [PFUser currentUser];
     
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
@@ -40,8 +38,6 @@
     }
 }
 - (IBAction)optionTwoTapped:(id)sender {
-    NSLog(@"two");
-    
     User *user = [PFUser currentUser];
     
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
@@ -59,8 +55,6 @@
 }
 
 - (IBAction)optionThreeTapped:(id)sender {
-    NSLog(@"three");
-    
     User *user = [PFUser currentUser];
     
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
@@ -78,8 +72,6 @@
 }
 
 - (IBAction)optionFourTapped:(id)sender {
-    NSLog(@"four");
-    
     User *user = [PFUser currentUser];
     
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){

@@ -12,6 +12,7 @@
 @dynamic objectId;
 @dynamic user;
 @dynamic post;
+@dynamic poll;
 @dynamic text;
 @dynamic agreesCount;
 @dynamic agreesArray;

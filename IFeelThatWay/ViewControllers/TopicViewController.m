@@ -11,6 +11,7 @@
 #import "PromptCell.h"
 #import "PollCell.h"
 #import "PostViewController.h"
+#import "PollViewController.h"
 #import "Comment.h"
 #import "MBProgressHUD.h"
 
@@ -228,6 +229,12 @@
         Prompt *prompt = self.promptsArray[indexPath.row-1];
         PostViewController *postViewController = [segue destinationViewController];
         postViewController.prompt = prompt;
+    } else if ([segue.identifier isEqual:@"pollsToQuestion"]){
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.promptsTableView indexPathForCell:tappedCell];
+        Poll *poll = self.pollsArray[indexPath.row];
+        PollViewController *pollViewController = [segue destinationViewController];
+        pollViewController.poll = poll;
     }
 }
 
