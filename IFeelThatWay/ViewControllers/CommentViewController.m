@@ -8,6 +8,7 @@
 #import "CommentViewController.h"
 #import "ReplyCell.h"
 #import "Reply.h"
+#import "Report.h"
 #import "MBProgressHUD.h"
 
 @interface CommentViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -43,6 +44,38 @@
     [self.commentsTableView addSubview:self.refreshControl];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+}
+
+- (IBAction)longPressToReport:(id)sender {
+    UITableViewCell *tappedCell = sender;
+    NSIndexPath *indexPath = [self.commentsTableView indexPathForCell:tappedCell];
+    Reply *reply = self.repliesArray[indexPath.row];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Would you like to report this message?" message:reply.text preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+                                                      }];
+    [alert addAction:cancelAction];
+
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Report"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+        Report *report = [Report new];
+        report.message = reply.text;
+        report.messageAuthor = reply[@"user"];
+        report.replyId = reply;
+        [report saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+            }
+            else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+                                                     }];
+    [alert addAction:okAction];
+    
+    [self presentViewController:alert animated:YES completion:^{
+    }];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification

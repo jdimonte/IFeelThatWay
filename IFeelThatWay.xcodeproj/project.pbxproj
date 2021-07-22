@@ -16,6 +16,7 @@
 		51569D6426A90F380025E19F /* BalooTamma2-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51569D5E26A90F380025E19F /* BalooTamma2-ExtraBold.ttf */; };
 		51569D6526A90F380025E19F /* BalooTamma2-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51569D5F26A90F380025E19F /* BalooTamma2-SemiBold.ttf */; };
 		51569D6826A9BE680025E19F /* PollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51569D6726A9BE680025E19F /* PollViewController.m */; };
+		51569D6B26AA20CD0025E19F /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 51569D6A26AA20CD0025E19F /* Report.m */; };
 		51815BBB269CAC8100BFCA08 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815BBA269CAC8100BFCA08 /* AppDelegate.m */; };
 		51815BBE269CAC8100BFCA08 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815BBD269CAC8100BFCA08 /* SceneDelegate.m */; };
 		51815BC4269CAC8100BFCA08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51815BC2269CAC8100BFCA08 /* Main.storyboard */; };
@@ -87,6 +88,8 @@
 		51569D5F26A90F380025E19F /* BalooTamma2-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BalooTamma2-SemiBold.ttf"; sourceTree = "<group>"; };
 		51569D6626A9BE680025E19F /* PollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PollViewController.h; sourceTree = "<group>"; };
 		51569D6726A9BE680025E19F /* PollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PollViewController.m; sourceTree = "<group>"; };
+		51569D6926AA20CD0025E19F /* Report.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
+		51569D6A26AA20CD0025E19F /* Report.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		51815BB6269CAC8100BFCA08 /* IFeelThatWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IFeelThatWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51815BB9269CAC8100BFCA08 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51815BBA269CAC8100BFCA08 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -292,6 +295,8 @@
 				51815C12269CB35200BFCA08 /* Reply.m */,
 				51815C36269DDD7B00BFCA08 /* Request.h */,
 				51815C37269DDD7B00BFCA08 /* Request.m */,
+				51569D6926AA20CD0025E19F /* Report.h */,
+				51569D6A26AA20CD0025E19F /* Report.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -693,6 +698,7 @@
 				51815C4D269F23A200BFCA08 /* ReplyCell.m in Sources */,
 				51815C3B269DFC6700BFCA08 /* PromptCell.m in Sources */,
 				51815C53269F805500BFCA08 /* LoginUtil.m in Sources */,
+				51569D6B26AA20CD0025E19F /* Report.m in Sources */,
 				51815BBE269CAC8100BFCA08 /* SceneDelegate.m in Sources */,
 				51815C4A269F20CA00BFCA08 /* CommentViewController.m in Sources */,
 			);

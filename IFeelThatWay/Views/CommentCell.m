@@ -21,6 +21,7 @@
     // Configure the view for the selected state
 }
 
+
 - (IBAction)handRaiseButtonTapped:(id)sender {
     User *user = [PFUser currentUser];
     if(![self.commentCell[@"agreesArray"] containsObject: user.objectId]){

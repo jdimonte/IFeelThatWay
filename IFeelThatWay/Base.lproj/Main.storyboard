@@ -1183,12 +1183,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="agreesCount" destination="hoS-17-EBn" id="d7r-6T-f3f"/>
                                             <outlet property="handRaiseButton" destination="Idc-XO-1CQ" id="93K-1R-PnA"/>
                                             <outlet property="profilePic" destination="LYh-72-xzw" id="ebb-mB-qna"/>
                                             <outlet property="saveButton" destination="X3E-bA-isl" id="lyo-nw-QJ6"/>
                                             <outlet property="text" destination="nlR-cY-4HQ" id="oqy-U9-0gX"/>
+                                            <outletCollection property="gestureRecognizers" destination="8hX-xz-ek2" appends="YES" id="iWz-lO-FHQ"/>
                                             <segue destination="1QX-tD-5lO" kind="presentation" identifier="pollQuestionToComment" modalPresentationStyle="fullScreen" id="vtB-VV-XoR"/>
                                         </connections>
                                     </tableViewCell>
@@ -1383,6 +1385,11 @@
                         <action selector="commentTextBoxTapped:" destination="xxz-Sg-4RZ" id="khF-tQ-FyY"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="8hX-xz-ek2">
+                    <connections>
+                        <action selector="longPressToReport:" destination="xxz-Sg-4RZ" id="iT1-Ke-myJ"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1676.8115942028987" y="3003.3482142857142"/>
         </scene>
@@ -1489,12 +1496,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="agreesCount" destination="O6F-5f-qGE" id="B76-NG-aaF"/>
                                             <outlet property="handRaiseButton" destination="mWn-9y-F3j" id="igu-Ek-rXt"/>
                                             <outlet property="profilePic" destination="6IR-e2-X84" id="tKo-ZP-19U"/>
                                             <outlet property="saveButton" destination="Q3j-EK-R1R" id="hSu-Jb-fJ7"/>
                                             <outlet property="text" destination="I3U-wq-Ae1" id="nQ2-56-HzM"/>
+                                            <outletCollection property="gestureRecognizers" destination="ID9-l3-XV3" appends="YES" id="NAg-D4-tvI"/>
                                             <segue destination="1QX-tD-5lO" kind="presentation" identifier="questionToComment" modalPresentationStyle="fullScreen" id="xDG-tx-SBe"/>
                                         </connections>
                                     </tableViewCell>
@@ -1564,6 +1573,11 @@
                         <action selector="commentTextBoxTapped:" destination="vZc-L1-zlJ" id="fxM-zK-5E9"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ID9-l3-XV3">
+                    <connections>
+                        <action selector="longPressToReport:" destination="vZc-L1-zlJ" id="yjP-am-V0H"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1676.8115942028987" y="2276.7857142857142"/>
         </scene>
@@ -1657,12 +1671,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="agreesCount" destination="f14-lQ-J7f" id="4fJ-Bz-Bg8"/>
                                             <outlet property="handRaiseButton" destination="IwL-9W-h2n" id="88y-3w-LaV"/>
                                             <outlet property="profilePic" destination="Jbe-Jm-jzd" id="KP8-5r-jJZ"/>
                                             <outlet property="saveButton" destination="h1Z-4Y-Bxi" id="mUk-yD-OHo"/>
                                             <outlet property="text" destination="GfX-fx-fZ6" id="MZX-29-Dco"/>
+                                            <outletCollection property="gestureRecognizers" destination="BD0-rn-wMu" appends="YES" id="AG8-FD-egD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1742,6 +1758,11 @@
                         <action selector="replyTextBoxTapped:" destination="1QX-tD-5lO" id="lcl-dv-1Zu"/>
                     </connections>
                 </tapGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="BD0-rn-wMu">
+                    <connections>
+                        <action selector="longPressToReport:" destination="1QX-tD-5lO" id="RYr-29-rLf"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2489.8550724637685" y="2276.7857142857142"/>
         </scene>
