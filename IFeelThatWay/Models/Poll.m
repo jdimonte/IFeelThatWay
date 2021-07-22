@@ -28,6 +28,7 @@
 @dynamic fourthCount;
 @dynamic savesArray;
 @dynamic createdAt;
+@dynamic hasComments;
 
 + (nonnull NSString *)parseClassName {
     return @"Poll";

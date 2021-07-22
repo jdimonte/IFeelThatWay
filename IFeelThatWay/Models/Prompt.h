@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Prompt : PFObject
+@interface Prompt : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *topic;
@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *agreesArray;
 @property (nonatomic, strong) NSMutableArray *savesArray;
 @property (nonatomic, strong) NSDate *createdAt;
+@property bool hasComments;
 
 @end
 

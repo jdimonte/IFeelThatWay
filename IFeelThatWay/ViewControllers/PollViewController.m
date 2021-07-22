@@ -169,6 +169,17 @@
                 self.commentText.text = @"";
                 [self.view endEditing:YES];
                 [self moveTextDown];
+                
+                if(!self.poll.hasComments){
+                    self.poll.hasComments = !self.poll.hasComments;
+                    [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+                        }
+                        else {
+                            NSLog(@"%@", error.localizedDescription);
+                        }
+                    }];
+                }
             }
             else {
                 NSLog(@"%@", error.localizedDescription);

@@ -137,6 +137,14 @@
     return self.promptsArray.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    Prompt *prompt = self.promptsArray[indexPath.row];
+    if(prompt.hasComments){
+        return 370;
+    } else{
+        return 300;
+    }
+}
 
 #pragma mark - Navigation
 

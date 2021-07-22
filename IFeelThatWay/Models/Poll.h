@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *thirdCount;
 @property (nonatomic, strong) NSNumber *fourthCount;
 @property (nonatomic, strong) NSDate *createdAt;
+@property bool hasComments;
+
 
 @end
 

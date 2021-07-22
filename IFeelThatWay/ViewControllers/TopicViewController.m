@@ -81,6 +81,7 @@
     [query includeKey:@"author"];
     [query includeKey:@"topic"];
     [query includeKey:@"question"];
+    [query includeKey:@"hasComments"];
     [query whereKey:@"topic" equalTo:self.topic.category];
     [query orderByDescending:@"createdAt"];
 
@@ -99,6 +100,7 @@
 
     [queryPoll includeKey:@"author"];
     [queryPoll includeKey:@"topic"];
+    [queryPoll includeKey:@"hasComments"];
     [queryPoll whereKey:@"topic" equalTo:self.topic.category];
     [queryPoll orderByDescending:@"createdAt"];
 
@@ -160,6 +162,11 @@
             cell.optionFourPercent.textColor = [UIColor whiteColor];
         }
         
+        if(pollInfo){
+            [self designFeaturedCommentPoll:pollInfo:cell];
+        }
+        //[self designFeaturedCommentPoll:pollInfo:cell];
+        
         cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
         cell.featuredProfilePic.clipsToBounds = true;
 
@@ -215,8 +222,48 @@
     }];
 }
 
+- (void) designFeaturedCommentPoll:(Poll *)individualPoll:(PollCell *)cell{
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    [query includeKey:@"author"];
+    [query includeKey:@"user"];
+    [query whereKey:@"poll" equalTo:individualPoll];
+    [query orderByDescending:@"agreesCount"];
+    query.limit = 1;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
+        if (comments != nil && comments.count != 0) {
+            Comment *featured = comments[0];
+            cell.featuredComment.text = featured[@"text"];
+            UIImage * colorPicture = [UIImage imageNamed:featured[@"user"][@"profilePicture"]];
+            [cell.featuredProfilePic setImage:colorPicture];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+            cell.featuredComment.text = @"Be the first to comment!";
+            [cell.featuredProfilePic setImage:[UIImage imageNamed:@"stickerBackgroundImage"]];
+        }
+    }];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.promptsArray.count + 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 0){
+        Poll *poll = self.pollsArray[indexPath.row];
+        if(poll.hasComments){
+            return 550;
+        } else{
+            return 450;
+        }
+    }
+    else{
+        Prompt *prompt = self.promptsArray[indexPath.row-1];
+        if(prompt.hasComments){
+            return 330;
+        } else{
+            return 250;
+        }
+    }
 }
 
 #pragma mark - Navigation

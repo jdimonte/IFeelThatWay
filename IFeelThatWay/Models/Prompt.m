@@ -16,6 +16,7 @@
 @dynamic agreesArray;
 @dynamic savesArray;
 @dynamic createdAt;
+@dynamic hasComments;
 
 + (nonnull NSString *)parseClassName {
     return @"Prompt";

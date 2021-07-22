@@ -113,6 +113,17 @@
                 self.commentText.text = @"";
                 [self.view endEditing:YES];
                 [self moveTextDown];
+                
+                if(!self.prompt.hasComments){
+                    self.prompt.hasComments = !self.prompt.hasComments;
+                    [self.prompt saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        if (succeeded) {
+                        }
+                        else {
+                            NSLog(@"%@", error.localizedDescription);
+                        }
+                    }];
+                }
             }
             else {
                 NSLog(@"%@", error.localizedDescription);
