@@ -11,6 +11,7 @@
 @interface RequestViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *request;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *type;
+@property (strong, nonatomic) IBOutlet UIButton *requestButton;
 
 @end
 
@@ -18,6 +19,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.requestButton.layer.cornerRadius = 0.2 * self.requestButton.bounds.size.width;
 }
 
 - (IBAction)cancelTapped:(id)sender {

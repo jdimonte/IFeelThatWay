@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SavedCommentCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *text;
 @property (strong, nonatomic) Comment *comment;
+@property (strong, nonatomic) IBOutlet UIView *bulletPoint;
 @property (nonatomic, weak) id <SavedViewControllerDelegate> savedViewController;
 
 @end

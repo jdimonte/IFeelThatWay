@@ -33,6 +33,8 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryComments) forControlEvents:UIControlEventValueChanged];
     [self.savedTableView insertSubview:self.refreshControl atIndex:0];
     [self.savedTableView addSubview:self.refreshControl];
+    
+    [self.savedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (IBAction)contentTypeSwitched:(id)sender {
@@ -67,6 +69,8 @@
     Comment *comment = self.savedArray[indexPath.row];
     cell.text.text = comment[@"text"];
     cell.comment = comment;
+    cell.bulletPoint.layer.cornerRadius =  cell.bulletPoint.frame.size.width / 2;
+    cell.bulletPoint.clipsToBounds = true;
     cell.savedViewController = self;
     return cell;
 }

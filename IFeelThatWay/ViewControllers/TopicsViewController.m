@@ -39,6 +39,8 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryTopics) forControlEvents:UIControlEventValueChanged];
     [self.topicsTableView insertSubview:self.refreshControl atIndex:0];
     [self.topicsTableView addSubview:self.refreshControl];
+    
+    [self.topicsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void) loadQueryTopics{
@@ -75,7 +77,7 @@
         [cell.followButton setImage:[UIImage systemImageNamed:@"checkmark.square.fill"] forState:UIControlStateNormal];
     }
     else{
-        [cell.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
+        [cell.followButton setImage:[UIImage systemImageNamed:@"square"] forState:UIControlStateNormal];
     }
     
     return cell;

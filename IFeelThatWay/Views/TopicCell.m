@@ -30,7 +30,7 @@
         [self.topic addUniqueObject:user.objectId forKey:@"followersArray"];
     }
     else{
-        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
+        [self.followButton setImage:[UIImage systemImageNamed:@"square"] forState:UIControlStateNormal];
         //unfollow topic
         [self.topic removeObject:user.objectId forKey:@"followersArray"];
     }

@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIButton *saveButton;
 @property (strong, nonatomic) Comment *commentCell;
 @property (strong, nonatomic) IBOutlet UILabel *agreesCount;
+@property (strong, nonatomic) IBOutlet UIView *commentView;
+@property (strong, nonatomic) IBOutlet UILabel *rank;
 
 @end
 

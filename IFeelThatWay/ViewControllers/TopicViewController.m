@@ -47,7 +47,7 @@
         [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square.fill"] forState:UIControlStateNormal];
     }
     else{
-        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
+        [self.followButton setImage:[UIImage systemImageNamed:@"square"] forState:UIControlStateNormal];
     }
 }
 
@@ -62,7 +62,7 @@
         [self.topic addUniqueObject:user.objectId forKey:@"followersArray"];
     }
     else{
-        [self.followButton setImage:[UIImage systemImageNamed:@"checkmark.square"] forState:UIControlStateNormal];
+        [self.followButton setImage:[UIImage systemImageNamed:@"square"] forState:UIControlStateNormal];
         [self.topic removeObject:user.objectId forKey:@"followersArray"];
     }
     [self.topic saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

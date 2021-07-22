@@ -35,6 +35,9 @@
     [self.topCommentsTableView insertSubview:self.refreshControl atIndex:0];
     [self.topCommentsTableView addSubview:self.refreshControl];
     
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
+    [self.topCommentsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     //Commented out for less parse calls during development
     //[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadQueryTopComments) userInfo:nil repeats:true];
 }
@@ -67,16 +70,8 @@
     Comment *topComment = self.topCommentsArray[indexPath.row];
     cell.commentCell = topComment;
     cell.agreesCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)cell.commentCell.agreesArray.count];
-    NSInteger *rank = indexPath.row + 1;
-    NSString *rankStr = [NSString stringWithFormat:@"%d", rank];
-    NSString *rankString = [rankStr stringByAppendingString:@". "];
-    NSString *commentString = topComment[@"text"];
-    if(commentString){
-        cell.comment.text = [rankString stringByAppendingString:commentString];
-    }
-    else{
-        cell.comment.text = rankString;
-    }
+    cell.rank.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+    cell.comment.text = topComment[@"text"];
     User *user = [PFUser currentUser];
     if([cell.commentCell[@"agreesArray"] containsObject: user.objectId]){
         [cell.raiseHandButton setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
