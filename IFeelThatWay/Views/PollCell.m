@@ -135,7 +135,7 @@
             } else {
                 self.optionTwoChange = -120;
                 self.optionFourChange = 60;
-                [self updatePlaces:1:3:4:2];
+                [self updatePlaces:1:4:2:3];
             }
         } else {
             self.optionFourChange = 120;
@@ -146,7 +146,7 @@
             } else {
                 self.optionThreeChange = -60;
                 self.optionTwoChange = -60;
-                [self updatePlaces:1:4:2:3];
+                [self updatePlaces:1:3:4:2];
             }
         }
     }
@@ -169,22 +169,22 @@
             if(optionOneCount > optionFourCount){
                 self.optionOneChange = -120;
                 self.optionFourChange = 0;
-                [self updatePlaces:2:3:1:4];
+                [self updatePlaces:3:1:2:4];
             } else {
                 self.optionOneChange = -180;
                 self.optionFourChange = 60;
-                [self updatePlaces:2:3:4:1];
+                [self updatePlaces:4:1:2:3];
             }
         } else {
             self.optionFourChange = 120;
             if(optionThreeCount > optionOneCount){
                 self.optionThreeChange = 0;
                 self.optionOneChange = -180;
-                [self updatePlaces:2:4:3:1];
+                [self updatePlaces:4:1:3:2];
             } else {
                 self.optionThreeChange = -60;
                 self.optionOneChange = -120;
-                [self updatePlaces:2:4:1:3];
+                [self updatePlaces:3:1:4:2];
             }
         }
     }
@@ -200,18 +200,18 @@
             } else {
                 self.optionOneChange = -180;
                 self.optionFourChange = 60;
-                [self updatePlaces:3:2:4:1];
+                [self updatePlaces:4:2:1:3];
             }
         } else if(secondPlace == optionOneCount){
             self.optionOneChange = -60;
             if(optionTwoCount > optionFourCount){
                 self.optionTwoChange = -60;
                 self.optionFourChange = 0;
-                [self updatePlaces:3:1:2:4];
+                [self updatePlaces:2:3:1:3];
             } else {
                 self.optionTwoChange = -120;
                 self.optionFourChange = 60;
-                [self updatePlaces:3:1:4:2];
+                [self updatePlaces:2:4:1:3];
             }
         } else {
             self.optionFourChange = 120;
@@ -222,7 +222,7 @@
             } else {
                 self.optionOneChange = -180;
                 self.optionTwoChange = -60;
-                [self updatePlaces:3:4:2:1];
+                [self updatePlaces:4:3:1:2];
             }
         }
     }
@@ -238,14 +238,14 @@
             } else {
                 self.optionThreeChange = -60;
                 self.optionOneChange = -120;
-                [self updatePlaces:4:2:1:3];
+                [self updatePlaces:3:2:4:1];
             }
         } else if(secondPlace == optionThreeCount){
             self.optionThreeChange = 60;
             if(optionOneCount > optionTwoCount){
                 self.optionOneChange = -120;
                 self.optionTwoChange = -120;
-                [self updatePlaces:4:3:1:2];
+                [self updatePlaces:3:4:2:1];
             } else {
                 self.optionOneChange = -180;
                 self.optionTwoChange = -60;
@@ -256,11 +256,11 @@
             if(optionThreeCount > optionTwoCount){
                 self.optionThreeChange = 0;
                 self.optionTwoChange = -120;
-                [self updatePlaces:4:1:3:2];
+                [self updatePlaces:2:4:3:1];
             } else {
                 self.optionThreeChange = -60;
                 self.optionTwoChange = -60;
-                [self updatePlaces:4:1:2:3];
+                [self updatePlaces:2:3:4:1];
             }
         }
     }
@@ -284,11 +284,11 @@
     }];
 }
 
-- (void) updatePlaces:(unsigned long)one:(unsigned long)two:(unsigned long)three:(unsigned long)four{
-    self.poll.firstPlace = @(one);
-    self.poll.secondPlace = @(two);
-    self.poll.thirdPlace = @(three);
-    self.poll.fourthPlace = @(four);
+- (void) updatePlaces:(unsigned long)oneLocation:(unsigned long)twoLocation:(unsigned long)threeLocation:(unsigned long)fourLocation{
+    self.poll.firstPlace = @(oneLocation);
+    self.poll.secondPlace = @(twoLocation);
+    self.poll.thirdPlace = @(threeLocation);
+    self.poll.fourthPlace = @(fourLocation);
     [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
         }

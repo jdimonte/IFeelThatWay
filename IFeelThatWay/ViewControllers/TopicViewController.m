@@ -149,21 +149,21 @@
         unsigned long optionFourCount = (unsigned long)cell.poll.fourthArray.count;
         unsigned long total = optionOneCount + optionTwoCount + optionThreeCount + optionFourCount;
         if(total != 0 && answered){
-            if(pollInfo[@"firstPlace"] == 1){
+            if([pollInfo[@"firstPlace"] isEqual: @1]){
                 cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionOne setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
                 if([pollInfo[@"firstArray"] containsObject:user.objectId]){
                     cell.firstView.backgroundColor = [UIColor systemPinkColor];
                 }
                 
-            } else if(pollInfo[@"firstPlace"] == 2){
+            } else if([pollInfo[@"firstPlace"] isEqual: @2]){
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
                 if([pollInfo[@"firstArray"] containsObject:user.objectId]){
                     cell.secondView.backgroundColor = [UIColor systemPinkColor];
                 }
                 
-            } else if(pollInfo[@"firstPlace"] == 3){
+            } else if([pollInfo[@"firstPlace"] isEqual: @3]){
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
                 if([pollInfo[@"firstArray"] containsObject:user.objectId]){
@@ -177,19 +177,19 @@
                 }
             }
             
-            if(pollInfo[@"secondPlace"] == 2){
+            if([pollInfo[@"secondPlace"] isEqual: @2]){
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
                     cell.secondView.backgroundColor = [UIColor systemPinkColor];
                 }
-            } else if(pollInfo[@"secondPlace"] == 3){
+            } else if([pollInfo[@"secondPlace"] isEqual: @3]){
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
                     cell.thirdView.backgroundColor = [UIColor systemPinkColor];
                 }
-            } else if(pollInfo[@"secondPlace"] == 4){
+            } else if([pollInfo[@"secondPlace"] isEqual: @4]){
                 cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
                 [cell.optionFour setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
@@ -203,19 +203,19 @@
                 }
             }
             
-            if(pollInfo[@"thirdPlace"] == 3){
+            if([pollInfo[@"thirdPlace"] isEqual: @3]){
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
                     cell.thirdView.backgroundColor = [UIColor systemPinkColor];
                 }
-            } else if(pollInfo[@"thirdPlace"] == 4){
+            } else if([pollInfo[@"thirdPlace"] isEqual: @4]){
                 cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
                 [cell.optionFour setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
                     cell.fourthView.backgroundColor = [UIColor systemPinkColor];
                 }
-            } else if(pollInfo[@"thirdPlace"] == 2){
+            } else if([pollInfo[@"thirdPlace"] isEqual: @2]){
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
@@ -229,19 +229,19 @@
                 }
             }
             
-            if(pollInfo[@"fourthPlace"] == 4){
+            if([pollInfo[@"fourthPlace"] isEqual: @4]){
                 cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
                 [cell.optionFour setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
                     cell.fourthView.backgroundColor = [UIColor systemPinkColor];;
                 }
-            } else if(pollInfo[@"fourthPlace"] == 3){
+            } else if([pollInfo[@"fourthPlace"] isEqual: @3]){
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
                     cell.thirdView.backgroundColor = [UIColor systemPinkColor];;
                 }
-            } else if(pollInfo[@"fourthPlace"] == 2){
+            } else if([pollInfo[@"fourthPlace"] isEqual: @2]){
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
