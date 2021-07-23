@@ -28,6 +28,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UIView *secondView;
 @property (strong, nonatomic) IBOutlet UIView *thirdView;
 @property (strong, nonatomic) IBOutlet UIView *fourthView;
+@property int optionOneChange;
+@property int optionTwoChange;
+@property int optionThreeChange;
+@property int optionFourChange;
 
 @end
 
