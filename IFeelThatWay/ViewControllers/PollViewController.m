@@ -106,9 +106,6 @@
 }
 
 - (void) designPoll {
-    //CODEEEEE
-    
-    
     self.firstView.layer.cornerRadius = 0.05 * self.firstView.bounds.size.width;
     self.secondView.layer.cornerRadius = 0.05 * self.secondView.bounds.size.width;
     self.thirdView.layer.cornerRadius = 0.05 * self.thirdView.bounds.size.width;
@@ -120,38 +117,131 @@
     [self.optionThree setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
     [self.optionFour setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
     
-    unsigned long optionOneCount = (unsigned long)self.poll.firstArray.count;
-    unsigned long optionTwoCount = (unsigned long)self.poll.secondArray.count;
-    unsigned long optionThreeCount = (unsigned long)self.poll.thirdArray.count;
-    unsigned long optionFourCount = (unsigned long)self.poll.fourthArray.count;
-    unsigned long total = optionOneCount + optionTwoCount + optionThreeCount + optionFourCount;
-    if(total != 0){
-        self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
-        self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
-        self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
-        self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
-    }
-    
     User *user = [PFUser currentUser];
-    
-    self.optionOnePercent.textColor = [UIColor blackColor];
-    self.optionTwoPercent.textColor = [UIColor blackColor];
-    self.optionThreePercent.textColor = [UIColor blackColor];
-    self.optionFourPercent.textColor = [UIColor blackColor];
-    
-    if([self.poll[@"firstArray"] containsObject:user.objectId]){
-        self.firstView.backgroundColor = [UIColor systemPinkColor];
-    } else if ([self.poll[@"secondArray"] containsObject:user.objectId]){
-        self.secondView.backgroundColor = [UIColor systemPinkColor];
-    } else if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
-        self.thirdView.backgroundColor = [UIColor systemPinkColor];
-    } else if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
-        self.fourthView.backgroundColor = [UIColor systemPinkColor];;
+    bool answered = [self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId];
+    if(answered){
+        self.optionOnePercent.textColor = [UIColor blackColor];
+        self.optionTwoPercent.textColor = [UIColor blackColor];
+        self.optionThreePercent.textColor = [UIColor blackColor];
+        self.optionFourPercent.textColor = [UIColor blackColor];
     } else {
         self.optionOnePercent.textColor = [UIColor whiteColor];
         self.optionTwoPercent.textColor = [UIColor whiteColor];
         self.optionThreePercent.textColor = [UIColor whiteColor];
         self.optionFourPercent.textColor = [UIColor whiteColor];
+    }
+    
+    unsigned long optionOneCount = (unsigned long)self.poll.firstArray.count;
+    unsigned long optionTwoCount = (unsigned long)self.poll.secondArray.count;
+    unsigned long optionThreeCount = (unsigned long)self.poll.thirdArray.count;
+    unsigned long optionFourCount = (unsigned long)self.poll.fourthArray.count;
+    unsigned long total = optionOneCount + optionTwoCount + optionThreeCount + optionFourCount;
+    if(total != 0 && answered){
+        if([self.poll[@"firstPlace"] isEqual: @1]){
+            self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
+            [self.optionOne setTitle:self.poll[@"firstAnswer"] forState:UIControlStateNormal];
+            if([self.poll[@"firstArray"] containsObject:user.objectId]){
+                self.firstView.backgroundColor = [UIColor systemPinkColor];
+            }
+            
+        } else if([self.poll[@"firstPlace"] isEqual: @2]){
+            self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
+            [self.optionTwo setTitle:self.poll[@"firstAnswer"] forState:UIControlStateNormal];
+            if([self.poll[@"firstArray"] containsObject:user.objectId]){
+                self.secondView.backgroundColor = [UIColor systemPinkColor];
+            }
+            
+        } else if([self.poll[@"firstPlace"] isEqual: @3]){
+            self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
+            [self.optionThree setTitle:self.poll[@"firstAnswer"] forState:UIControlStateNormal];
+            if([self.poll[@"firstArray"] containsObject:user.objectId]){
+                self.thirdView.backgroundColor = [UIColor systemPinkColor];
+            }
+        } else { //-180
+            self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
+            [self.optionFour setTitle:self.poll[@"firstAnswer"] forState:UIControlStateNormal];
+            if([self.poll[@"firstArray"] containsObject:user.objectId]){
+                self.fourthView.backgroundColor = [UIColor systemPinkColor];
+            }
+        }
+        
+        if([self.poll[@"secondPlace"] isEqual: @2]){
+            self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
+            [self.optionTwo setTitle:self.poll[@"secondAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"secondArray"] containsObject:user.objectId]){
+                self.secondView.backgroundColor = [UIColor systemPinkColor];
+            }
+        } else if([self.poll[@"secondPlace"] isEqual: @3]){
+            self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
+            [self.optionThree setTitle:self.poll[@"secondAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"secondArray"] containsObject:user.objectId]){
+                self.thirdView.backgroundColor = [UIColor systemPinkColor];
+            }
+        } else if([self.poll[@"secondPlace"] isEqual: @4]){
+            self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
+            [self.optionFour setTitle:self.poll[@"secondAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"secondArray"] containsObject:user.objectId]){
+                self.fourthView.backgroundColor = [UIColor systemPinkColor];
+            }
+        } else { //60
+            self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
+            [self.optionOne setTitle:self.poll[@"secondAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"secondArray"] containsObject:user.objectId]){
+                self.firstView.backgroundColor = [UIColor systemPinkColor];
+            }
+        }
+        
+        if([self.poll[@"thirdPlace"] isEqual: @3]){
+            self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
+            [self.optionThree setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
+                self.thirdView.backgroundColor = [UIColor systemPinkColor];
+            }
+        } else if([self.poll[@"thirdPlace"] isEqual: @4]){
+            self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
+            [self.optionFour setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
+                self.fourthView.backgroundColor = [UIColor systemPinkColor];
+            }
+        } else if([self.poll[@"thirdPlace"] isEqual: @2]){
+            self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
+            [self.optionTwo setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
+                self.secondView.backgroundColor = [UIColor systemPinkColor];
+            }
+        } else { //120
+            self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
+            [self.optionOne setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
+                self.firstView.backgroundColor = [UIColor systemPinkColor];
+            }
+        }
+        
+        if([self.poll[@"fourthPlace"] isEqual: @4]){
+            self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
+            [self.optionFour setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
+                self.fourthView.backgroundColor = [UIColor systemPinkColor];;
+            }
+        } else if([self.poll[@"fourthPlace"] isEqual: @3]){
+            self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
+            [self.optionThree setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
+                self.thirdView.backgroundColor = [UIColor systemPinkColor];;
+            }
+        } else if([self.poll[@"fourthPlace"] isEqual: @2]){
+            self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
+            [self.optionTwo setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
+                self.secondView.backgroundColor = [UIColor systemPinkColor];;
+            }
+        } else { //180
+            self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
+            [self.optionOne setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
+            if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
+                self.firstView.backgroundColor = [UIColor systemPinkColor];;
+            }
+        }
     }
 }
 
@@ -383,27 +473,33 @@
             if(optionThreeCount > optionFourCount){
                 self.optionThreeChange = 0;
                 self.optionFourChange = 0;
+                [self updatePlaces:1:2:3:4];
             } else {
                 self.optionThreeChange = -60;
                 self.optionFourChange = 60;
+                [self updatePlaces:1:2:4:3];
             }
         } else if(secondPlace == optionThreeCount){
             self.optionThreeChange = 60;
             if(optionTwoCount > optionFourCount){
                 self.optionTwoChange = -60;
                 self.optionFourChange = 0;
+                [self updatePlaces:1:3:2:4];
             } else {
                 self.optionTwoChange = -120;
                 self.optionFourChange = 60;
+                [self updatePlaces:1:4:2:3];
             }
         } else {
             self.optionFourChange = 120;
             if(optionThreeCount > optionTwoCount){
                 self.optionThreeChange = 0;
                 self.optionTwoChange = -120;
+                [self updatePlaces:1:4:3:2];
             } else {
                 self.optionThreeChange = -60;
                 self.optionTwoChange = -60;
+                [self updatePlaces:1:3:4:2];
             }
         }
     }
@@ -415,27 +511,33 @@
             if(optionThreeCount > optionFourCount){
                 self.optionThreeChange = 0;
                 self.optionFourChange = 0;
+                [self updatePlaces:2:1:3:4];
             } else {
                 self.optionThreeChange = -60;
                 self.optionFourChange = 60;
+                [self updatePlaces:2:1:4:3];
             }
         } else if(secondPlace == optionThreeCount){
             self.optionThreeChange = 60;
             if(optionOneCount > optionFourCount){
                 self.optionOneChange = -120;
                 self.optionFourChange = 0;
+                [self updatePlaces:3:1:2:4];
             } else {
                 self.optionOneChange = -180;
                 self.optionFourChange = 60;
+                [self updatePlaces:4:1:2:3];
             }
         } else {
             self.optionFourChange = 120;
             if(optionThreeCount > optionOneCount){
                 self.optionThreeChange = 0;
                 self.optionOneChange = -180;
+                [self updatePlaces:4:1:3:2];
             } else {
                 self.optionThreeChange = -60;
                 self.optionOneChange = -120;
+                [self updatePlaces:3:1:4:2];
             }
         }
     }
@@ -447,27 +549,33 @@
             if(optionOneCount > optionFourCount){
                 self.optionOneChange = -120;
                 self.optionFourChange = 0;
+                [self updatePlaces:3:2:1:4];
             } else {
                 self.optionOneChange = -180;
                 self.optionFourChange = 60;
+                [self updatePlaces:4:2:1:3];
             }
         } else if(secondPlace == optionOneCount){
             self.optionOneChange = -60;
             if(optionTwoCount > optionFourCount){
                 self.optionTwoChange = -60;
                 self.optionFourChange = 0;
+                [self updatePlaces:2:3:1:3];
             } else {
                 self.optionTwoChange = -120;
                 self.optionFourChange = 60;
+                [self updatePlaces:2:4:1:3];
             }
         } else {
             self.optionFourChange = 120;
             if(optionOneCount > optionTwoCount){
                 self.optionOneChange = -120;
                 self.optionTwoChange = -120;
+                [self updatePlaces:3:4:1:2];
             } else {
                 self.optionOneChange = -180;
                 self.optionTwoChange = -60;
+                [self updatePlaces:4:3:1:2];
             }
         }
     }
@@ -479,27 +587,33 @@
             if(optionThreeCount > optionOneCount){
                 self.optionThreeChange = 0;
                 self.optionOneChange = -180;
+                [self updatePlaces:4:2:3:1];
             } else {
                 self.optionThreeChange = -60;
                 self.optionOneChange = -120;
+                [self updatePlaces:3:2:4:1];
             }
         } else if(secondPlace == optionThreeCount){
             self.optionThreeChange = 60;
             if(optionOneCount > optionTwoCount){
                 self.optionOneChange = -120;
                 self.optionTwoChange = -120;
+                [self updatePlaces:3:4:2:1];
             } else {
                 self.optionOneChange = -180;
                 self.optionTwoChange = -60;
+                [self updatePlaces:4:3:2:1];
             }
         } else {
             self.optionOneChange = -60;
             if(optionThreeCount > optionTwoCount){
                 self.optionThreeChange = 0;
                 self.optionTwoChange = -120;
+                [self updatePlaces:2:4:3:1];
             } else {
                 self.optionThreeChange = -60;
                 self.optionTwoChange = -60;
+                [self updatePlaces:2:3:4:1];
             }
         }
     }
@@ -520,6 +634,20 @@
         CGRect fourthFrame = self.fourthView.frame;
         fourthFrame.origin.y -= self.optionFourChange;
         self.fourthView.frame = fourthFrame;
+    }];
+}
+
+- (void) updatePlaces:(unsigned long)oneLocation:(unsigned long)twoLocation:(unsigned long)threeLocation:(unsigned long)fourLocation{
+    self.poll.firstPlace = @(oneLocation);
+    self.poll.secondPlace = @(twoLocation);
+    self.poll.thirdPlace = @(threeLocation);
+    self.poll.fourthPlace = @(fourLocation);
+    [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
     }];
 }
 
