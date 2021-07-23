@@ -21,9 +21,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) IBOutlet UILabel *optionTwoPercent;
 @property (strong, nonatomic) IBOutlet UILabel *optionThreePercent;
 @property (strong, nonatomic) IBOutlet UILabel *optionFourPercent;
-@property (strong, nonatomic) IBOutlet UIButton *handRaise;
-@property (strong, nonatomic) IBOutlet UIButton *comment;
-@property (strong, nonatomic) IBOutlet UIButton *save;
 @property (strong, nonatomic) IBOutlet UIImageView *featuredProfilePic;
 @property (strong, nonatomic) IBOutlet UILabel *featuredComment;
 @property (strong, nonatomic) Poll *poll;

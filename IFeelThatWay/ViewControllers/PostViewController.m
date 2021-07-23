@@ -85,8 +85,8 @@
     self.keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
 }
 
-- (IBAction)commentTextBoxTapped:(id)sender {
-    [self.commentText becomeFirstResponder];
+- (IBAction)commentTextBoxTapped:(UITapGestureRecognizer *)sender {
+     [self.commentText becomeFirstResponder];
     [self moveTextUp];
 }
 
@@ -100,7 +100,6 @@
 }
 
 - (void) moveTextUp{
-    NSLog(@"%d", self.keyboardUp);
     if(!self.keyboardUp){
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
@@ -226,6 +225,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [self moveTextDown];
     if ([segue.identifier isEqual:@"questionToComment"]){
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.questionTableView indexPathForCell:tappedCell];

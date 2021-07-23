@@ -143,7 +143,7 @@
     }
 }
 
-- (IBAction)commentTextBoxTapped:(id)sender {
+- (IBAction)commentTextBoxTapped:(UITapGestureRecognizer *)sender {
     [self.commentText becomeFirstResponder];
     [self moveTextUp];
 }
@@ -162,6 +162,7 @@
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
             textFrame.origin.y -= self.keyboardHeight;
+            NSLog(@"%lg", self.keyboardHeight);
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
             buttonFrame.origin.y -= self.keyboardHeight;
@@ -188,11 +189,10 @@
 - (void) createNewComment {
     if(![self.commentText.text isEqual:@""]){
         Comment *comment = [Comment new];
-        
         comment.text = self.commentText.text;
         User *user = [PFUser currentUser];
         comment.user = user;
-        Prompt *poll = self.poll;
+        Poll *poll = self.poll;
         comment.poll = poll;
         comment.agreesCount = 0;
         
@@ -367,6 +367,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [self moveTextDown];
     if ([segue.identifier isEqual:@"pollQuestionToComment"]){
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.questionTableView indexPathForCell:tappedCell];
