@@ -141,27 +141,35 @@
             self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
             [self.optionOne setTitle:self.poll[@"firstAnswer"] forState:UIControlStateNormal];
             if([self.poll[@"firstArray"] containsObject:user.objectId]){
-                self.firstView.backgroundColor = [UIColor systemPinkColor];
+                self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionOnePercent.textColor = [UIColor whiteColor];
             }
             
         } else if([self.poll[@"firstPlace"] isEqual: @2]){
             self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
             [self.optionTwo setTitle:self.poll[@"firstAnswer"] forState:UIControlStateNormal];
             if([self.poll[@"firstArray"] containsObject:user.objectId]){
-                self.secondView.backgroundColor = [UIColor systemPinkColor];
+                self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionTwoPercent.textColor = [UIColor whiteColor];
             }
             
         } else if([self.poll[@"firstPlace"] isEqual: @3]){
             self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
             [self.optionThree setTitle:self.poll[@"firstAnswer"] forState:UIControlStateNormal];
             if([self.poll[@"firstArray"] containsObject:user.objectId]){
-                self.thirdView.backgroundColor = [UIColor systemPinkColor];
+                self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionThreePercent.textColor = [UIColor whiteColor];
             }
         } else { //-180
             self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
             [self.optionFour setTitle:self.poll[@"firstAnswer"] forState:UIControlStateNormal];
             if([self.poll[@"firstArray"] containsObject:user.objectId]){
-                self.fourthView.backgroundColor = [UIColor systemPinkColor];
+                self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionFourPercent.textColor = [UIColor whiteColor];
             }
         }
         
@@ -169,25 +177,33 @@
             self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
             [self.optionTwo setTitle:self.poll[@"secondAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"secondArray"] containsObject:user.objectId]){
-                self.secondView.backgroundColor = [UIColor systemPinkColor];
+                self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionTwoPercent.textColor = [UIColor whiteColor];
             }
         } else if([self.poll[@"secondPlace"] isEqual: @3]){
             self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
             [self.optionThree setTitle:self.poll[@"secondAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"secondArray"] containsObject:user.objectId]){
-                self.thirdView.backgroundColor = [UIColor systemPinkColor];
+                self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionThreePercent.textColor = [UIColor whiteColor];
             }
         } else if([self.poll[@"secondPlace"] isEqual: @4]){
             self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
             [self.optionFour setTitle:self.poll[@"secondAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"secondArray"] containsObject:user.objectId]){
-                self.fourthView.backgroundColor = [UIColor systemPinkColor];
+                self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionFourPercent.textColor = [UIColor whiteColor];
             }
         } else { //60
             self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
             [self.optionOne setTitle:self.poll[@"secondAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"secondArray"] containsObject:user.objectId]){
-                self.firstView.backgroundColor = [UIColor systemPinkColor];
+                self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionOnePercent.textColor = [UIColor whiteColor];
             }
         }
         
@@ -195,25 +211,33 @@
             self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
             [self.optionThree setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
-                self.thirdView.backgroundColor = [UIColor systemPinkColor];
+                self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionThreePercent.textColor = [UIColor whiteColor];
             }
         } else if([self.poll[@"thirdPlace"] isEqual: @4]){
             self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
             [self.optionFour setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
-                self.fourthView.backgroundColor = [UIColor systemPinkColor];
+                self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionFourPercent.textColor = [UIColor whiteColor];
             }
         } else if([self.poll[@"thirdPlace"] isEqual: @2]){
             self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
             [self.optionTwo setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
-                self.secondView.backgroundColor = [UIColor systemPinkColor];
+                self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionTwoPercent.textColor = [UIColor whiteColor];
             }
         } else { //120
             self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
             [self.optionOne setTitle:self.poll[@"thirdAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"thirdArray"] containsObject:user.objectId]) {
-                self.firstView.backgroundColor = [UIColor systemPinkColor];
+                self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionOnePercent.textColor = [UIColor whiteColor];
             }
         }
         
@@ -221,25 +245,33 @@
             self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
             [self.optionFour setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
-                self.fourthView.backgroundColor = [UIColor systemPinkColor];;
+                self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionFourPercent.textColor = [UIColor whiteColor];
             }
         } else if([self.poll[@"fourthPlace"] isEqual: @3]){
             self.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
             [self.optionThree setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
-                self.thirdView.backgroundColor = [UIColor systemPinkColor];;
+                self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionThreePercent.textColor = [UIColor whiteColor];
             }
         } else if([self.poll[@"fourthPlace"] isEqual: @2]){
             self.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
             [self.optionTwo setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
-                self.secondView.backgroundColor = [UIColor systemPinkColor];;
+                self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionTwoPercent.textColor = [UIColor whiteColor];
             }
         } else { //180
             self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
             [self.optionOne setTitle:self.poll[@"fourthAnswer"] forState:UIControlStateNormal];
             if ([self.poll[@"fourthArray"] containsObject:user.objectId]) {
-                self.firstView.backgroundColor = [UIColor systemPinkColor];;
+                self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+                self.optionOnePercent.textColor = [UIColor whiteColor];
             }
         }
     }
@@ -278,10 +310,10 @@
     if(self.keyboardUp){
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
-            textFrame.origin.y += self.keyboardHeight;;
+            textFrame.origin.y += self.keyboardHeight;
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
-            buttonFrame.origin.y += self.keyboardHeight;;
+            buttonFrame.origin.y += self.keyboardHeight;
             self.commentButton.frame = buttonFrame;
         }];
         self.keyboardUp = NO;
@@ -382,7 +414,8 @@
     
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         [self.poll addUniqueObject:user.objectId forKey:@"firstArray"];
-        self.firstView.backgroundColor = [UIColor systemPinkColor];
+        self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+        [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
         [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
             }
@@ -391,6 +424,7 @@
             }
         }];
         [self updatePercents];
+        self.optionOnePercent.textColor = [UIColor whiteColor];
     }
 }
 
@@ -399,7 +433,8 @@
     
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         [self.poll addUniqueObject:user.objectId forKey:@"secondArray"];
-        self.secondView.backgroundColor = [UIColor systemPinkColor];
+        self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+        [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
         [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
             }
@@ -408,6 +443,7 @@
             }
         }];
         [self updatePercents];
+        self.optionTwoPercent.textColor = [UIColor whiteColor];
     }
 }
 
@@ -416,7 +452,8 @@
     
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         [self.poll addUniqueObject:user.objectId forKey:@"thirdArray"];
-        self.thirdView.backgroundColor = [UIColor systemPinkColor];
+        self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+        [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
         [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
             }
@@ -425,6 +462,7 @@
             }
         }];
         [self updatePercents];
+        self.optionThreePercent.textColor = [UIColor whiteColor];
     }
 }
 
@@ -433,7 +471,8 @@
     
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         [self.poll addUniqueObject:user.objectId forKey:@"fourthArray"];
-        self.fourthView.backgroundColor = [UIColor systemPinkColor];
+        self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+        [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
         [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
             }
@@ -442,6 +481,7 @@
             }
         }];
         [self updatePercents];
+        self.optionFourPercent.textColor = [UIColor whiteColor];
     }
 }
 

@@ -35,6 +35,7 @@
     
     self.commentPrompt.text = self.comment[@"text"];
     self.keyboardUp = NO;
+    self.keyboardHeight = 0;
     
     [self loadQueryReplies];
     
@@ -81,7 +82,6 @@
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     self.keyboardDuration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
-    //NSNumber *curve = [notification.userInfo objectForKey: UIKeyboardAnimationCurveUserInfoKey];
     self.keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
 }
 
@@ -103,6 +103,7 @@
     if(!self.keyboardUp){
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.replyText.frame;
+            NSLog(@"%lg", textFrame.origin.y);
             textFrame.origin.y -= self.keyboardHeight;
             self.replyText.frame = textFrame;
             CGRect buttonFrame = self.replyButton.frame;
@@ -117,10 +118,10 @@
     if(self.keyboardUp){
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.replyText.frame;
-            textFrame.origin.y += self.keyboardHeight;;
+            textFrame.origin.y += self.keyboardHeight;
             self.replyText.frame = textFrame;
             CGRect buttonFrame = self.replyButton.frame;
-            buttonFrame.origin.y += self.keyboardHeight;;
+            buttonFrame.origin.y += self.keyboardHeight;
             self.replyButton.frame = buttonFrame;
         }];
         self.keyboardUp = NO;
