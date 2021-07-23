@@ -90,6 +90,9 @@
                                 </constraints>
                                 <color key="tintColor" red="0.97254901959999995" green="0.56078431370000004" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" image="google_icon"/>
+                                <connections>
+                                    <action selector="loginWithGoogleTapped:" destination="iB7-0f-T5e" eventType="touchUpInside" id="JSo-Ym-AEf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dRQ-c2-qPu">
                                 <rect key="frame" x="50" y="449" width="314" height="30"/>

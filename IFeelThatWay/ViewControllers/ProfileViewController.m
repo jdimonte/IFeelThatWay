@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "User.h"
 #import <Parse/Parse.h>
+#import <GoogleSignIn.h>
 
 @interface ProfileViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
@@ -40,6 +41,8 @@
     
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
     }];
+    
+    [GIDSignIn.sharedInstance signOut];
 }
 
 - (void) updateProfilePicture: (NSString *)color {

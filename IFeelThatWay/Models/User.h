@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *profilePicture;
+@property bool withGoogle;
 
 @end
 

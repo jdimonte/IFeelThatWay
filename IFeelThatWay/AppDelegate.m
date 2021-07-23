@@ -7,6 +7,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <GoogleSignIn.h>
 
 @interface AppDelegate ()
 
@@ -14,6 +15,15 @@
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options{
+    BOOL handled;
+
+      handled = [GIDSignIn.sharedInstance handleURL:url];
+      if (handled) {
+        return YES;
+      }
+      return NO;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     ParseClientConfiguration *config = [ParseClientConfiguration  configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
@@ -24,6 +34,16 @@
     }];
 
     [Parse initializeWithConfiguration:config];
+    
+    [GIDSignIn.sharedInstance restorePreviousSignInWithCallback:^(GIDGoogleUser * _Nullable user,
+                                                                    NSError * _Nullable error) {
+        if (error) {
+          // Show the app's signed-out state.
+        } else {
+          // Show the app's signed-in state.
+        }
+      }];
+    
     return YES;
 }
 

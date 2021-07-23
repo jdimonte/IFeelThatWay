@@ -9,6 +9,7 @@ target 'IFeelThatWay' do
   pod 'Parse'
   pod 'PKHUD'
   pod 'MBProgressHUD', '~> 1.2.0'
+  pod 'GoogleSignIn'
 
   target 'IFeelThatWayTests' do
     inherit! :search_paths

@@ -15,6 +15,7 @@
 @dynamic email;
 @dynamic profilePicture;
 @dynamic createdAt;
+@dynamic withGoogle;
 
 + (nonnull NSString *)parseClassName {
     return @"User";

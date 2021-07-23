@@ -1,5 +1,18 @@
 PODS:
+  - AppAuth (1.4.0):
+    - AppAuth/Core (= 1.4.0)
+    - AppAuth/ExternalUserAgent (= 1.4.0)
+  - AppAuth/Core (1.4.0)
+  - AppAuth/ExternalUserAgent (1.4.0)
   - Bolts/Tasks (1.9.1)
+  - GoogleSignIn (6.0.1):
+    - AppAuth (~> 1.4)
+    - GTMAppAuth (~> 1.0)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - GTMAppAuth (1.2.2):
+    - AppAuth/Core (~> 1.4)
+    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMSessionFetcher/Core (1.6.1)
   - MBProgressHUD (1.2.0)
   - Parse (1.19.2):
     - Parse/Core (= 1.19.2)
@@ -8,23 +21,32 @@ PODS:
   - PKHUD (5.3.0)
 
 DEPENDENCIES:
+  - GoogleSignIn
   - MBProgressHUD (~> 1.2.0)
   - Parse
   - PKHUD
 
 SPEC REPOS:
   trunk:
+    - AppAuth
     - Bolts
+    - GoogleSignIn
+    - GTMAppAuth
+    - GTMSessionFetcher
     - MBProgressHUD
     - Parse
     - PKHUD
 
 SPEC CHECKSUMS:
+  AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   Bolts: 8c1e8aab2f603387b8b9924f57d1d64f43d3ffdc
+  GoogleSignIn: 1b0c4ec33a6fe282f4fa35d8ac64263230ddaf36
+  GTMAppAuth: ad5c2b70b9a8689e1a04033c9369c4915bfcbe89
+  GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   Parse: 081fb8755c3000fd11df817eec235def233d0af3
   PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
 
-PODFILE CHECKSUM: 8ba6e16e017ca8414bfa4dbda6f110a433588c2a
+PODFILE CHECKSUM: 0ece303e6b70003ad43b0491f6bf710050963603
 
 COCOAPODS: 1.10.1
