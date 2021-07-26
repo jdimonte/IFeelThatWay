@@ -11,6 +11,7 @@
 #import "CommentViewController.h"
 #import "Report.h"
 #import "MBProgressHUD.h"
+#import "CommentUtil.h"
 
 @interface PostViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *question;
@@ -51,32 +52,8 @@
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.questionTableView indexPathForCell:tappedCell];
     Comment *comment = self.commentsArray[indexPath.row];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Would you like to report this message?" message:comment.text preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                      }];
-    [alert addAction:cancelAction];
-
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Report"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
-        Report *report = [Report new];
-        report.message = comment.text;
-        report.messageAuthor = comment[@"user"];
-        report.commentId = comment;
-        [report saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-            }
-            else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-                                                     }];
-    [alert addAction:okAction];
     
-    [self presentViewController:alert animated:YES completion:^{
-    }];
+    [CommentUtil reportMessage:comment :self];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification
@@ -104,7 +81,6 @@
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
             textFrame.origin.y -= self.keyboardHeight;
-            NSLog(@"%lg", self.keyboardHeight);
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
             buttonFrame.origin.y -= self.keyboardHeight;
@@ -193,27 +169,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CommentCell *cell = (CommentCell *)[tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     Comment *commentInfo = self.commentsArray[indexPath.row];
-    cell.commentCell = commentInfo;
-    cell.text.text = commentInfo[@"text"];
-    cell.agreesCount.text = [NSString stringWithFormat:@"%lu",(unsigned long)cell.commentCell.agreesArray.count];
-    
-    UIImage * colorPicture = [UIImage imageNamed:commentInfo[@"user"][@"profilePicture"]];
-    [cell.profilePic setImage:colorPicture];
-    cell.profilePic.layer.cornerRadius =  cell.profilePic.frame.size.width / 2;
-    cell.profilePic.clipsToBounds = true;
     User *user = [PFUser currentUser];
-    if([cell.commentCell[@"agreesArray"] containsObject: user.objectId]){
-        [cell.handRaiseButton setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
-    }
-    else{
-        [cell.handRaiseButton setImage:[UIImage systemImageNamed:@"hand.raised"] forState:UIControlStateNormal];
-    }
-    if([cell.commentCell[@"savesArray"] containsObject: user.objectId]){
-        [cell.saveButton setImage:[UIImage systemImageNamed:@"bookmark.fill"] forState:UIControlStateNormal];
-    }
-    else{
-        [cell.saveButton setImage:[UIImage systemImageNamed:@"bookmark"] forState:UIControlStateNormal];
-    }
+    
+    [CommentUtil designComment:user:cell:commentInfo];
+    
     return cell;
 }
 

@@ -73,6 +73,7 @@
     cell.rank.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
     cell.comment.text = topComment[@"text"];
     User *user = [PFUser currentUser];
+    
     if([cell.commentCell[@"agreesArray"] containsObject: user.objectId]){
         [cell.raiseHandButton setImage:[UIImage systemImageNamed:@"hand.raised.fill"] forState:UIControlStateNormal];
     }
