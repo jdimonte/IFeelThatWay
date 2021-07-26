@@ -7,6 +7,7 @@
 
 #import "PollCell.h"
 #import "User.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation PollCell
 
@@ -17,6 +18,15 @@
     self.secondView.layer.cornerRadius = 0.05 * self.secondView.bounds.size.width;
     self.thirdView.layer.cornerRadius = 0.05 * self.thirdView.bounds.size.width;
     self.fourthView.layer.cornerRadius = 0.05 * self.fourthView.bounds.size.width;
+    
+    self.firstView.layer.borderWidth = 3.0f;
+    self.secondView.layer.borderWidth = 3.0f;
+    self.thirdView.layer.borderWidth = 3.0f;
+    self.fourthView.layer.borderWidth = 3.0f;
+    self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+    self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
+    self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
+    self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
     
     self.oneIsSelected = false;
     self.twoIsSelected = false;
@@ -113,170 +123,86 @@
         self.twoIsSelected = false;
         self.threeIsSelected = false;
         self.fourIsSelected = false;
+        self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+        self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
+        self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
+        self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
     }
 }
 
 - (IBAction)optionOneTapped:(id)sender {
     if(!self.oneIsSelected){
         self.oneIsSelected = !self.oneIsSelected;
-        self.firstView.backgroundColor = [UIColor greenColor];
-        self.optionOnePercent.textColor = [UIColor greenColor];
+        self.firstView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
             self.twoIsSelected = false;
             self.threeIsSelected = false;
             self.fourIsSelected = false;
-            self.secondView.backgroundColor = [UIColor whiteColor];
-            self.optionTwoPercent.textColor = [UIColor whiteColor];
-            self.thirdView.backgroundColor = [UIColor whiteColor];
-            self.optionThreePercent.textColor = [UIColor whiteColor];
-            self.fourthView.backgroundColor = [UIColor whiteColor];
-            self.optionFourPercent.textColor = [UIColor whiteColor];
+            self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
         }
     }
     else {
         self.oneIsSelected = !self.oneIsSelected;
-        self.firstView.backgroundColor = [UIColor whiteColor];
-        self.optionOnePercent.textColor = [UIColor whiteColor];
+        self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
     }
-    
-//    User *user = [PFUser currentUser];
-//
-//    if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
-//        [self.poll addUniqueObject:user.objectId forKey:@"firstArray"];
-//        self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
-//        [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-//        [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (succeeded) {
-//            }
-//            else {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//        }];
-//        [self updatePercents];
-//        self.optionOnePercent.textColor = [UIColor whiteColor];
-//    }
 }
 - (IBAction)optionTwoTapped:(id)sender {
     if(!self.twoIsSelected){
         self.twoIsSelected = !self.twoIsSelected;
-        self.secondView.backgroundColor = [UIColor greenColor];
-        self.optionTwoPercent.textColor = [UIColor greenColor];
+        self.secondView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
             self.oneIsSelected = false;
             self.threeIsSelected = false;
             self.fourIsSelected = false;
-            self.firstView.backgroundColor = [UIColor whiteColor];
-            self.optionOnePercent.textColor = [UIColor whiteColor];
-            self.thirdView.backgroundColor = [UIColor whiteColor];
-            self.optionThreePercent.textColor = [UIColor whiteColor];
-            self.fourthView.backgroundColor = [UIColor whiteColor];
-            self.optionFourPercent.textColor = [UIColor whiteColor];
+            self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
         }
     }
     else {
         self.twoIsSelected = !self.twoIsSelected;
-        self.secondView.backgroundColor = [UIColor whiteColor];
-        self.optionTwoPercent.textColor = [UIColor whiteColor];
+        self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
     }
-    
-//    User *user = [PFUser currentUser];
-//
-//    if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
-//        [self.poll addUniqueObject:user.objectId forKey:@"secondArray"];
-//        self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
-//        [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-//        [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (succeeded) {
-//            }
-//            else {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//        }];
-//        [self updatePercents];
-//        self.optionTwoPercent.textColor = [UIColor whiteColor];
-//    }
 }
 
 - (IBAction)optionThreeTapped:(id)sender {
     if(!self.threeIsSelected){
         self.threeIsSelected = !self.threeIsSelected;
-        self.thirdView.backgroundColor = [UIColor greenColor];
-        self.optionThreePercent.textColor = [UIColor greenColor];
+        self.thirdView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
             self.oneIsSelected = false;
             self.twoIsSelected = false;
             self.fourIsSelected = false;
-            self.firstView.backgroundColor = [UIColor whiteColor];
-            self.optionOnePercent.textColor = [UIColor whiteColor];
-            self.secondView.backgroundColor = [UIColor whiteColor];
-            self.optionTwoPercent.textColor = [UIColor whiteColor];
-            self.fourthView.backgroundColor = [UIColor whiteColor];
-            self.optionFourPercent.textColor = [UIColor whiteColor];
+            self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
         }
     }
     else {
         self.threeIsSelected = !self.threeIsSelected;
-        self.thirdView.backgroundColor = [UIColor whiteColor];
-        self.optionThreePercent.textColor = [UIColor whiteColor];
+        self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
     }
-    
-//    User *user = [PFUser currentUser];
-//
-//    if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
-//        [self.poll addUniqueObject:user.objectId forKey:@"thirdArray"];
-//        self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
-//        [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-//        [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (succeeded) {
-//            }
-//            else {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//        }];
-//        [self updatePercents];
-//        self.optionThreePercent.textColor = [UIColor whiteColor];
-//    }
 }
 
 - (IBAction)optionFourTapped:(id)sender {
     if(!self.fourIsSelected){
         self.fourIsSelected = !self.fourIsSelected;
-        self.fourthView.backgroundColor = [UIColor greenColor];
-        self.optionFourPercent.textColor = [UIColor greenColor];
+        self.fourthView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
             self.oneIsSelected = false;
             self.twoIsSelected = false;
             self.threeIsSelected = false;
-            self.firstView.backgroundColor = [UIColor whiteColor];
-            self.optionOnePercent.textColor = [UIColor whiteColor];
-            self.thirdView.backgroundColor = [UIColor whiteColor];
-            self.optionThreePercent.textColor = [UIColor whiteColor];
-            self.secondView.backgroundColor = [UIColor whiteColor];
-            self.optionTwoPercent.textColor = [UIColor whiteColor];
+            self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
         }
     }
     else {
         self.fourIsSelected = !self.fourIsSelected;
-        self.fourthView.backgroundColor = [UIColor whiteColor];
-        self.optionFourPercent.textColor = [UIColor whiteColor];
+        self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
     }
-    
-//    User *user = [PFUser currentUser];
-//
-//    if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
-//        [self.poll addUniqueObject:user.objectId forKey:@"fourthArray"];
-//        self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
-//        [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-//        [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (succeeded) {
-//            }
-//            else {
-//                NSLog(@"%@", error.localizedDescription);
-//            }
-//        }];
-//        [self updatePercents];
-//        self.optionFourPercent.textColor = [UIColor whiteColor];
-//    }
 }
 
 - (void) updatePercents{
