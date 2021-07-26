@@ -14,6 +14,7 @@
 #import "PollViewController.h"
 #import "Comment.h"
 #import "MBProgressHUD.h"
+#import <objc/runtime.h>
 
 @interface TopicViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *category;
@@ -21,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *promptsTableView;
 @property (strong, nonatomic) NSMutableArray *promptsArray;
 @property (strong, nonatomic) NSMutableArray *pollsArray;
+@property (strong, nonatomic) NSMutableArray *postsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
@@ -76,18 +78,18 @@
 }
 
 - (void) loadQueryPrompts{
-    PFQuery *query = [PFQuery queryWithClassName:@"Prompt"];
+    PFQuery *queryPrompts = [PFQuery queryWithClassName:@"Prompt"];
 
-    [query includeKey:@"author"];
-    [query includeKey:@"topic"];
-    [query includeKey:@"question"];
-    [query includeKey:@"hasComments"];
-    [query whereKey:@"topic" equalTo:self.topic.category];
-    [query orderByDescending:@"createdAt"];
+    [queryPrompts includeKey:@"author"];
+    [queryPrompts includeKey:@"topic"];
+    [queryPrompts includeKey:@"question"];
+    [queryPrompts includeKey:@"hasComments"];
+    [queryPrompts whereKey:@"topic" equalTo:self.topic.category];
+    [queryPrompts orderByDescending:@"createdAt"];
 
-    query.limit = 20;
+    queryPrompts.limit = 20;
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
+    [queryPrompts findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
         if (prompts != nil) {
             self.promptsArray = prompts;
             [self.promptsTableView reloadData];
@@ -96,28 +98,47 @@
         }
     }];
     
-    PFQuery *queryPoll = [PFQuery queryWithClassName:@"Poll"];
+    PFQuery *queryPolls = [PFQuery queryWithClassName:@"Poll"];
 
-    [queryPoll includeKey:@"author"];
-    [queryPoll includeKey:@"topic"];
-    [queryPoll includeKey:@"hasComments"];
-    [queryPoll whereKey:@"topic" equalTo:self.topic.category];
-    [queryPoll orderByDescending:@"createdAt"];
+    [queryPolls includeKey:@"author"];
+    [queryPolls includeKey:@"topic"];
+    [queryPolls includeKey:@"hasComments"];
+    [queryPolls whereKey:@"topic" equalTo:self.topic.category];
+    [queryPolls orderByDescending:@"createdAt"];
 
-    queryPoll.limit = 1;
-    [queryPoll findObjectsInBackgroundWithBlock:^(NSArray *polls, NSError *error) {
+    queryPolls.limit = 20;
+    
+    [queryPolls findObjectsInBackgroundWithBlock:^(NSArray *polls, NSError *error) {
         if (polls != nil) {
             self.pollsArray = polls;
+            [self.promptsTableView reloadData];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
-        [self.refreshControl endRefreshing];
-        [self.promptsTableView reloadData];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
+    
+    //compound query
+    //PFQuery *query = [PFQuery orQueryWithSubqueries:@[queryPrompts,queryPolls]];
+    //[queryPolls orderByDescending:@"createdAt"];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
+//      // results contains players with lots of wins or only a few wins.
+//        if (results != nil) {
+//            self.postsArray = results;
+//            [self.promptsTableView reloadData];
+//        } else {
+//            NSLog(@"%@", error.localizedDescription);
+//        }
+//        [self.refreshControl endRefreshing];
+//        [MBProgressHUD hideHUDForView:self.view animated:YES];
+//    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    //isKindOfClass
+    //NSLog(@"%@", [self.pollsArray[indexPath.row] isKindOfClass:Prompt]);
+//    const char* className = class_getName([self.pollsArray[indexPath.row] class]);
+//    NSLog(@"yourObject is a: %s", className);
     if(indexPath.row == 0){
         PollCell *cell = (PromptCell *)[tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
         Poll *pollInfo = self.pollsArray[indexPath.row];
@@ -128,6 +149,11 @@
         [cell.optionTwo setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
         [cell.optionThree setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
         [cell.optionFour setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
+        
+        cell.firstView.backgroundColor = [UIColor whiteColor];
+        cell.secondView.backgroundColor = [UIColor whiteColor];
+        cell.thirdView.backgroundColor = [UIColor whiteColor];
+        cell.fourthView.backgroundColor = [UIColor whiteColor];
         
         User *user = [PFUser currentUser];
         bool answered = [pollInfo[@"firstArray"] containsObject:user.objectId] || [pollInfo[@"secondArray"] containsObject:user.objectId] || [pollInfo[@"thirdArray"] containsObject:user.objectId] || [pollInfo[@"fourthArray"] containsObject:user.objectId];
@@ -294,6 +320,19 @@
         
         cell.featuredProfilePic.layer.cornerRadius =  cell.featuredProfilePic.frame.size.width / 2;
         cell.featuredProfilePic.clipsToBounds = true;
+        
+        if(cell.oneIsSelected){
+            cell.firstView.backgroundColor = [UIColor greenColor];
+        }
+        if(cell.twoIsSelected){
+            cell.secondView.backgroundColor = [UIColor greenColor];
+        }
+        if(cell.threeIsSelected){
+            cell.thirdView.backgroundColor = [UIColor greenColor];
+        }
+        if(cell.fourIsSelected){
+            cell.fourthView.backgroundColor = [UIColor greenColor];
+        }
 
         return cell;
     }

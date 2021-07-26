@@ -33,6 +33,11 @@
 @dynamic secondPlace;
 @dynamic thirdPlace;
 @dynamic fourthPlace;
+@dynamic multipleSelection;
+@dynamic oneIsSelected;
+@dynamic twoIsSelected;
+@dynamic threeIsSelected;
+@dynamic fourIsSelected;
 
 + (nonnull NSString *)parseClassName {
     return @"Poll";

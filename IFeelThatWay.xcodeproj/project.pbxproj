@@ -52,6 +52,8 @@
 		51815C5926A0B69500BFCA08 /* SavedCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C5826A0B69500BFCA08 /* SavedCommentCell.m */; };
 		51815C5C26A0E70B00BFCA08 /* SignUpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C5B26A0E70B00BFCA08 /* SignUpUtil.m */; };
 		51C845A526ACE53D009CC0B4 /* CommentUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C845A426ACE53D009CC0B4 /* CommentUtil.m */; };
+		51C845A826AF18E5009CC0B4 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C845A726AF18E5009CC0B4 /* CreateViewController.m */; };
+		51C845AB26AF32FF009CC0B4 /* OptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C845AA26AF32FF009CC0B4 /* OptionCell.m */; };
 		7755BAA090D8FE32DB3BB79D /* Pods_IFeelThatWay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6E105AF466943A03AD854 /* Pods_IFeelThatWay.framework */; };
 		C08B87D643BE0C2474D36057 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3349875ECD7295DE859E7493 /* Pods_IFeelThatWay_IFeelThatWayUITests.framework */; };
 		C71C35C595BC313F17DE02EB /* Pods_IFeelThatWayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC832D4F1943C9725419EE29 /* Pods_IFeelThatWayTests.framework */; };
@@ -162,6 +164,10 @@
 		51815C5B26A0E70B00BFCA08 /* SignUpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpUtil.m; sourceTree = "<group>"; };
 		51C845A326ACE53D009CC0B4 /* CommentUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentUtil.h; sourceTree = "<group>"; };
 		51C845A426ACE53D009CC0B4 /* CommentUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentUtil.m; sourceTree = "<group>"; };
+		51C845A626AF18E5009CC0B4 /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
+		51C845A726AF18E5009CC0B4 /* CreateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateViewController.m; sourceTree = "<group>"; };
+		51C845A926AF32FF009CC0B4 /* OptionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionCell.h; sourceTree = "<group>"; };
+		51C845AA26AF32FF009CC0B4 /* OptionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptionCell.m; sourceTree = "<group>"; };
 		7CF6EB3FA15E166C26663A24 /* Pods-IFeelThatWay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeelThatWay.debug.xcconfig"; path = "Target Support Files/Pods-IFeelThatWay/Pods-IFeelThatWay.debug.xcconfig"; sourceTree = "<group>"; };
 		997A21D4EACC33B87868D36D /* Pods-IFeelThatWayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IFeelThatWayTests.release.xcconfig"; path = "Target Support Files/Pods-IFeelThatWayTests/Pods-IFeelThatWayTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC832D4F1943C9725419EE29 /* Pods_IFeelThatWayTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IFeelThatWayTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -323,6 +329,8 @@
 				51815C5826A0B69500BFCA08 /* SavedCommentCell.m */,
 				511AC8E826A718B30072762C /* PollCell.h */,
 				511AC8E926A718B30072762C /* PollCell.m */,
+				51C845A926AF32FF009CC0B4 /* OptionCell.h */,
+				51C845AA26AF32FF009CC0B4 /* OptionCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -354,6 +362,8 @@
 				51815C49269F20CA00BFCA08 /* CommentViewController.m */,
 				51569D6626A9BE680025E19F /* PollViewController.h */,
 				51569D6726A9BE680025E19F /* PollViewController.m */,
+				51C845A626AF18E5009CC0B4 /* CreateViewController.h */,
+				51C845A726AF18E5009CC0B4 /* CreateViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -690,6 +700,7 @@
 				51815BBB269CAC8100BFCA08 /* AppDelegate.m in Sources */,
 				51815BCC269CAC8200BFCA08 /* main.m in Sources */,
 				51815C5926A0B69500BFCA08 /* SavedCommentCell.m in Sources */,
+				51C845A826AF18E5009CC0B4 /* CreateViewController.m in Sources */,
 				51815C26269CDFCE00BFCA08 /* FollowingViewController.m in Sources */,
 				51815C29269CDFDA00BFCA08 /* SavedViewController.m in Sources */,
 				51815C23269CDFBD00BFCA08 /* TopicsViewController.m in Sources */,
@@ -700,6 +711,7 @@
 				51815C47269E680A00BFCA08 /* CommentCell.m in Sources */,
 				51815C13269CB35200BFCA08 /* Reply.m in Sources */,
 				51815C1C269CD02800BFCA08 /* SignUpViewController.m in Sources */,
+				51C845AB26AF32FF009CC0B4 /* OptionCell.m in Sources */,
 				511AC8EA26A718B30072762C /* PollCell.m in Sources */,
 				51815C4D269F23A200BFCA08 /* ReplyCell.m in Sources */,
 				51815C3B269DFC6700BFCA08 /* PromptCell.m in Sources */,

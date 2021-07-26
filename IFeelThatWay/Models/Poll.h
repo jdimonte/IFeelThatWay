@@ -35,6 +35,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSNumber *secondPlace;
 @property (nonatomic, strong) NSNumber *thirdPlace;
 @property (nonatomic, strong) NSNumber *fourthPlace;
+@property bool multipleSelection;
+@property bool oneIsSelected;
+@property bool twoIsSelected;
+@property bool threeIsSelected;
+@property bool fourIsSelected;
 
 @end
 

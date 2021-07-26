@@ -32,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property int optionTwoChange;
 @property int optionThreeChange;
 @property int optionFourChange;
+@property bool oneIsSelected;
+@property bool twoIsSelected;
+@property bool threeIsSelected;
+@property bool fourIsSelected;
 
 @end
 
