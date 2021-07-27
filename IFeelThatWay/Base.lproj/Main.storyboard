@@ -887,6 +887,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="optionInput" destination="2GW-Th-X5i" id="tGa-oo-bCo"/>
                                             <outlet property="optionNumber" destination="vED-If-NFu" id="G7f-8N-bbb"/>
                                         </connections>
                                     </tableViewCell>

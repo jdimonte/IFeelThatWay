@@ -18,6 +18,10 @@
 @property (strong, nonatomic) IBOutlet UITableView *optionsTableView;
 @property (strong, nonatomic) IBOutlet UITextView *questionTextBox;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *multipleSelection;
+@property (strong, nonatomic) NSString *firstAnswer;
+@property (strong, nonatomic) NSString *secondAnswer;
+@property (strong, nonatomic) NSString *thirdAnswer;
+@property (strong, nonatomic) NSString *fourthAnswer;
 
 @end
 
@@ -36,6 +40,7 @@
 }
 
 - (IBAction)submitTapped:(id)sender {
+    [self.optionsTableView reloadData];
     NSString *postTypes[] = {@"prompt", @"poll"};
     NSString *type = postTypes[self.postType.selectedSegmentIndex];
     if([type isEqual:@"prompt"]){
@@ -52,33 +57,26 @@
         }];
     }
     else {
-        Poll *poll = [Poll new];
-        bool *multipleSelectionChoice[] = {false, true};
-        bool *multipleSelectionForPoll = multipleSelectionChoice[self.multipleSelection.selectedSegmentIndex];
-        //question
-        poll.question = self.questionTextBox.text;
-        //topic
-        poll.topic = self.topic;
-        //number of options
-        poll.numberOfOptions = [NSNumber numberWithDouble: self.numberOfOptions.value];
-        //multiple selection
-        poll.multipleSelection = multipleSelectionForPoll;
-        //array of strings
-        
-        //array of places
-        
-        //array of books
-        
-        //array of array of users
-        
-        [poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [self dismissViewControllerAnimated:true completion:nil];
-            }
-            else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
+        if(![self.questionTextBox.text isEqual: @""] && ![self.firstAnswer isEqual:@""] && ![self.secondAnswer isEqual:@""] && ![self.thirdAnswer isEqual:@""] && ![self.fourthAnswer isEqual:@""]){
+            Poll *poll = [Poll new];
+            bool *multipleSelectionChoice[] = {false, true};
+            bool *multipleSelectionForPoll = multipleSelectionChoice[self.multipleSelection.selectedSegmentIndex];
+            poll.question = self.questionTextBox.text;
+            poll.topic = self.topic;
+            poll.multipleSelection = multipleSelectionForPoll;
+            poll.firstAnswer = self.firstAnswer;
+            poll.secondAnswer = self.secondAnswer;
+            poll.thirdAnswer = self.thirdAnswer;
+            poll.fourthAnswer = self.fourthAnswer;
+            [poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    [self dismissViewControllerAnimated:true completion:nil];
+                }
+                else {
+                    NSLog(@"%@", error.localizedDescription);
+                }
+            }];
+        }
     }
 }
 
@@ -105,6 +103,18 @@
     NSString *first = @"Option ";
     NSString *second = [NSString stringWithFormat:@"%ld", indexPath.row+1];
     cell.optionNumber.text = [first stringByAppendingString:second];
+    if(indexPath.row == 0){
+        self.firstAnswer = cell.optionInput.text;
+    }
+    if(indexPath.row == 1){
+        self.secondAnswer = cell.optionInput.text;
+    }
+    if(indexPath.row == 2){
+        self.thirdAnswer = cell.optionInput.text;
+    }
+    if(indexPath.row == 3){
+        self.fourthAnswer = cell.optionInput.text;
+    }
     return cell;
 }
 
