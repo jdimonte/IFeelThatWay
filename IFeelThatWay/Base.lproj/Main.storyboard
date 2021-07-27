@@ -1255,7 +1255,7 @@
                                     <imageReference key="image" image="pencil.circle.fill" catalog="system" symbolScale="large"/>
                                 </state>
                                 <connections>
-                                    <segue destination="nM3-Av-HVQ" kind="presentation" modalPresentationStyle="fullScreen" id="Iag-2U-Ttt"/>
+                                    <segue destination="nM3-Av-HVQ" kind="presentation" identifier="createPost" modalPresentationStyle="fullScreen" id="Iag-2U-Ttt"/>
                                 </connections>
                             </button>
                         </subviews>

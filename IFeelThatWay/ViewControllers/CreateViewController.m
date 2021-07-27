@@ -41,8 +41,10 @@
     if([type isEqual:@"prompt"]){
         Prompt *prompt = [Prompt new];
         prompt.question = self.questionTextBox.text;
+        prompt.topic = self.topic;
         [prompt saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
+                [self dismissViewControllerAnimated:true completion:nil];
             }
             else {
                 NSLog(@"%@", error.localizedDescription);
@@ -55,6 +57,7 @@
         //get options
         [poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
+                [self dismissViewControllerAnimated:true completion:nil];
             }
             else {
                 NSLog(@"%@", error.localizedDescription);

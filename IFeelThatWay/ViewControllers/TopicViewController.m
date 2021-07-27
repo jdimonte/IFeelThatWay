@@ -12,6 +12,7 @@
 #import "PollCell.h"
 #import "PostViewController.h"
 #import "PollViewController.h"
+#import "CreateViewController.h"
 #import "Comment.h"
 #import "MBProgressHUD.h"
 #import <objc/runtime.h>
@@ -115,6 +116,7 @@
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
     
@@ -417,7 +419,7 @@
         if(poll.hasComments){
             return 550;
         } else{
-            return 450;
+            return 470;
         }
     }
     else{
@@ -446,6 +448,10 @@
         Poll *poll = self.pollsArray[indexPath.row];
         PollViewController *pollViewController = [segue destinationViewController];
         pollViewController.poll = poll;
+    } else if([segue.identifier isEqual:@"createPost"]){
+        Topic *topic = self.topic;
+        CreateViewController *createViewController = [segue destinationViewController];
+        createViewController.topic = topic.category;
     }
 }
 
