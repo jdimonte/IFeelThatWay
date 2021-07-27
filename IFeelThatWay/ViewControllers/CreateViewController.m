@@ -53,8 +53,24 @@
     }
     else {
         Poll *poll = [Poll new];
+        bool *multipleSelectionChoice[] = {false, true};
+        bool *multipleSelectionForPoll = multipleSelectionChoice[self.multipleSelection.selectedSegmentIndex];
+        //question
         poll.question = self.questionTextBox.text;
-        //get options
+        //topic
+        poll.topic = self.topic;
+        //number of options
+        poll.numberOfOptions = [NSNumber numberWithDouble: self.numberOfOptions.value];
+        //multiple selection
+        poll.multipleSelection = multipleSelectionForPoll;
+        //array of strings
+        
+        //array of places
+        
+        //array of books
+        
+        //array of array of users
+        
         [poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [self dismissViewControllerAnimated:true completion:nil];
