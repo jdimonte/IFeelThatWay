@@ -50,10 +50,6 @@
         //remove user from arrays & add user to arrays
         User *user = [PFUser currentUser];
 
-        NSLog(@"%d", [self.poll[@"firstArray"] containsObject:user.objectId]);
-        NSLog(@"%d", [self.poll[@"secondArray"] containsObject:user.objectId]);
-        NSLog(@"%d", [self.poll[@"thirdArray"] containsObject:user.objectId]);
-        NSLog(@"%d", [self.poll[@"fourthArray"] containsObject:user.objectId]);
         if([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId]){
             NSNumber *placeOne = self.poll[@"firstPlace"];
             NSNumber *placeTwo = self.poll[@"secondPlace"];
@@ -152,77 +148,145 @@
 }
 
 - (IBAction)optionOneTapped:(id)sender {
-    if(!self.oneIsSelected){
+    User *user = [PFUser currentUser];
+    self.color = false;
+    if([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId]){
+        //check if out of order
+        [self selectingOption:@1];
+    }
+    else{
         self.oneIsSelected = !self.oneIsSelected;
+        if(self.oneIsSelected){
+            self.color = true;
+        }
+    }
+    if(self.color){
         self.firstView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
-            self.twoIsSelected = false;
-            self.threeIsSelected = false;
-            self.fourIsSelected = false;
             self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
             self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
             self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
         }
-    }
-    else {
-        self.oneIsSelected = !self.oneIsSelected;
-        self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+    } else{
+        self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
     }
 }
 - (IBAction)optionTwoTapped:(id)sender {
-    if(!self.twoIsSelected){
+    User *user = [PFUser currentUser];
+    self.color = false;
+    if([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId]){
+        //check if out of order
+        [self selectingOption:@2];
+    }
+    else{
         self.twoIsSelected = !self.twoIsSelected;
+        if(self.twoIsSelected){
+            self.color = true;
+        }
+    }
+    if(self.color){
         self.secondView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
-            self.oneIsSelected = false;
-            self.threeIsSelected = false;
-            self.fourIsSelected = false;
             self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
             self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
             self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
         }
-    }
-    else {
-        self.twoIsSelected = !self.twoIsSelected;
+    } else{
         self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
     }
 }
 
 - (IBAction)optionThreeTapped:(id)sender {
-    if(!self.threeIsSelected){
+    User *user = [PFUser currentUser];
+    self.color = false;
+    if([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId]){
+        //check if out of order
+        [self selectingOption:@3];
+    }
+    else{
         self.threeIsSelected = !self.threeIsSelected;
-        self.thirdView.layer.borderColor = [UIColor greenColor].CGColor;
-        if(!self.poll.multipleSelection){
-            self.oneIsSelected = false;
-            self.twoIsSelected = false;
-            self.fourIsSelected = false;
-            self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
-            self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
-            self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
+        if(self.threeIsSelected){
+            self.color = true;
         }
     }
-    else {
-        self.threeIsSelected = !self.threeIsSelected;
+    if(self.color){
+        self.thirdView.layer.borderColor = [UIColor greenColor].CGColor;
+        if(!self.poll.multipleSelection){
+            self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
+        }
+    } else{
         self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
     }
 }
 
 - (IBAction)optionFourTapped:(id)sender {
-    if(!self.fourIsSelected){
+    User *user = [PFUser currentUser];
+    self.color = false;
+    if([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId]){
+        //check if out of order
+        [self selectingOption:@4];
+    }
+    else{
         self.fourIsSelected = !self.fourIsSelected;
-        self.fourthView.layer.borderColor = [UIColor greenColor].CGColor;
-        if(!self.poll.multipleSelection){
-            self.oneIsSelected = false;
-            self.twoIsSelected = false;
-            self.threeIsSelected = false;
-            self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
-            self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
-            self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
+        if(self.fourIsSelected){
+            self.color = true;
         }
     }
-    else {
-        self.fourIsSelected = !self.fourIsSelected;
+    if(self.color){
+        self.fourthView.layer.borderColor = [UIColor greenColor].CGColor;
+        if(!self.poll.multipleSelection){
+            self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
+            self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+        }
+    } else{
         self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
+    }
+}
+
+- (void) selectingOption:(NSNumber *)location {
+    if([self.poll[@"firstPlace"] isEqual: location]){
+        self.oneIsSelected = !self.oneIsSelected;
+        if(self.oneIsSelected){
+            self.color = true;
+            if(!self.poll.multipleSelection){
+                self.twoIsSelected = false;
+                self.threeIsSelected = false;
+                self.fourIsSelected = false;
+            }
+        }
+    } else if ([self.poll[@"secondPlace"] isEqual: location]){
+        self.twoIsSelected = !self.twoIsSelected;
+        if(self.twoIsSelected){
+            self.color = true;
+            if(!self.poll.multipleSelection){
+                self.oneIsSelected = false;
+                self.threeIsSelected = false;
+                self.fourIsSelected = false;
+            }
+        }
+    } else if([self.poll[@"thirdPlace"] isEqual: location]){
+        self.threeIsSelected = !self.threeIsSelected;
+        if(self.threeIsSelected){
+            self.color = true;
+            if(!self.poll.multipleSelection){
+                self.oneIsSelected = false;
+                self.twoIsSelected = false;
+                self.fourIsSelected = false;
+            }
+        }
+    } else {
+        self.fourIsSelected = !self.fourIsSelected;
+        if(self.fourIsSelected){
+            self.color = true;
+            if(!self.poll.multipleSelection){
+                self.oneIsSelected = false;
+                self.threeIsSelected = false;
+                self.twoIsSelected = false;
+            }
+        }
     }
 }
 

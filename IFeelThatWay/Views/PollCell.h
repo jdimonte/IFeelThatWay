@@ -36,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property bool twoIsSelected;
 @property bool threeIsSelected;
 @property bool fourIsSelected;
+@property bool color;
 
 @end
 

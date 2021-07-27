@@ -28,6 +28,7 @@
     self.numberOfOptions.value = 4;
     self.optionsTableView.delegate = self;
     self.optionsTableView.dataSource = self;
+    [self.optionsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (IBAction)backTapped:(id)sender {
