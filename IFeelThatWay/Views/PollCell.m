@@ -126,7 +126,7 @@
         self.optionThreePercent.textColor = [UIColor blackColor];
         self.optionFourPercent.textColor = [UIColor blackColor];
         
-        if(self.state != FIRSTTIME){
+        if(self.state == NOTFIRSTTIME){
             if(self.oneIsSelected){
                 [self decoratingOption:self.poll[@"firstPlace"]];
             }
@@ -178,15 +178,18 @@
     }
 }
 
-- (IBAction)optionOneTapped:(id)sender {
+- (IBAction)optionOneTapped:(id)sender { //check for animation
     User *user = [PFUser currentUser];
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         self.state = FIRSTTIME;
-    } else{
-        self.state = NOTFIRSTTIME;
+    }
+    else {
+        if(self.state == FIRSTTIME){
+            self.state = NOTFIRSTTIME;
+        }
     }
     self.color = false;
-    if(self.state != FIRSTTIME){
+    if(self.state == NOTFIRSTTIME){
         //check if out of order
         [self selectingOption:@1];
     }
@@ -199,6 +202,9 @@
     if(self.color){
         self.firstView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
+            self.twoIsSelected = false;
+            self.threeIsSelected = false;
+            self.fourIsSelected = false;
             self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
             self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
             self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
@@ -211,11 +217,14 @@
     User *user = [PFUser currentUser];
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         self.state = FIRSTTIME;
-    } else{
-        self.state = NOTFIRSTTIME;
+    }
+    else {
+        if(self.state == FIRSTTIME){
+            self.state = NOTFIRSTTIME;
+        }
     }
     self.color = false;
-    if(self.state != FIRSTTIME){
+    if(self.state == NOTFIRSTTIME){
         //check if out of order
         [self selectingOption:@2];
     }
@@ -228,6 +237,9 @@
     if(self.color){
         self.secondView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
+            self.oneIsSelected = false;
+            self.threeIsSelected = false;
+            self.fourIsSelected = false;
             self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
             self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
             self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
@@ -241,11 +253,14 @@
     User *user = [PFUser currentUser];
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         self.state = FIRSTTIME;
-    } else{
-        self.state = NOTFIRSTTIME;
+    }
+    else {
+        if(self.state == FIRSTTIME){
+            self.state = NOTFIRSTTIME;
+        }
     }
     self.color = false;
-    if(self.state != FIRSTTIME){
+    if(self.state == NOTFIRSTTIME){
         //check if out of order
         [self selectingOption:@3];
     }
@@ -258,6 +273,9 @@
     if(self.color){
         self.thirdView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
+            self.twoIsSelected = false;
+            self.oneIsSelected = false;
+            self.fourIsSelected = false;
             self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
             self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
             self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
@@ -271,11 +289,14 @@
     User *user = [PFUser currentUser];
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         self.state = FIRSTTIME;
-    } else{
-        self.state = NOTFIRSTTIME;
+    }
+    else {
+        if(self.state == FIRSTTIME){
+            self.state = NOTFIRSTTIME;
+        }
     }
     self.color = false;
-    if(self.state != FIRSTTIME){
+    if(self.state == NOTFIRSTTIME){
         //check if out of order
         [self selectingOption:@4];
     }
@@ -288,6 +309,9 @@
     if(self.color){
         self.fourthView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
+            self.twoIsSelected = false;
+            self.threeIsSelected = false;
+            self.oneIsSelected = false;
             self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
             self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
             self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
@@ -341,7 +365,7 @@
     }
 }
 
-- (void) decoratingOption:(NSNumber *)location {
+- (void) decoratingOption:(NSNumber *)location { //Need to take into account animation?
     if([location isEqual: @1]){
         self.optionOnePercent.textColor = [UIColor whiteColor];
         self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
@@ -364,7 +388,7 @@
     }
 }
 
-- (void) showOptionPercent:(NSNumber *)location:(unsigned long)count:(unsigned long)total {
+- (void) showOptionPercent:(NSNumber *)location:(unsigned long)count:(unsigned long)total { //check if this is wrong
     if([location isEqual:@1]){
         self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(count*100)/total];
     } else if([location isEqual:@2]){
@@ -384,7 +408,7 @@
     
     unsigned long total = optionOneCount + optionTwoCount + optionThreeCount + optionFourCount;
     if(total != 0){
-        if(self.state != FIRSTTIME){
+        if(self.state == NOTFIRSTTIME){
             [self showOptionPercent:self.poll[@"firstPlace"] :optionOneCount :total];
             [self showOptionPercent:self.poll[@"secondPlace"] :optionTwoCount :total];
             [self showOptionPercent:self.poll[@"thirdPlace"] :optionThreeCount :total];
