@@ -197,14 +197,16 @@
         self.oneIsSelected = !self.oneIsSelected;
         if(self.oneIsSelected){
             self.color = true;
+            if(!self.poll.multipleSelection){
+                self.twoIsSelected = false;
+                self.threeIsSelected = false;
+                self.fourIsSelected = false;
+            }
         }
     }
     if(self.color){
         self.firstView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
-            self.twoIsSelected = false;
-            self.threeIsSelected = false;
-            self.fourIsSelected = false;
             self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
             self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
             self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
@@ -232,14 +234,16 @@
         self.twoIsSelected = !self.twoIsSelected;
         if(self.twoIsSelected){
             self.color = true;
+            if(!self.poll.multipleSelection){
+                self.fourIsSelected = false;
+                self.threeIsSelected = false;
+                self.oneIsSelected = false;
+            }
         }
     }
     if(self.color){
         self.secondView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
-            self.oneIsSelected = false;
-            self.threeIsSelected = false;
-            self.fourIsSelected = false;
             self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
             self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
             self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
@@ -268,14 +272,16 @@
         self.threeIsSelected = !self.threeIsSelected;
         if(self.threeIsSelected){
             self.color = true;
+            if(!self.poll.multipleSelection){
+                self.twoIsSelected = false;
+                self.fourIsSelected = false;
+                self.oneIsSelected = false;
+            }
         }
     }
     if(self.color){
         self.thirdView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
-            self.twoIsSelected = false;
-            self.oneIsSelected = false;
-            self.fourIsSelected = false;
             self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
             self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
             self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
@@ -304,14 +310,16 @@
         self.fourIsSelected = !self.fourIsSelected;
         if(self.fourIsSelected){
             self.color = true;
+            if(!self.poll.multipleSelection){
+                self.twoIsSelected = false;
+                self.threeIsSelected = false;
+                self.oneIsSelected = false;
+            }
         }
     }
     if(self.color){
         self.fourthView.layer.borderColor = [UIColor greenColor].CGColor;
         if(!self.poll.multipleSelection){
-            self.twoIsSelected = false;
-            self.threeIsSelected = false;
-            self.oneIsSelected = false;
             self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
             self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
             self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
