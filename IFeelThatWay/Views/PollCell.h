@@ -13,9 +13,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PollCell : UITableViewCell
 
 typedef enum {
-   FIRSTTIME,
-   NOTFIRSTTIME,
-   POSTANIMATION
+    FIRSTTIME,
+    NOTFIRSTTIME,
+    POSTANIMATION,
+    POSTCHANGE
 } PollState;
 
 @property (strong, nonatomic) IBOutlet UILabel *question;
@@ -44,6 +45,10 @@ typedef enum {
 @property bool fourIsSelected;
 @property bool color;
 @property PollState state;
+@property (strong, nonatomic) NSNumber *first;
+@property (strong, nonatomic) NSNumber *second;
+@property (strong, nonatomic) NSNumber *third;
+@property (strong, nonatomic) NSNumber *fourth;
 
 @end
 

@@ -119,28 +119,9 @@
         [self.refreshControl endRefreshing];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
-    
-    //compound query
-    //PFQuery *query = [PFQuery orQueryWithSubqueries:@[queryPrompts,queryPolls]];
-    //[queryPolls orderByDescending:@"createdAt"];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
-//      // results contains players with lots of wins or only a few wins.
-//        if (results != nil) {
-//            self.postsArray = results;
-//            [self.promptsTableView reloadData];
-//        } else {
-//            NSLog(@"%@", error.localizedDescription);
-//        }
-//        [self.refreshControl endRefreshing];
-//        [MBProgressHUD hideHUDForView:self.view animated:YES];
-//    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    //isKindOfClass
-    //NSLog(@"%@", [self.pollsArray[indexPath.row] isKindOfClass:Prompt]);
-//    const char* className = class_getName([self.pollsArray[indexPath.row] class]);
-//    NSLog(@"yourObject is a: %s", className);
     if(indexPath.row == 0){
         PollCell *cell = (PromptCell *)[tableView dequeueReusableCellWithIdentifier:@"PollCell" forIndexPath:indexPath];
         Poll *pollInfo = self.pollsArray[indexPath.row];
@@ -177,6 +158,81 @@
         unsigned long optionFourCount = (unsigned long)cell.poll.fourthArray.count;
         unsigned long total = optionOneCount + optionTwoCount + optionThreeCount + optionFourCount;
         if(total != 0 && answered){
+//            cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
+//            [cell.optionOne setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
+//            if([pollInfo[@"firstArray"] containsObject:user.objectId]){
+//                cell.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+//                [cell.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+//                cell.optionOnePercent.textColor = [UIColor whiteColor];
+//            }
+//            cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
+//            [cell.optionTwo setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
+//            if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
+//                cell.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+//                [cell.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+//                cell.optionTwoPercent.textColor = [UIColor whiteColor];
+//            }
+//            cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
+//            [cell.optionThree setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
+//            if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
+//                cell.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+//                [cell.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+//                cell.optionThreePercent.textColor = [UIColor whiteColor];
+//            }
+//            cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
+//            [cell.optionFour setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
+//            if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
+//                cell.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+//                [cell.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+//                cell.optionFourPercent.textColor = [UIColor whiteColor];
+//            }
+//            //move around
+//            CGRect firstFrame = cell.firstView.frame;
+//            CGRect secondFrame = cell.secondView.frame;
+//            CGRect thirdFrame = cell.thirdView.frame;
+//            CGRect fourthFrame = cell.fourthView.frame;
+//            if([pollInfo[@"firstPlace"] isEqual: @1]){
+//                firstFrame.origin.y += 0;
+//            } else if([pollInfo[@"firstPlace"] isEqual: @2]){
+//                firstFrame.origin.y += 60;
+//            } else if([pollInfo[@"firstPlace"] isEqual: @3]){
+//                firstFrame.origin.y += 120;
+//            } else { //-180
+//                firstFrame.origin.y += 180;
+//            }
+//            if([pollInfo[@"secondPlace"] isEqual: @2]){
+//                secondFrame.origin.y += 0;
+//            } else if([pollInfo[@"secondPlace"] isEqual: @3]){
+//                secondFrame.origin.y += 60;
+//            } else if([pollInfo[@"secondPlace"] isEqual: @4]){
+//                secondFrame.origin.y += 120;
+//            } else { //60
+//                secondFrame.origin.y += -60;
+//            }
+//            if([pollInfo[@"thirdPlace"] isEqual: @3]){
+//                thirdFrame.origin.y += 0;
+//            } else if([pollInfo[@"thirdPlace"] isEqual: @4]){
+//                thirdFrame.origin.y += 60;
+//            } else if([pollInfo[@"thirdPlace"] isEqual: @2]){
+//                thirdFrame.origin.y += -60;
+//            } else { //120
+//                thirdFrame.origin.y += -120;
+//            }
+//            if([pollInfo[@"fourthPlace"] isEqual: @4]){
+//                fourthFrame.origin.y += 0;
+//            } else if([pollInfo[@"fourthPlace"] isEqual: @3]){
+//                fourthFrame.origin.y += -60;
+//            } else if([pollInfo[@"fourthPlace"] isEqual: @2]){
+//                fourthFrame.origin.y += -120;
+//            } else { //180
+//                fourthFrame.origin.y += -180;
+//            }
+//            cell.firstView.frame = firstFrame;
+//            cell.secondView.frame = secondFrame;
+//            cell.thirdView.frame = thirdFrame;
+//            cell.fourthView.frame = fourthFrame;
+
+
             if([pollInfo[@"firstPlace"] isEqual: @1]){
                 cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionOne setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
@@ -185,7 +241,7 @@
                     [cell.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionOnePercent.textColor = [UIColor whiteColor];
                 }
-                
+
             } else if([pollInfo[@"firstPlace"] isEqual: @2]){
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
@@ -194,7 +250,7 @@
                     [cell.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionTwoPercent.textColor = [UIColor whiteColor];
                 }
-                
+
             } else if([pollInfo[@"firstPlace"] isEqual: @3]){
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
@@ -212,7 +268,7 @@
                     cell.optionFourPercent.textColor = [UIColor whiteColor];
                 }
             }
-            
+
             if([pollInfo[@"secondPlace"] isEqual: @2]){
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
@@ -246,7 +302,7 @@
                     cell.optionOnePercent.textColor = [UIColor whiteColor];
                 }
             }
-            
+
             if([pollInfo[@"thirdPlace"] isEqual: @3]){
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
@@ -280,7 +336,7 @@
                     cell.optionOnePercent.textColor = [UIColor whiteColor];
                 }
             }
-            
+
             if([pollInfo[@"fourthPlace"] isEqual: @4]){
                 cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
                 [cell.optionFour setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
@@ -315,6 +371,18 @@
                 }
             }
         }
+        
+//        [UIView animateWithDuration: 1 animations:^{
+//            CGRect firstFrame = cell.firstView.frame;
+//            CGRect secondFrame = cell.secondView.frame;
+//            CGRect thirdFrame = cell.thirdView.frame;
+//            CGRect fourthFrame = cell.fourthView.frame;
+//            secondFrame.origin.y -= 120;
+//            cell.firstView.frame = firstFrame;
+//            cell.secondView.frame = secondFrame;
+//            cell.thirdView.frame = thirdFrame;
+//            cell.fourthView.frame = fourthFrame;
+//        }];
         
         if(pollInfo){
             [self designFeaturedCommentPoll:pollInfo:cell];

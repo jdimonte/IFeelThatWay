@@ -48,7 +48,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
@@ -57,7 +56,7 @@
         //remove user from arrays & add user to arrays
         User *user = [PFUser currentUser];
         
-        if(self.state != FIRSTTIME){
+        if(self.state != FIRSTTIME){ //incorporate postchange here and just fix who is decorated?
             NSNumber *placeOne = self.poll[@"firstPlace"];
             NSNumber *placeTwo = self.poll[@"secondPlace"];
             NSNumber *placeThree = self.poll[@"thirdPlace"];
@@ -66,6 +65,12 @@
             self.optionTwoChange = 60*([placeTwo intValue]-1) - 60;
             self.optionThreeChange = 60*([placeThree intValue]-1) - 120;
             self.optionFourChange = 60*([placeFour intValue]-1) - 180;
+        }
+        if(self.state == NOTFIRSTTIME){
+            self.first = self.poll[@"firstPlace"];
+            self.second = self.poll[@"secondPlace"];
+            self.third = self.poll[@"thirdPlace"];
+            self.fourth = self.poll[@"fourthPlace"];
         }
         
         if([self.poll[@"firstArray"] containsObject:user.objectId]){
@@ -174,7 +179,12 @@
         self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
         self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
         
-        self.state = POSTANIMATION;
+        if(self.state == FIRSTTIME){
+            self.state = POSTANIMATION;
+        }
+        if(self.state == NOTFIRSTTIME){
+            self.state = POSTCHANGE;
+        }
     }
 }
 
@@ -194,13 +204,18 @@
         [self selectingOption:@1];
     }
     else{
-        self.oneIsSelected = !self.oneIsSelected;
-        if(self.oneIsSelected){
-            self.color = true;
-            if(!self.poll.multipleSelection){
-                self.twoIsSelected = false;
-                self.threeIsSelected = false;
-                self.fourIsSelected = false;
+        if(self.state == POSTCHANGE){
+            [self postChangeSelection:@1];
+        }
+        else{
+            self.oneIsSelected = !self.oneIsSelected;
+            if(self.oneIsSelected){
+                self.color = true;
+                if(!self.poll.multipleSelection){
+                    self.twoIsSelected = false;
+                    self.threeIsSelected = false;
+                    self.fourIsSelected = false;
+                }
             }
         }
     }
@@ -231,13 +246,18 @@
         [self selectingOption:@2];
     }
     else{
-        self.twoIsSelected = !self.twoIsSelected;
-        if(self.twoIsSelected){
-            self.color = true;
-            if(!self.poll.multipleSelection){
-                self.fourIsSelected = false;
-                self.threeIsSelected = false;
-                self.oneIsSelected = false;
+        if(self.state == POSTCHANGE){
+            [self postChangeSelection:@2];
+        }
+        else{
+            self.twoIsSelected = !self.twoIsSelected;
+            if(self.twoIsSelected){
+                self.color = true;
+                if(!self.poll.multipleSelection){
+                    self.fourIsSelected = false;
+                    self.threeIsSelected = false;
+                    self.oneIsSelected = false;
+                }
             }
         }
     }
@@ -269,13 +289,18 @@
         [self selectingOption:@3];
     }
     else{
-        self.threeIsSelected = !self.threeIsSelected;
-        if(self.threeIsSelected){
-            self.color = true;
-            if(!self.poll.multipleSelection){
-                self.twoIsSelected = false;
-                self.fourIsSelected = false;
-                self.oneIsSelected = false;
+        if(self.state == POSTCHANGE){
+            [self postChangeSelection:@3];
+        }
+        else{
+            self.threeIsSelected = !self.threeIsSelected;
+            if(self.threeIsSelected){
+                self.color = true;
+                if(!self.poll.multipleSelection){
+                    self.twoIsSelected = false;
+                    self.fourIsSelected = false;
+                    self.oneIsSelected = false;
+                }
             }
         }
     }
@@ -307,13 +332,18 @@
         [self selectingOption:@4];
     }
     else{
-        self.fourIsSelected = !self.fourIsSelected;
-        if(self.fourIsSelected){
-            self.color = true;
-            if(!self.poll.multipleSelection){
-                self.twoIsSelected = false;
-                self.threeIsSelected = false;
-                self.oneIsSelected = false;
+        if(self.state == POSTCHANGE){
+            [self postChangeSelection:@4];
+        }
+        else{
+            self.fourIsSelected = !self.fourIsSelected;
+            if(self.fourIsSelected){
+                self.color = true;
+                if(!self.poll.multipleSelection){
+                    self.twoIsSelected = false;
+                    self.threeIsSelected = false;
+                    self.oneIsSelected = false;
+                }
             }
         }
     }
@@ -361,6 +391,53 @@
             }
         }
     } else {
+        self.fourIsSelected = !self.fourIsSelected;
+        if(self.fourIsSelected){
+            self.color = true;
+            if(!self.poll.multipleSelection){
+                self.oneIsSelected = false;
+                self.threeIsSelected = false;
+                self.twoIsSelected = false;
+            }
+        }
+    }
+}
+
+- (void) postChangeSelection:(NSNumber *)select{
+    if([self.first isEqual:select]){
+        self.oneIsSelected = !self.oneIsSelected;
+        if(self.oneIsSelected){
+            self.color = true;
+            if(!self.poll.multipleSelection){
+                self.fourIsSelected = false;
+                self.threeIsSelected = false;
+                self.twoIsSelected = false;
+            }
+        }
+    }
+    if([self.second isEqual:select]){
+        self.twoIsSelected = !self.twoIsSelected;
+        if(self.twoIsSelected){
+            self.color = true;
+            if(!self.poll.multipleSelection){
+                self.oneIsSelected = false;
+                self.threeIsSelected = false;
+                self.fourIsSelected = false;
+            }
+        }
+    }
+    if([self.third isEqual:select]){
+        self.threeIsSelected = !self.threeIsSelected;
+        if(self.threeIsSelected){
+            self.color = true;
+            if(!self.poll.multipleSelection){
+                self.oneIsSelected = false;
+                self.twoIsSelected = false;
+                self.fourIsSelected = false;
+            }
+        }
+    }
+    if([self.fourth isEqual:select]){
         self.fourIsSelected = !self.fourIsSelected;
         if(self.fourIsSelected){
             self.color = true;
