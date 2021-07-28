@@ -131,18 +131,18 @@
         self.optionThreePercent.textColor = [UIColor blackColor];
         self.optionFourPercent.textColor = [UIColor blackColor];
         
-        if(self.state == NOTFIRSTTIME){
+        if(self.state == NOTFIRSTTIME || self.state == POSTCHANGE){
             if(self.oneIsSelected){
-                [self decoratingOption:self.poll[@"firstPlace"]];
+                [self decoratingOption:self.first];
             }
             if(self.twoIsSelected){
-                [self decoratingOption:self.poll[@"secondPlace"]];
+                [self decoratingOption:self.second];
             }
             if(self.threeIsSelected){
-                [self decoratingOption:self.poll[@"thirdPlace"]];
+                [self decoratingOption:self.third];
             }
             if(self.fourIsSelected){
-                [self decoratingOption:self.poll[@"fourthPlace"]];
+                [self decoratingOption:self.fourth];
             }
         }
         else{
@@ -493,11 +493,11 @@
     
     unsigned long total = optionOneCount + optionTwoCount + optionThreeCount + optionFourCount;
     if(total != 0){
-        if(self.state == NOTFIRSTTIME){
-            [self showOptionPercent:self.poll[@"firstPlace"] :optionOneCount :total];
-            [self showOptionPercent:self.poll[@"secondPlace"] :optionTwoCount :total];
-            [self showOptionPercent:self.poll[@"thirdPlace"] :optionThreeCount :total];
-            [self showOptionPercent:self.poll[@"fourthPlace"] :optionFourCount :total];
+        if(self.state == NOTFIRSTTIME || self.state == POSTCHANGE){
+            [self showOptionPercent:self.first :optionOneCount :total];
+            [self showOptionPercent:self.second :optionTwoCount :total];
+            [self showOptionPercent:self.third :optionThreeCount :total];
+            [self showOptionPercent:self.fourth :optionFourCount :total];
         }
         else{
             self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
@@ -506,11 +506,6 @@
             self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
         }
     }
-    
-    NSNumber *onePlaceTemp = self.poll[@"firstPlace"];
-    NSNumber *twoPlaceTemp = self.poll[@"secondPlace"];
-    NSNumber *threePlaceTemp = self.poll[@"thirdPlace"];
-    NSNumber *fourPlaceTemp = self.poll[@"fourthPlace"];
 
     unsigned long firstPlace = MAX(optionOneCount,MAX(optionTwoCount,MAX(optionThreeCount,optionFourCount)));
     if(optionOneCount == firstPlace){
@@ -666,15 +661,15 @@
         }
     }
     
-    if(self.state == NOTFIRSTTIME){
+    if(self.state == NOTFIRSTTIME || self.state == POSTCHANGE){
         int oneTemp = self.optionOneChange;
         int twoTemp = self.optionTwoChange;
         int threeTemp = self.optionThreeChange;
         int fourTemp = self.optionFourChange;
-        [self swapChanges:onePlaceTemp:oneTemp];
-        [self swapChanges:twoPlaceTemp:twoTemp];
-        [self swapChanges:threePlaceTemp:threeTemp];
-        [self swapChanges:fourPlaceTemp:fourTemp];
+        [self swapChanges:self.first:oneTemp];
+        [self swapChanges:self.second:twoTemp];
+        [self swapChanges:self.third:threeTemp];
+        [self swapChanges:self.fourth:fourTemp];
     }
     
     [UIView animateWithDuration: 1 animations:^{
