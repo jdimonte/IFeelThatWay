@@ -48,147 +48,160 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    // Configure the view for the selected state
 }
 
 - (IBAction)submitTapped:(id)sender {
     if(self.oneIsSelected || self.twoIsSelected || self.threeIsSelected || self.fourIsSelected){
-        //remove user from arrays & add user to arrays
-        User *user = [PFUser currentUser];
+        [self reorderViews];
+
+        [self addUserToArrays];
         
-        if(self.state != FIRSTTIME){ //incorporate postchange here and just fix who is decorated?
-            NSNumber *placeOne = self.poll[@"firstPlace"];
-            NSNumber *placeTwo = self.poll[@"secondPlace"];
-            NSNumber *placeThree = self.poll[@"thirdPlace"];
-            NSNumber *placeFour = self.poll[@"fourthPlace"];
-            self.optionOneChange = 60*([placeOne intValue]-1);
-            self.optionTwoChange = 60*([placeTwo intValue]-1) - 60;
-            self.optionThreeChange = 60*([placeThree intValue]-1) - 120;
-            self.optionFourChange = 60*([placeFour intValue]-1) - 180;
-        }
-        if(self.state == NOTFIRSTTIME){
-            self.first = self.poll[@"firstPlace"];
-            self.second = self.poll[@"secondPlace"];
-            self.third = self.poll[@"thirdPlace"];
-            self.fourth = self.poll[@"fourthPlace"];
-        }
-        
-        if([self.poll[@"firstArray"] containsObject:user.objectId]){
-            if(!self.oneIsSelected){
-                [self.poll removeObject:user.objectId forKey:@"firstArray"];
-            }
-        } else{
-            if(self.oneIsSelected){
-                [self.poll addUniqueObject:user.objectId forKey:@"firstArray"];
-            }
-        }
-        if([self.poll[@"secondArray"] containsObject:user.objectId]){
-            if(!self.twoIsSelected){
-                [self.poll removeObject:user.objectId forKey:@"secondArray"];
-            }
-        } else{
-            if(self.twoIsSelected){
-                [self.poll addUniqueObject:user.objectId forKey:@"secondArray"];
-            }
-        }
-        if([self.poll[@"thirdArray"] containsObject:user.objectId]){
-            if(!self.threeIsSelected){
-                [self.poll removeObject:user.objectId forKey:@"thirdArray"];
-            }
-        } else{
-            if(self.threeIsSelected){
-                [self.poll addUniqueObject:user.objectId forKey:@"thirdArray"];
-            }
-        }
-        if([self.poll[@"fourthArray"] containsObject:user.objectId]){
-            if(!self.fourIsSelected){
-                [self.poll removeObject:user.objectId forKey:@"fourthArray"];
-            }
-        } else{
-            if(self.fourIsSelected){
-                [self.poll addUniqueObject:user.objectId forKey:@"fourthArray"];
-            }
-        }
-        
-        [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-            }
-            else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-        
-        self.firstView.backgroundColor = [UIColor whiteColor];
-        self.secondView.backgroundColor = [UIColor whiteColor];
-        self.thirdView.backgroundColor = [UIColor whiteColor];
-        self.fourthView.backgroundColor = [UIColor whiteColor];
-        [self.optionOne setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-        [self.optionTwo setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-        [self.optionThree setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-        [self.optionFour setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-        self.optionOnePercent.textColor = [UIColor blackColor];
-        self.optionTwoPercent.textColor = [UIColor blackColor];
-        self.optionThreePercent.textColor = [UIColor blackColor];
-        self.optionFourPercent.textColor = [UIColor blackColor];
-        
-        if(self.state == NOTFIRSTTIME || self.state == POSTCHANGE){
-            if(self.oneIsSelected){
-                [self decoratingOption:self.first];
-            }
-            if(self.twoIsSelected){
-                [self decoratingOption:self.second];
-            }
-            if(self.threeIsSelected){
-                [self decoratingOption:self.third];
-            }
-            if(self.fourIsSelected){
-                [self decoratingOption:self.fourth];
-            }
-        }
-        else{
-            if(self.oneIsSelected){
-                self.optionOnePercent.textColor = [UIColor whiteColor];
-                self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
-                [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-            }
-            if(self.twoIsSelected){
-                self.optionTwoPercent.textColor = [UIColor whiteColor];
-                self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
-                [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-            }
-            if(self.threeIsSelected){
-                self.optionThreePercent.textColor = [UIColor whiteColor];
-                self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
-                [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-            }
-            if(self.fourIsSelected){
-                self.optionFourPercent.textColor = [UIColor whiteColor];
-                self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
-                [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
-            }
-        }
+        [self decorateViews];
         
         [self updatePercents];
         
-        self.oneIsSelected = false;
-        self.twoIsSelected = false;
-        self.threeIsSelected = false;
-        self.fourIsSelected = false;
-        self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
-        self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
-        self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
-        self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
-        
-        if(self.state == FIRSTTIME){
-            self.state = POSTANIMATION;
+        [self resetOptions];
+    }
+}
+
+- (void) reorderViews {
+    if(self.state != FIRSTTIME){
+        NSNumber *placeOne = self.poll[@"firstPlace"];
+        NSNumber *placeTwo = self.poll[@"secondPlace"];
+        NSNumber *placeThree = self.poll[@"thirdPlace"];
+        NSNumber *placeFour = self.poll[@"fourthPlace"];
+        self.optionOneChange = 60*([placeOne intValue]-1);
+        self.optionTwoChange = 60*([placeTwo intValue]-1) - 60;
+        self.optionThreeChange = 60*([placeThree intValue]-1) - 120;
+        self.optionFourChange = 60*([placeFour intValue]-1) - 180;
+    }
+    if(self.state == NOTFIRSTTIME){
+        self.first = self.poll[@"firstPlace"];
+        self.second = self.poll[@"secondPlace"];
+        self.third = self.poll[@"thirdPlace"];
+        self.fourth = self.poll[@"fourthPlace"];
+    }
+}
+
+- (void) addUserToArrays {
+    User *user = [PFUser currentUser];
+    if([self.poll[@"firstArray"] containsObject:user.objectId]){
+        if(!self.oneIsSelected){
+            [self.poll removeObject:user.objectId forKey:@"firstArray"];
         }
-        if(self.state == NOTFIRSTTIME){
-            self.state = POSTCHANGE;
+    } else{
+        if(self.oneIsSelected){
+            [self.poll addUniqueObject:user.objectId forKey:@"firstArray"];
+        }
+    }
+    if([self.poll[@"secondArray"] containsObject:user.objectId]){
+        if(!self.twoIsSelected){
+            [self.poll removeObject:user.objectId forKey:@"secondArray"];
+        }
+    } else{
+        if(self.twoIsSelected){
+            [self.poll addUniqueObject:user.objectId forKey:@"secondArray"];
+        }
+    }
+    if([self.poll[@"thirdArray"] containsObject:user.objectId]){
+        if(!self.threeIsSelected){
+            [self.poll removeObject:user.objectId forKey:@"thirdArray"];
+        }
+    } else{
+        if(self.threeIsSelected){
+            [self.poll addUniqueObject:user.objectId forKey:@"thirdArray"];
+        }
+    }
+    if([self.poll[@"fourthArray"] containsObject:user.objectId]){
+        if(!self.fourIsSelected){
+            [self.poll removeObject:user.objectId forKey:@"fourthArray"];
+        }
+    } else{
+        if(self.fourIsSelected){
+            [self.poll addUniqueObject:user.objectId forKey:@"fourthArray"];
+        }
+    }
+    
+    [self.poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void) decorateViews {
+    self.firstView.backgroundColor = [UIColor whiteColor];
+    self.secondView.backgroundColor = [UIColor whiteColor];
+    self.thirdView.backgroundColor = [UIColor whiteColor];
+    self.fourthView.backgroundColor = [UIColor whiteColor];
+    [self.optionOne setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
+    [self.optionTwo setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
+    [self.optionThree setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
+    [self.optionFour setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
+    self.optionOnePercent.textColor = [UIColor blackColor];
+    self.optionTwoPercent.textColor = [UIColor blackColor];
+    self.optionThreePercent.textColor = [UIColor blackColor];
+    self.optionFourPercent.textColor = [UIColor blackColor];
+    
+    if(self.state == NOTFIRSTTIME || self.state == POSTCHANGE){
+        if(self.oneIsSelected){
+            [self decoratingOption:self.first];
+        }
+        if(self.twoIsSelected){
+            [self decoratingOption:self.second];
+        }
+        if(self.threeIsSelected){
+            [self decoratingOption:self.third];
+        }
+        if(self.fourIsSelected){
+            [self decoratingOption:self.fourth];
+        }
+    }
+    else{
+        if(self.oneIsSelected){
+            self.optionOnePercent.textColor = [UIColor whiteColor];
+            self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+            [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+        }
+        if(self.twoIsSelected){
+            self.optionTwoPercent.textColor = [UIColor whiteColor];
+            self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+            [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+        }
+        if(self.threeIsSelected){
+            self.optionThreePercent.textColor = [UIColor whiteColor];
+            self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+            [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
+        }
+        if(self.fourIsSelected){
+            self.optionFourPercent.textColor = [UIColor whiteColor];
+            self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+            [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
         }
     }
 }
 
-- (IBAction)optionOneTapped:(id)sender { //check for animation
+- (void) resetOptions {
+    self.oneIsSelected = false;
+    self.twoIsSelected = false;
+    self.threeIsSelected = false;
+    self.fourIsSelected = false;
+    self.firstView.layer.borderColor = [UIColor clearColor].CGColor;
+    self.secondView.layer.borderColor = [UIColor clearColor].CGColor;
+    self.thirdView.layer.borderColor = [UIColor clearColor].CGColor;
+    self.fourthView.layer.borderColor = [UIColor clearColor].CGColor;
+    
+    if(self.state == FIRSTTIME){
+        self.state = POSTANIMATION;
+    }
+    if(self.state == NOTFIRSTTIME){
+        self.state = POSTCHANGE;
+    }
+}
+
+- (IBAction)optionOneTapped:(id)sender {
     User *user = [PFUser currentUser];
     if(!([self.poll[@"firstArray"] containsObject:user.objectId] || [self.poll[@"secondArray"] containsObject:user.objectId] || [self.poll[@"thirdArray"] containsObject:user.objectId] || [self.poll[@"fourthArray"] containsObject:user.objectId])){
         self.state = FIRSTTIME;
@@ -450,7 +463,7 @@
     }
 }
 
-- (void) decoratingOption:(NSNumber *)location { //Need to take into account animation?
+- (void) decoratingOption:(NSNumber *)location {
     if([location isEqual: @1]){
         self.optionOnePercent.textColor = [UIColor whiteColor];
         self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
@@ -473,7 +486,7 @@
     }
 }
 
-- (void) showOptionPercent:(NSNumber *)location:(unsigned long)count:(unsigned long)total { //check if this is wrong
+- (void) showOptionPercent:(NSNumber *)location:(unsigned long)count:(unsigned long)total {
     if([location isEqual:@1]){
         self.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(count*100)/total];
     } else if([location isEqual:@2]){
@@ -661,6 +674,10 @@
         }
     }
     
+    [self animateOptions];
+}
+
+- (void) animateOptions {
     if(self.state == NOTFIRSTTIME || self.state == POSTCHANGE){
         int oneTemp = self.optionOneChange;
         int twoTemp = self.optionTwoChange;
