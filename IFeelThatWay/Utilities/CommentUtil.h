@@ -9,6 +9,7 @@
 #import "User.h"
 #import "Comment.h"
 #import "CommentCell.h"
+#import "Reply.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)designComment:(User*)user: (CommentCell*)commentCell: (Comment*)comment;
 
 + (void)reportMessage:(Comment*)comment: (UIViewController*)currentViewController;
+
++ (void)reportReply:(Reply*)reply: (UIViewController*)currentViewController;
 
 @end
 

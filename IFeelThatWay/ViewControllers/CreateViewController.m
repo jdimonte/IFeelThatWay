@@ -44,38 +44,13 @@
     NSString *postTypes[] = {@"prompt", @"poll"};
     NSString *type = postTypes[self.postType.selectedSegmentIndex];
     if([type isEqual:@"prompt"]){
-        Prompt *prompt = [Prompt new];
-        prompt.question = self.questionTextBox.text;
-        prompt.topic = self.topic;
-        [prompt saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [self dismissViewControllerAnimated:true completion:nil];
-            }
-            else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
+        if(![self.questionTextBox.text isEqual: @""]){
+            [self createPrompt];
+        }
     }
     else {
         if(![self.questionTextBox.text isEqual: @""] && ![self.firstAnswer isEqual:@""] && ![self.secondAnswer isEqual:@""] && ![self.thirdAnswer isEqual:@""] && ![self.fourthAnswer isEqual:@""]){
-            Poll *poll = [Poll new];
-            bool *multipleSelectionChoice[] = {false, true};
-            bool *multipleSelectionForPoll = multipleSelectionChoice[self.multipleSelection.selectedSegmentIndex];
-            poll.question = self.questionTextBox.text;
-            poll.topic = self.topic;
-            poll.multipleSelection = multipleSelectionForPoll;
-            poll.firstAnswer = self.firstAnswer;
-            poll.secondAnswer = self.secondAnswer;
-            poll.thirdAnswer = self.thirdAnswer;
-            poll.fourthAnswer = self.fourthAnswer;
-            [poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded) {
-                    [self dismissViewControllerAnimated:true completion:nil];
-                }
-                else {
-                    NSLog(@"%@", error.localizedDescription);
-                }
-            }];
+            [self createPoll];
         }
     }
 }
@@ -86,12 +61,45 @@
     } else if(self.numberOfOptions.value > 5){
         self.numberOfOptions.value = 5;
     }
-    //update labels
     NSString *first = [NSString stringWithFormat:@"%.f", self.numberOfOptions.value];
     NSString *second = @" options";
     self.optionsCount.text = [first stringByAppendingString:second];
-    //reload table view
     [self.optionsTableView reloadData];
+}
+
+- (void) createPrompt {
+    Prompt *prompt = [Prompt new];
+    prompt.question = self.questionTextBox.text;
+    prompt.topic = self.topic;
+    [prompt saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self dismissViewControllerAnimated:true completion:nil];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (void) createPoll {
+    Poll *poll = [Poll new];
+    bool *multipleSelectionChoice[] = {false, true};
+    bool *multipleSelectionForPoll = multipleSelectionChoice[self.multipleSelection.selectedSegmentIndex];
+    poll.question = self.questionTextBox.text;
+    poll.topic = self.topic;
+    poll.multipleSelection = multipleSelectionForPoll;
+    poll.firstAnswer = self.firstAnswer;
+    poll.secondAnswer = self.secondAnswer;
+    poll.thirdAnswer = self.thirdAnswer;
+    poll.fourthAnswer = self.fourthAnswer;
+    [poll saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self dismissViewControllerAnimated:true completion:nil];
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

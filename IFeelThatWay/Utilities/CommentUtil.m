@@ -63,4 +63,33 @@
     }];
 }
 
++ (void)reportReply:(Reply*)reply: (UIViewController*)currentViewController{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Would you like to report this message?" message:reply.text preferredStyle:(UIAlertControllerStyleAlert)];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction * _Nonnull action) {
+                                                      }];
+    [alert addAction:cancelAction];
+
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Report"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+        Report *report = [Report new];
+        report.message = reply.text;
+        report.messageAuthor = reply[@"user"];
+        report.replyId = reply;
+        [report saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+            }
+            else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+                                                     }];
+    [alert addAction:okAction];
+    
+    [currentViewController presentViewController:alert animated:YES completion:^{
+    }];
+}
+
 @end

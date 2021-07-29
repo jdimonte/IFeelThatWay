@@ -33,18 +33,22 @@
 
 - (IBAction)submitTapped:(id)sender {
     if(![self.request.text isEqual: @""]){
-        Request *request = [Request new];
-        request.request = self.request.text;
-        NSString *requestTypes[] = {@"topic", @"prompt"};
-        request.type = requestTypes[self.type.selectedSegmentIndex];
-        [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-            }
-            else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
+        [self submitRequest];
     }
+}
+
+- (void) submitRequest {
+    Request *request = [Request new];
+    request.request = self.request.text;
+    NSString *requestTypes[] = {@"topic", @"prompt"};
+    request.type = requestTypes[self.type.selectedSegmentIndex];
+    [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+        }
+        else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 /*

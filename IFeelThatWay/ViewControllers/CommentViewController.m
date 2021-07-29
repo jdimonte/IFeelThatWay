@@ -10,6 +10,7 @@
 #import "Reply.h"
 #import "Report.h"
 #import "MBProgressHUD.h"
+#import "CommentUtil.h"
 
 @interface CommentViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *commentsTableView;
@@ -51,32 +52,8 @@
     UITableViewCell *tappedCell = sender;
     NSIndexPath *indexPath = [self.commentsTableView indexPathForCell:tappedCell];
     Reply *reply = self.repliesArray[indexPath.row];
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Would you like to report this message?" message:reply.text preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                      }];
-    [alert addAction:cancelAction];
-
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Report"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
-        Report *report = [Report new];
-        report.message = reply.text;
-        report.messageAuthor = reply[@"user"];
-        report.replyId = reply;
-        [report saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-            }
-            else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
-                                                     }];
-    [alert addAction:okAction];
     
-    [self presentViewController:alert animated:YES completion:^{
-    }];
+    [CommentUtil reportReply:reply :self];
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification
