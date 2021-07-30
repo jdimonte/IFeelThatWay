@@ -111,6 +111,7 @@
     [queryPolls includeKey:@"author"];
     [queryPolls includeKey:@"topic"];
     [queryPolls includeKey:@"hasComments"];
+    [queryPolls includeKey:@"numberOfOptions"];
     [queryPolls whereKey:@"topic" equalTo:self.topic.category];
     [queryPolls orderByDescending:@"createdAt"];
 

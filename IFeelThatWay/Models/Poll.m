@@ -38,6 +38,7 @@
 @dynamic twoIsSelected;
 @dynamic threeIsSelected;
 @dynamic fourIsSelected;
+@dynamic numberOfOptions;
 
 + (nonnull NSString *)parseClassName {
     return @"Poll";
