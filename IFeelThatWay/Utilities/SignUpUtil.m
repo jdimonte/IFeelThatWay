@@ -48,8 +48,6 @@
                 [currentViewController presentViewController:alert animated:YES completion:^{
                 }];
             } else {
-                NSLog(@"User registered successfully");
-
                 [currentViewController performSegueWithIdentifier:@"signUp" sender:nil];
             }
         }];

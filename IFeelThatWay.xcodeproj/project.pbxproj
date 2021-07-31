@@ -51,6 +51,7 @@
 		51815C53269F805500BFCA08 /* LoginUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C52269F805500BFCA08 /* LoginUtil.m */; };
 		51815C5926A0B69500BFCA08 /* SavedCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C5826A0B69500BFCA08 /* SavedCommentCell.m */; };
 		51815C5C26A0E70B00BFCA08 /* SignUpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815C5B26A0E70B00BFCA08 /* SignUpUtil.m */; };
+		51B8241D26B47B7A007216D7 /* AuthDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51B8241C26B47B7A007216D7 /* AuthDelegate.m */; };
 		51C845A526ACE53D009CC0B4 /* CommentUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C845A426ACE53D009CC0B4 /* CommentUtil.m */; };
 		51C845A826AF18E5009CC0B4 /* CreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C845A726AF18E5009CC0B4 /* CreateViewController.m */; };
 		51C845AB26AF32FF009CC0B4 /* OptionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51C845AA26AF32FF009CC0B4 /* OptionCell.m */; };
@@ -162,6 +163,8 @@
 		51815C5826A0B69500BFCA08 /* SavedCommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedCommentCell.m; sourceTree = "<group>"; };
 		51815C5A26A0E70B00BFCA08 /* SignUpUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpUtil.h; sourceTree = "<group>"; };
 		51815C5B26A0E70B00BFCA08 /* SignUpUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpUtil.m; sourceTree = "<group>"; };
+		51B8241B26B47B7A007216D7 /* AuthDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthDelegate.h; sourceTree = "<group>"; };
+		51B8241C26B47B7A007216D7 /* AuthDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthDelegate.m; sourceTree = "<group>"; };
 		51C845A326ACE53D009CC0B4 /* CommentUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentUtil.h; sourceTree = "<group>"; };
 		51C845A426ACE53D009CC0B4 /* CommentUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentUtil.m; sourceTree = "<group>"; };
 		51C845A626AF18E5009CC0B4 /* CreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateViewController.h; sourceTree = "<group>"; };
@@ -260,6 +263,8 @@
 				51815BBA269CAC8100BFCA08 /* AppDelegate.m */,
 				51815BBC269CAC8100BFCA08 /* SceneDelegate.h */,
 				51815BBD269CAC8100BFCA08 /* SceneDelegate.m */,
+				51B8241B26B47B7A007216D7 /* AuthDelegate.h */,
+				51B8241C26B47B7A007216D7 /* AuthDelegate.m */,
 				51815BC2269CAC8100BFCA08 /* Main.storyboard */,
 				51815BC7269CAC8200BFCA08 /* LaunchScreen.storyboard */,
 				51815BCA269CAC8200BFCA08 /* Info.plist */,
@@ -689,6 +694,7 @@
 				51815C07269CB32B00BFCA08 /* User.m in Sources */,
 				51815C2C269CE77700BFCA08 /* ProfileViewController.m in Sources */,
 				51569D6826A9BE680025E19F /* PollViewController.m in Sources */,
+				51B8241D26B47B7A007216D7 /* AuthDelegate.m in Sources */,
 				51815C44269E405C00BFCA08 /* PostViewController.m in Sources */,
 				51C845A526ACE53D009CC0B4 /* CommentUtil.m in Sources */,
 				51815C0A269CB33600BFCA08 /* Prompt.m in Sources */,

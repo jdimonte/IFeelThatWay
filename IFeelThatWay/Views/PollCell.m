@@ -432,6 +432,25 @@
     }
 }
 
+- (void) convertPlaces:(int)index {
+    if([self.places[index] isEqual: @0]){
+        [self.updatedPlaces replaceObjectAtIndex:1 withObject:@(index+1)];
+        self.optionOneChange += [self.changes[index] intValue];
+    }
+    else if([self.places[index] isEqual:@1]){
+        [self.updatedPlaces replaceObjectAtIndex:2 withObject:@(index+1)];
+        self.optionTwoChange += [self.changes[index] intValue];
+    }
+    else if([self.places[index] isEqual:@2]){
+        [self.updatedPlaces replaceObjectAtIndex:3 withObject:@(index+1)];
+        self.optionThreeChange += [self.changes[index] intValue];
+    }
+    else{
+        [self.updatedPlaces replaceObjectAtIndex:4 withObject:@(index+1)];
+        self.optionFourChange += [self.changes[index] intValue];
+    }
+}
+
 - (void) updatePercents{
     unsigned long optionOneCount = (unsigned long)self.poll.firstArray.count;
     unsigned long optionTwoCount = (unsigned long)self.poll.secondArray.count;
@@ -453,160 +472,183 @@
             self.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
         }
     }
+    
+    NSMutableArray *optionArrays = [[NSMutableArray alloc] initWithObjects:@(self.poll.firstArray.count),@(self.poll.secondArray.count),@(self.poll.thirdArray.count),@(self.poll.fourthArray.count),nil];
+    for(int i = 0; i < [self.poll[@"numberOfOptions"] intValue]; i++){
+        int maxIndex = i;
+        int changeDiff = 0;
+        for(int j = 0; j < [self.poll[@"numberOfOptions"] intValue]; j++){
+            if([optionArrays[j] intValue] > [optionArrays[maxIndex] intValue]){
+                maxIndex = j;
+            }
+        }
+        changeDiff = (maxIndex-i)*60;
+        [self.places arrayByAddingObject:@(maxIndex)];
+        [self.changes arrayByAddingObject:@(changeDiff)];
+        [optionArrays replaceObjectAtIndex:maxIndex withObject:@(-1)];
+    }
+    for(int i = 0; i < [self.poll[@"numberOfOptions"] intValue]; i++){
+        [self convertPlaces:i];
+    }
+    self.optionOneChange += [self.changes[0] intValue];
+    self.optionTwoChange += [self.changes[1] intValue];
+    self.optionThreeChange += [self.changes[2] intValue];
+    self.optionFourChange += [self.changes[3] intValue];
+    [self updatePlaces:[self.updatedPlaces[0] intValue]:[self.updatedPlaces[1] intValue]:[self.updatedPlaces[2] intValue]:[self.updatedPlaces[3] intValue]];
 
-    unsigned long firstPlace = MAX(optionOneCount,MAX(optionTwoCount,MAX(optionThreeCount,optionFourCount)));
-    if(optionOneCount == firstPlace){
-        self.optionOneChange += 0;
-        unsigned long secondPlace = MAX(optionTwoCount,MAX(optionThreeCount,optionFourCount));
-        if(secondPlace == optionTwoCount){
-            self.optionTwoChange += 0;
-            if(optionThreeCount > optionFourCount){
-                self.optionThreeChange += 0;
-                self.optionFourChange += 0;
-                [self updatePlaces:1:2:3:4];
-            } else {
-                self.optionThreeChange += -60;
-                self.optionFourChange += 60;
-                [self updatePlaces:1:2:4:3];
-            }
-        } else if(secondPlace == optionThreeCount){
-            self.optionThreeChange += 60;
-            if(optionTwoCount > optionFourCount){
-                self.optionTwoChange += -60;
-                self.optionFourChange += 0;
-                [self updatePlaces:1:3:2:4];
-            } else {
-                self.optionTwoChange += -120;
-                self.optionFourChange += 60;
-                [self updatePlaces:1:4:2:3];
-            }
-        } else {
-            self.optionFourChange += 120;
-            if(optionThreeCount > optionTwoCount){
-                self.optionThreeChange += 0;
-                self.optionTwoChange += -120;
-                [self updatePlaces:1:4:3:2];
-            } else {
-                self.optionThreeChange += -60;
-                self.optionTwoChange += -60;
-                [self updatePlaces:1:3:4:2];
-            }
-        }
-    }
-    else if(optionTwoCount == firstPlace){
-        self.optionTwoChange += 60;
-        unsigned long secondPlace = MAX(optionOneCount,MAX(optionThreeCount,optionFourCount));
-        if(secondPlace == optionOneCount){
-            self.optionOneChange += -60;
-            if(optionThreeCount > optionFourCount){
-                self.optionThreeChange += 0;
-                self.optionFourChange += 0;
-                [self updatePlaces:2:1:3:4];
-            } else {
-                self.optionThreeChange += -60;
-                self.optionFourChange += 60;
-                [self updatePlaces:2:1:4:3];
-            }
-        } else if(secondPlace == optionThreeCount){
-            self.optionThreeChange += 60;
-            if(optionOneCount > optionFourCount){
-                self.optionOneChange += -120;
-                self.optionFourChange += 0;
-                [self updatePlaces:3:1:2:4];
-            } else {
-                self.optionOneChange += -180;
-                self.optionFourChange += 60;
-                [self updatePlaces:4:1:2:3];
-            }
-        } else {
-            self.optionFourChange += 120;
-            if(optionThreeCount > optionOneCount){
-                self.optionThreeChange += 0;
-                self.optionOneChange += -180;
-                [self updatePlaces:4:1:3:2];
-            } else {
-                self.optionThreeChange += -60;
-                self.optionOneChange += -120;
-                [self updatePlaces:3:1:4:2];
-            }
-        }
-    }
-    else if(optionThreeCount == firstPlace){
-        self.optionThreeChange += 120;
-        unsigned long secondPlace = MAX(optionTwoCount,MAX(optionOneCount,optionFourCount));
-        if(secondPlace == optionTwoCount){
-            self.optionTwoChange += 0;
-            if(optionOneCount > optionFourCount){
-                self.optionOneChange += -120;
-                self.optionFourChange += 0;
-                [self updatePlaces:3:2:1:4];
-            } else {
-                self.optionOneChange += -180;
-                self.optionFourChange += 60;
-                [self updatePlaces:4:2:1:3];
-            }
-        } else if(secondPlace == optionOneCount){
-            self.optionOneChange += -60;
-            if(optionTwoCount > optionFourCount){
-                self.optionTwoChange += -60;
-                self.optionFourChange += 0;
-                [self updatePlaces:2:3:1:3];
-            } else {
-                self.optionTwoChange += -120;
-                self.optionFourChange += 60;
-                [self updatePlaces:2:4:1:3];
-            }
-        } else {
-            self.optionFourChange += 120;
-            if(optionOneCount > optionTwoCount){
-                self.optionOneChange += -120;
-                self.optionTwoChange += -120;
-                [self updatePlaces:3:4:1:2];
-            } else {
-                self.optionOneChange += -180;
-                self.optionTwoChange += -60;
-                [self updatePlaces:4:3:1:2];
-            }
-        }
-    }
-    else{
-        self.optionFourChange += 180;
-        unsigned long secondPlace = MAX(optionTwoCount,MAX(optionThreeCount,optionOneCount));
-        if(secondPlace == optionTwoCount){
-            self.optionTwoChange += 0;
-            if(optionThreeCount > optionOneCount){
-                self.optionThreeChange += 0;
-                self.optionOneChange += -180;
-                [self updatePlaces:4:2:3:1];
-            } else {
-                self.optionThreeChange += -60;
-                self.optionOneChange += -120;
-                [self updatePlaces:3:2:4:1];
-            }
-        } else if(secondPlace == optionThreeCount){
-            self.optionThreeChange += 60;
-            if(optionOneCount > optionTwoCount){
-                self.optionOneChange += -120;
-                self.optionTwoChange += -120;
-                [self updatePlaces:3:4:2:1];
-            } else {
-                self.optionOneChange += -180;
-                self.optionTwoChange += -60;
-                [self updatePlaces:4:3:2:1];
-            }
-        } else {
-            self.optionOneChange += -60;
-            if(optionThreeCount > optionTwoCount){
-                self.optionThreeChange += 0;
-                self.optionTwoChange += -120;
-                [self updatePlaces:2:4:3:1];
-            } else {
-                self.optionThreeChange += -60;
-                self.optionTwoChange += -60;
-                [self updatePlaces:2:3:4:1];
-            }
-        }
-    }
+//    unsigned long firstPlace = MAX(optionOneCount,MAX(optionTwoCount,MAX(optionThreeCount,optionFourCount)));
+//    if(optionOneCount == firstPlace){
+//        self.optionOneChange += 0;
+//        unsigned long secondPlace = MAX(optionTwoCount,MAX(optionThreeCount,optionFourCount));
+//        if(secondPlace == optionTwoCount){
+//            self.optionTwoChange += 0;
+//            if(optionThreeCount > optionFourCount){
+//                self.optionThreeChange += 0;
+//                self.optionFourChange += 0;
+//                [self updatePlaces:1:2:3:4];
+//            } else {
+//                self.optionThreeChange += -60;
+//                self.optionFourChange += 60;
+//                [self updatePlaces:1:2:4:3];
+//            }
+//        } else if(secondPlace == optionThreeCount){
+//            self.optionThreeChange += 60;
+//            if(optionTwoCount > optionFourCount){
+//                self.optionTwoChange += -60;
+//                self.optionFourChange += 0;
+//                [self updatePlaces:1:3:2:4];
+//            } else {
+//                self.optionTwoChange += -120;
+//                self.optionFourChange += 60;
+//                [self updatePlaces:1:4:2:3];
+//            }
+//        } else {
+//            self.optionFourChange += 120;
+//            if(optionThreeCount > optionTwoCount){
+//                self.optionThreeChange += 0;
+//                self.optionTwoChange += -120;
+//                [self updatePlaces:1:4:3:2];
+//            } else {
+//                self.optionThreeChange += -60;
+//                self.optionTwoChange += -60;
+//                [self updatePlaces:1:3:4:2];
+//            }
+//        }
+//    }
+//    else if(optionTwoCount == firstPlace){
+//        self.optionTwoChange += 60;
+//        unsigned long secondPlace = MAX(optionOneCount,MAX(optionThreeCount,optionFourCount));
+//        if(secondPlace == optionOneCount){
+//            self.optionOneChange += -60;
+//            if(optionThreeCount > optionFourCount){
+//                self.optionThreeChange += 0;
+//                self.optionFourChange += 0;
+//                [self updatePlaces:2:1:3:4];
+//            } else {
+//                self.optionThreeChange += -60;
+//                self.optionFourChange += 60;
+//                [self updatePlaces:2:1:4:3];
+//            }
+//        } else if(secondPlace == optionThreeCount){
+//            self.optionThreeChange += 60;
+//            if(optionOneCount > optionFourCount){
+//                self.optionOneChange += -120;
+//                self.optionFourChange += 0;
+//                [self updatePlaces:3:1:2:4];
+//            } else {
+//                self.optionOneChange += -180;
+//                self.optionFourChange += 60;
+//                [self updatePlaces:4:1:2:3];
+//            }
+//        } else {
+//            self.optionFourChange += 120;
+//            if(optionThreeCount > optionOneCount){
+//                self.optionThreeChange += 0;
+//                self.optionOneChange += -180;
+//                [self updatePlaces:4:1:3:2];
+//            } else {
+//                self.optionThreeChange += -60;
+//                self.optionOneChange += -120;
+//                [self updatePlaces:3:1:4:2];
+//            }
+//        }
+//    }
+//    else if(optionThreeCount == firstPlace){
+//        self.optionThreeChange += 120;
+//        unsigned long secondPlace = MAX(optionTwoCount,MAX(optionOneCount,optionFourCount));
+//        if(secondPlace == optionTwoCount){
+//            self.optionTwoChange += 0;
+//            if(optionOneCount > optionFourCount){
+//                self.optionOneChange += -120;
+//                self.optionFourChange += 0;
+//                [self updatePlaces:3:2:1:4];
+//            } else {
+//                self.optionOneChange += -180;
+//                self.optionFourChange += 60;
+//                [self updatePlaces:4:2:1:3];
+//            }
+//        } else if(secondPlace == optionOneCount){
+//            self.optionOneChange += -60;
+//            if(optionTwoCount > optionFourCount){
+//                self.optionTwoChange += -60;
+//                self.optionFourChange += 0;
+//                [self updatePlaces:2:3:1:3];
+//            } else {
+//                self.optionTwoChange += -120;
+//                self.optionFourChange += 60;
+//                [self updatePlaces:2:4:1:3];
+//            }
+//        } else {
+//            self.optionFourChange += 120;
+//            if(optionOneCount > optionTwoCount){
+//                self.optionOneChange += -120;
+//                self.optionTwoChange += -120;
+//                [self updatePlaces:3:4:1:2];
+//            } else {
+//                self.optionOneChange += -180;
+//                self.optionTwoChange += -60;
+//                [self updatePlaces:4:3:1:2];
+//            }
+//        }
+//    }
+//    else{
+//        self.optionFourChange += 180;
+//        unsigned long secondPlace = MAX(optionTwoCount,MAX(optionThreeCount,optionOneCount));
+//        if(secondPlace == optionTwoCount){
+//            self.optionTwoChange += 0;
+//            if(optionThreeCount > optionOneCount){
+//                self.optionThreeChange += 0;
+//                self.optionOneChange += -180;
+//                [self updatePlaces:4:2:3:1];
+//            } else {
+//                self.optionThreeChange += -60;
+//                self.optionOneChange += -120;
+//                [self updatePlaces:3:2:4:1];
+//            }
+//        } else if(secondPlace == optionThreeCount){
+//            self.optionThreeChange += 60;
+//            if(optionOneCount > optionTwoCount){
+//                self.optionOneChange += -120;
+//                self.optionTwoChange += -120;
+//                [self updatePlaces:3:4:2:1];
+//            } else {
+//                self.optionOneChange += -180;
+//                self.optionTwoChange += -60;
+//                [self updatePlaces:4:3:2:1];
+//            }
+//        } else {
+//            self.optionOneChange += -60;
+//            if(optionThreeCount > optionTwoCount){
+//                self.optionThreeChange += 0;
+//                self.optionTwoChange += -120;
+//                [self updatePlaces:2:4:3:1];
+//            } else {
+//                self.optionThreeChange += -60;
+//                self.optionTwoChange += -60;
+//                [self updatePlaces:2:3:4:1];
+//            }
+//        }
+//    }
     
     [self animateOptions];
 }

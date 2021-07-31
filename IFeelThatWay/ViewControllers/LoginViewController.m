@@ -11,15 +11,21 @@
 #import <QuartzCore/QuartzCore.h>
 #import <GoogleSignIn.h>
 #import "SignUpUtil.h"
+#import "AuthDelegate.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <PFUserAuthenticationDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *username;
 @property (strong, nonatomic) IBOutlet UITextField *password;
 @property (strong, nonatomic) IBOutlet UIButton *loginButton;
 
+
 @end
 
 @implementation LoginViewController
+
+- (bool) restoreAuthenticationWithAuthData {
+    return true;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,30 +53,17 @@
         if (error) {
           return;
         }
-        // If sign in succeeded, display the app's main content View.
-        //check for user in parse
-//        PFQuery *query = [PFQuery queryWithClassName:@"User"];
-//        [query includeKey:@"author"];
-//        [query whereKey:@"withGoogle" equalTo:TRUE];
-//        [query whereKey:@"email" equalTo:user.profile.email];
-//        query.limit = 1;
-//        [query findObjectsInBackgroundWithBlock:^(NSArray *users, NSError *error) {
-//            if (users != nil && users.count != 0) {
-//                //yes the user exists in parse
-//                //sign in
-//                User *currentUser = [User new];
-//                currentUser.email = user.profile.email;
-//                [LoginUtil loginUserWithGoogle:currentUser:self];
-//            } else {
-//                //no the user does not exist in parse
-//                //register
-//                PFUser *newUser = [PFUser user];
-//                newUser.email = user.profile.email;
-//                newUser.withGoogle = TRUE;
-//                [SignUpUtil registerUserWithGoogle:newUser:self];
-//            }
-//        }];
+
+        [PFUser registerAuthenticationDelegate:self
+                                   forAuthType:@"google"];
+        //update access token
+        [[PFUser logInWithAuthTypeInBackground:@"google"
+                                      authData:@{@"id": user.userID, @"accesstoken": @"199283860183-otfaodus4qg8g974rtpd6tdqd5i11ca0", @"email": user.profile.email}] continueWithSuccessBlock:^id(BFTask *task) {
+
+                return nil;
+            }];
         
+        [self performSegueWithIdentifier:@"login" sender:nil];
       }];
 }
 /*

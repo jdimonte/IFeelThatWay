@@ -63,7 +63,7 @@
 }
 
 - (IBAction)commentTextBoxTapped:(UITapGestureRecognizer *)sender {
-     [self.commentText becomeFirstResponder];
+    [self.commentText becomeFirstResponder];
     [self moveTextUp];
 }
 

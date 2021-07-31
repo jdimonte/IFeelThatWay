@@ -49,6 +49,9 @@ typedef enum {
 @property (strong, nonatomic) NSNumber *second;
 @property (strong, nonatomic) NSNumber *third;
 @property (strong, nonatomic) NSNumber *fourth;
+@property (strong, nonatomic) NSMutableArray *places;
+@property (strong, nonatomic) NSMutableArray *updatedPlaces;
+@property (strong, nonatomic) NSMutableArray *changes;
 
 @end
 
