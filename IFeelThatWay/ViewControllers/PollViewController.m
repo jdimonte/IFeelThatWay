@@ -39,6 +39,7 @@
 @property int optionTwoChange;
 @property int optionThreeChange;
 @property int optionFourChange;
+@property (weak, nonatomic) NSString *currentLimit;
 
 @end
 
@@ -54,7 +55,8 @@
     [self designPoll];
     self.keyboardUp = NO;
     
-    [self loadQueryComments];
+    self.currentLimit = [NSString stringWithFormat: @"%d", 20];
+    [self loadQueryComments:20];
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryComments) forControlEvents:UIControlEventValueChanged];
@@ -254,7 +256,7 @@
         
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [self loadQueryComments];
+                [self loadQueryComments:20];
                 self.commentText.text = @"";
                 [self.view endEditing:YES];
                 [self moveTextDown];
@@ -277,15 +279,15 @@
     }
 }
 
-- (void) loadQueryComments{
+- (void) loadQueryComments: (int)numberCount{
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
 
     [query includeKey:@"author"];
     [query includeKey:@"user"];
     [query whereKey:@"poll" equalTo:self.poll];
-    [query orderByAscending:@"createdAt"];
+    [query orderByDescending:@"createdAt"];
 
-    query.limit = 20;
+    query.limit = numberCount;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
         if (comments != nil) {
@@ -477,6 +479,15 @@
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row + 1 == [self.commentsArray count] && self.commentsArray.count >= [self.currentLimit intValue]){
+        NSUInteger *count = (long)self.commentsArray.count;
+        count += 20;
+        self.currentLimit = [NSString stringWithFormat:@"%d", count];
+        [self loadQueryComments:count];
+    }
 }
 
 #pragma mark - Navigation

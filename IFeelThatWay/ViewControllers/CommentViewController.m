@@ -22,6 +22,7 @@
 @property CGFloat keyboardHeight;
 @property (strong, nonatomic) NSNumber *keyboardDuration;
 @property bool keyboardUp;
+@property (weak, nonatomic) NSString *currentLimit;
 
 @end
 
@@ -38,7 +39,8 @@
     self.keyboardUp = NO;
     self.keyboardHeight = 0;
     
-    [self loadQueryReplies];
+    self.currentLimit = [NSString stringWithFormat: @"%d", 20];
+    [self loadQueryReplies:20];
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryReplies) forControlEvents:UIControlEventValueChanged];
@@ -122,7 +124,7 @@
         
         [reply saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [self loadQueryReplies];
+                [self loadQueryReplies:20];
                 self.replyText.text = @"";
                 [self.view endEditing:YES];
                 [self moveTextDown];
@@ -134,7 +136,7 @@
     }
 }
 
-- (void) loadQueryReplies{
+- (void) loadQueryReplies: (int)numberCount{
     PFQuery *query = [PFQuery queryWithClassName:@"Reply"];
 
     [query includeKey:@"author"];
@@ -142,7 +144,7 @@
     [query whereKey:@"comment" equalTo:self.comment];
     [query orderByDescending:@"createdAt"];
 
-    query.limit = 20;
+    query.limit = numberCount;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *replies, NSError *error) {
         if (replies != nil) {
@@ -190,6 +192,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.repliesArray.count;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row + 1 == [self.repliesArray count] && self.repliesArray.count >= [self.currentLimit intValue]){
+        NSUInteger *count = (long)self.repliesArray.count;
+        count += 20;
+        self.repliesArray = [NSString stringWithFormat:@"%d", count];
+        [self loadQueryReplies:count];
+    }
 }
 
 /*
