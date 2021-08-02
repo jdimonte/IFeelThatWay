@@ -7,46 +7,22 @@
 
 #import "SignUpUtil.h"
 #import "SignUpViewController.h"
+#import <SCLAlertView.h>
 
 @implementation SignUpUtil
 
 + (void)registerUser:(PFUser*)user :(UIViewController*)currentViewController{
     if([user.username isEqual: @""] || [user.password isEqual: @""]){
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"noText" message:@"Input Text" preferredStyle:(UIAlertControllerStyleAlert)];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                            style:UIAlertActionStyleCancel
-                                                          handler:^(UIAlertAction * _Nonnull action) {
-                                                          }];
-        [alert addAction:cancelAction];
-
-        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                           style:UIAlertActionStyleDefault
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                         }];
-        [alert addAction:okAction];
-        
-        [currentViewController presentViewController:alert animated:YES completion:^{
-        }];
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        [alert showError:currentViewController title:@"Error" subTitle:@"Please enter required information." closeButtonTitle:@"OK" duration:0.0f];
     }
     else{
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
             if (error != nil) {
                 NSLog(@"Error: %@", error.localizedDescription);
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Try Again" preferredStyle:(UIAlertControllerStyleAlert)];
-                UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                    style:UIAlertActionStyleCancel
-                                                                  handler:^(UIAlertAction * _Nonnull action) {
-                                                                  }];
-                [alert addAction:cancelAction];
-
-                UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                                   style:UIAlertActionStyleDefault
-                                                                 handler:^(UIAlertAction * _Nonnull action) {
-                                                                 }];
-                [alert addAction:okAction];
                 
-                [currentViewController presentViewController:alert animated:YES completion:^{
-                }];
+                SCLAlertView *alert = [[SCLAlertView alloc] init];
+                [alert showError:currentViewController title:@"Error" subTitle:@"The username you have entered is already taken." closeButtonTitle:@"OK" duration:0.0f];
             } else {
                 [currentViewController performSegueWithIdentifier:@"signUp" sender:nil];
             }

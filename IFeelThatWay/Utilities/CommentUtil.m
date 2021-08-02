@@ -7,6 +7,7 @@
 
 #import "CommentUtil.h"
 #import "Report.h"
+#import <SCLAlertView.h>
 
 @implementation CommentUtil
 
@@ -35,16 +36,9 @@
 }
 
 + (void)reportMessage:(Comment*)comment: (UIViewController*)currentViewController{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Would you like to report this message?" message:comment.text preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                      }];
-    [alert addAction:cancelAction];
-
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Report"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    [alert addButton:@"Report" actionBlock:^(void) {
         Report *report = [Report new];
         report.message = comment.text;
         report.messageAuthor = comment[@"user"];
@@ -56,24 +50,15 @@
                 NSLog(@"%@", error.localizedDescription);
             }
         }];
-                                                     }];
-    [alert addAction:okAction];
-    
-    [currentViewController presentViewController:alert animated:YES completion:^{
     }];
+    
+    [alert showSuccess:currentViewController title:@"Would you like to report this message?" subTitle:comment.text closeButtonTitle:@"Cancel" duration:0.0f];
 }
 
 + (void)reportReply:(Reply*)reply: (UIViewController*)currentViewController{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Would you like to report this message?" message:reply.text preferredStyle:(UIAlertControllerStyleAlert)];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction * _Nonnull action) {
-                                                      }];
-    [alert addAction:cancelAction];
-
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Report"
-                                                       style:UIAlertActionStyleDefault
-                                                     handler:^(UIAlertAction * _Nonnull action) {
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    [alert addButton:@"Report" actionBlock:^(void) {
         Report *report = [Report new];
         report.message = reply.text;
         report.messageAuthor = reply[@"user"];
@@ -85,11 +70,9 @@
                 NSLog(@"%@", error.localizedDescription);
             }
         }];
-                                                     }];
-    [alert addAction:okAction];
-    
-    [currentViewController presentViewController:alert animated:YES completion:^{
     }];
+    
+    [alert showSuccess:currentViewController title:@"Would you like to report this message?" subTitle:reply.text closeButtonTitle:@"Cancel" duration:0.0f];
 }
 
 @end

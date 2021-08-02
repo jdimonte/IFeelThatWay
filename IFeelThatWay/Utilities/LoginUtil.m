@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
+#import <SCLAlertView.h>
 
 @implementation LoginUtil
 
@@ -19,22 +20,10 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error) {
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Wrong username or password" message:@"Try Again" preferredStyle:(UIAlertControllerStyleAlert)];
-            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
-                                                                style:UIAlertActionStyleCancel
-                                                              handler:^(UIAlertAction * _Nonnull action) {
-                                                              }];
-            [alert addAction:cancelAction];
-
-            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-    
-                                                             }];
-            [alert addAction:okAction];
             
-            [currentViewController presentViewController:alert animated:YES completion:^{
-            }];
+            SCLAlertView *alert = [[SCLAlertView alloc] init];
+            [alert showError:currentViewController title:@"Error" subTitle:@"The username or password is incorrect." closeButtonTitle:@"OK" duration:0.0f];
+
         } else {
             [currentViewController performSegueWithIdentifier:@"login" sender:nil];
         }

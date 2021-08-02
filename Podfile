@@ -10,6 +10,7 @@ target 'IFeelThatWay' do
   pod 'PKHUD'
   pod 'MBProgressHUD', '~> 1.2.0'
   pod 'GoogleSignIn'
+  pod 'SCLAlertView-Objective-C'
 
   target 'IFeelThatWayTests' do
     inherit! :search_paths
