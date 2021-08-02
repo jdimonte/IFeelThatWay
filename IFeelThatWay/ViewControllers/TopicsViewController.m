@@ -31,7 +31,9 @@
     self.topicsTableView.delegate = self;
     self.topicsTableView.dataSource = self;
     self.searchBar.delegate = self;
-
+    
+    [self.searchBar setSearchBarStyle:UISearchBarStyleMinimal];
+    
     [self loadQueryTopics];
     self.filteredTopicsArray = self.topicsArray;
     

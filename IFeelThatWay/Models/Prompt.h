@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSMutableArray *savesArray;
 @property (nonatomic, strong) NSDate *createdAt;
 @property bool hasComments;
+@property (nonatomic, strong) NSNumber *commentsCount;
 
 @end
 

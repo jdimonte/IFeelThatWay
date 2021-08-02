@@ -2003,6 +2003,21 @@
                                 <color key="textColor" red="0.97254901959999995" green="0.56078431370000004" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JQW-f5-QVM">
+                                <rect key="frame" x="268" y="113" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="onTintColor" red="0.97254901959999995" green="0.56078431370000004" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="sortSwitchChanged:" destination="kKA-WR-xky" eventType="valueChanged" id="miz-19-PPm"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sort by most popular" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AL-po-MGb">
+                                <rect key="frame" x="100" y="118" width="160" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rOm-QH-cyO"/>
                         <color key="backgroundColor" red="0.89019607840000003" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -2024,6 +2039,7 @@
                     <tabBarItem key="tabBarItem" title="Following" image="checkmark.square" catalog="system" selectedImage="checkmark.square.fill" id="Ccr-5D-grd"/>
                     <connections>
                         <outlet property="followingTableView" destination="osX-CS-C5z" id="YN3-40-Xn1"/>
+                        <outlet property="sortSwitch" destination="JQW-f5-QVM" id="ipZ-GE-3Fy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9l-k0-eY7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2357,8 +2373,8 @@
         <segue reference="UVq-QA-C4X"/>
         <segue reference="vtB-VV-XoR"/>
         <segue reference="FOe-03-tAH"/>
-        <segue reference="6ee-1u-iPP"/>
-        <segue reference="MEm-fH-Wfb"/>
+        <segue reference="lgL-1y-FT5"/>
+        <segue reference="bVk-KI-TS4"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>

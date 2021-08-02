@@ -117,6 +117,8 @@
         comment.post = prompt;
         comment.agreesCount = 0;
         
+        self.prompt.commentsCount = [NSNumber numberWithLong:self.commentsArray.count];
+        
         [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [self loadQueryComments:20];

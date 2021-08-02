@@ -22,6 +22,7 @@
 @property (nonatomic, strong) PFQuery *topicsFollowingQuery;
 @property (nonatomic, strong) Comment *featuredComment;
 @property (weak, nonatomic) NSString *currentLimit;
+@property (strong, nonatomic) IBOutlet UISwitch *sortSwitch;
 
 @end
 
@@ -41,6 +42,10 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
     [self.followingTableView insertSubview:self.refreshControl atIndex:0];
     [self.followingTableView addSubview:self.refreshControl];
+}
+
+- (IBAction)sortSwitchChanged:(id)sender {
+    [self loadQueryPrompts:20];
 }
 
 - (void) loadQueryPrompts: (int)numberCount {
@@ -70,7 +75,12 @@
     [postQuery includeKey:@"author"];
     [postQuery includeKey:@"topic"];
     [postQuery whereKey:@"topic" matchesKey:@"category" inQuery:self.topicsFollowingQuery];
-    [postQuery orderByDescending:@"createdAt"];
+    if(self.sortSwitch.on){
+        [postQuery orderByDescending:@"commentsCount"];
+    }
+    else{
+        [postQuery orderByDescending:@"createdAt"];
+    }
     postQuery.limit = numberCount;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
         if (prompts != nil) {
