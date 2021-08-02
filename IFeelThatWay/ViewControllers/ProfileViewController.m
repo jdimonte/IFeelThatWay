@@ -10,10 +10,13 @@
 #import "User.h"
 #import <Parse/Parse.h>
 #import <GoogleSignIn.h>
+#import "ProfilePictureCell.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UIImageView *profilePicture;
 @property (strong, nonatomic) IBOutlet User *user;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) NSArray *colorsArray;
 
 @end
 
@@ -21,6 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
     self.user = [PFUser currentUser];
     NSString *colorSelected = self.user[@"profilePicture"];
     if(!colorSelected){
@@ -28,6 +35,8 @@
     }
     UIImage * colorPicture = [UIImage imageNamed:colorSelected];
     [self.profilePicture setImage:colorPicture];
+    
+    self.colorsArray = [[NSArray alloc] initWithObjects:@"red",@"pink",@"orange",@"yellow",@"green", @"lightblue",@"blue",@"purple", nil];
 }
 
 - (IBAction)backTapped:(id)sender {
@@ -45,44 +54,23 @@
     [GIDSignIn.sharedInstance signOut];
 }
 
-- (void) updateProfilePicture: (NSString *)color {
-    UIImage * colorPicture = [UIImage imageNamed:color];
-    [self.profilePicture setImage:colorPicture];
-    self.user[@"profilePicture"] = color;
-    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        if (error != nil) {
-            NSLog(@"fail");
-        } else {
-            NSLog(@"success");
-        }
-    }];
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    ProfilePictureCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ProfilePictureCell" forIndexPath:indexPath];
+    
+    cell.colorsArray = self.colorsArray;
+    cell.index = indexPath.row;
+    cell.displayedPicture = self.profilePicture;
+    if(0 <= indexPath.row && indexPath.row <= 6){
+        UIImage * colorPicture = [UIImage imageNamed:self.colorsArray[indexPath.row]];
+        [cell.profilePicture setImage:colorPicture];
+    }
+    
+    return cell;
 }
 
-- (IBAction)redTapped:(id)sender {
-    [self updateProfilePicture:@"red"];
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 8;
 }
-- (IBAction)pinkTapped:(id)sender {
-    [self updateProfilePicture:@"pink"];
-}
-- (IBAction)orangeTapped:(id)sender {
-    [self updateProfilePicture:@"orange"];
-}
-- (IBAction)yellowTapped:(id)sender {
-    [self updateProfilePicture:@"yellow"];
-}
-- (IBAction)greenTapped:(id)sender {
-    [self updateProfilePicture:@"green"];
-}
-- (IBAction)lightBlueTapped:(id)sender {
-    [self updateProfilePicture:@"lightblue"];
-}
-- (IBAction)blueTapped:(id)sender {
-    [self updateProfilePicture:@"blue"];
-}
-- (IBAction)purpleTapped:(id)sender {
-    [self updateProfilePicture:@"purple"];
-}
-
 
 /*
 #pragma mark - Navigation
