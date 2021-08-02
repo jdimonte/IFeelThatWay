@@ -21,6 +21,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) PFQuery *topicsFollowingQuery;
 @property (nonatomic, strong) Comment *featuredComment;
+@property (weak, nonatomic) NSString *currentLimit;
 
 @end
 
@@ -33,7 +34,8 @@
     self.followingTableView.dataSource = self;
     self.followingTableView.delegate = self;
     
-    [self loadQueryPrompts];
+    self.currentLimit = [NSString stringWithFormat: @"%d", 20];
+    [self loadQueryPrompts:20];
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
@@ -41,9 +43,9 @@
     [self.followingTableView addSubview:self.refreshControl];
 }
 
-- (void) loadQueryPrompts{
+- (void) loadQueryPrompts: (int)numberCount {
     [self loadTopicsFollowing];
-    [self loadPromptsFollowing];
+    [self loadPromptsFollowing:numberCount];
 }
 
 - (void) loadTopicsFollowing {
@@ -63,13 +65,13 @@
     self.topicsFollowingQuery = topicsQuery;
 }
 
-- (void) loadPromptsFollowing {
+- (void) loadPromptsFollowing: (int)numberCount {
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
     [postQuery includeKey:@"author"];
     [postQuery includeKey:@"topic"];
     [postQuery whereKey:@"topic" matchesKey:@"category" inQuery:self.topicsFollowingQuery];
     [postQuery orderByDescending:@"createdAt"];
-    postQuery.limit = 20;
+    postQuery.limit = numberCount;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
         if (prompts != nil) {
             self.promptsArray = prompts;
@@ -143,6 +145,15 @@
         return 370;
     } else{
         return 300;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row + 1 == [self.promptsArray count] && self.promptsArray.count >= [self.currentLimit intValue]){
+        NSUInteger *count = (long)self.promptsArray.count;
+        count += 20;
+        self.currentLimit = [NSString stringWithFormat:@"%d", count];
+        [self loadQueryPrompts:count];
     }
 }
 

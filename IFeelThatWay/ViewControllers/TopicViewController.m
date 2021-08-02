@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSMutableArray *pollsArray;
 @property (strong, nonatomic) NSMutableArray *postsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) NSString *currentLimit;
 
 @end
 
@@ -37,7 +38,8 @@
     self.promptsTableView.delegate = self;
     self.promptsTableView.dataSource = self;
     
-    [self loadQueryPrompts];
+    self.currentLimit = [NSString stringWithFormat: @"%d", 20];
+    [self loadQueryPrompts:20];
     
     self.category.text = self.topic[@"category"];
     
@@ -78,12 +80,12 @@
     }];
 }
 
-- (void) loadQueryPrompts{
-    [self queryPrompts];
+- (void) loadQueryPrompts: (int)numberCount{
+    [self queryPrompts:numberCount];
     [self queryPolls];
 }
 
-- (void) queryPrompts {
+- (void) queryPrompts: (int)numberCount {
     PFQuery *queryPrompts = [PFQuery queryWithClassName:@"Prompt"];
 
     [queryPrompts includeKey:@"author"];
@@ -93,7 +95,7 @@
     [queryPrompts whereKey:@"topic" equalTo:self.topic.category];
     [queryPrompts orderByDescending:@"createdAt"];
 
-    queryPrompts.limit = 20;
+    queryPrompts.limit = numberCount;
     
     [queryPrompts findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
         if (prompts != nil) {
@@ -418,6 +420,15 @@
         } else{
             return 250;
         }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row + 1 == [self.postsArray count] && self.postsArray.count >= [self.currentLimit intValue]){
+        NSUInteger *count = (long)self.postsArray.count;
+        count += 20;
+        self.currentLimit = [NSString stringWithFormat:@"%d", count];
+        [self loadQueryPrompts:count];
     }
 }
 
