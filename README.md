@@ -30,79 +30,106 @@ Anonymous forums for women discussing common problems and solutions. An environm
 * User can create a new account
 * User can login / logout
 * User can view prompts
+* User can post prompts
 * User can comment on prompts
-* User can react on prompts
-* User can react on comments
-* User can post their own feelings
-* User can comment on prompts
+* User can react on commments
+* User can tap prompt to see other comments
+* User can reply to other comments
 
 **Optional Nice-to-have Stories**
 
-* User can react to polls
 * User can create polls
-* User can view top feelings
-* User can view top advice
-* User can tap prompt to see other comments
-* User can reply to other comments
-* User can search for specific topics within topics
-* User can see notifications when someone reacts to their post, replies to their comment, or comments on their post
-* User can save posts
-* User can view their profile 
-* User can view other profiles and see their favorite posts
+* User can comment on polls
+* User can answer polls
+* User can view top comments
+* User can view top replies
+* User can search for specific topics
+* User can save comments and replies
+* User can view their profile and change their profile picture 
+* User can share comments to their instagram story
+* User can make requests
+* User can sign in with their google account
+* User can sort prompts by most popular 
 
 ### 2. Screen Archetypes
 
-* Welcome Screen
-   * Redirect to Login Screen
-   * Redirect to Create Account Screen
 * Login Screen
    * User can login
+   * Redirect to Create Account Screen
 * Create Account Screen
    * User can create a new account
-* Topics Screen
-   * User can login
-* Prompts Screen
-   * User can view a feed of prompts
-* Prompt Screen
-   * User can view prompt and comments
-#### Extra
-* Saved Screen
-   * User can save prompts
+   * Redirect to Login Screen
 * Top Feelings Screen
-   * User can view top thoughts by other users
+   * User can view top comments and replies by other users
+* Topics Screen
+   * User can view, follow, and search for various topics
+* Following Screen
+   * User can view prompts for topics they are following and sort prompts based on popularity or most recent
+* Saved Screen
+   * User can save comments and replies and share them to their instagram story
+
+* Topic Screen
+   * User can view a topic and a feed of prompts and polls related to the topic along with a featured comment for each prompt/poll
+* Prompt Screen
+   * User can view the prompt and the prompt's comments
+* Poll Screen
+   * User can view the poll and the poll's comments
+* Comment Screen
+   * User can view the comment and the comment's replies
+
 * Profile Screen
-   * User can profiles
+   * User can change their profile picture
+* Request Screen
+   * User can make requests
+
+* Create Prompt Screen
+   * User can create a prompt in a given topic
+* Create Poll Screen
+   * User can create a poll in a given topic, and say whether or not they want the poll to offer multiple selection
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* Home
-* Topics
 * Top Feelings
+* Topics
+* Following
 * Saved
 
 **Flow Navigation** (Screen to Screen)
 
-* Welcome Screen
-   * If you logout
 * Login Screen
-   * Home
+   * Home, Accessable from Profile (logout)
 * Create Account Screen
-   * Home
+   * Accessable from Login
+
 * Topics Screen
    * Topics
-* Prompts Screen
-   * Topics
+* Topic Screen
+   * Accessable from Topics Screen
 * Prompt Screen
-   * Topics
-#### Extra
+   * Accessable from Topic Screen or Following Screen
+* Poll Screen
+   * Accessable from Topic Screen or Following Screen
+* Comment Screen
+   * Accessable from Prompt Screen or Poll Screen
+
 * Saved Screen
    * Saved
 * Top Feelings Screen
    * Top Feelings
+* Following Screen
+   * Following
+
 * Profile Screen
-    * Home
+    * Accessable from Top Feelings, Topics, Following, or Saved
+* Request Screen
+    * Accessable from Top Feelings, Topics, Following, or Saved
+
+* Create Prompt Screen
+    * Accessable from Topic Screen
+* Create Poll Screen
+    * Accessable from Topic Screen
 
 ## Wireframes
 <img src="https://github.com/jdimonte/IFeelThatWay/blob/main/wireframe.jpeg" width=600>
@@ -130,7 +157,7 @@ Topic
 | objectId  | String | unique id for the user post (default field) |
 | category | String | category of the topic |
 | followersArray | Array of user IDs | users who are following this topic |
-| createdAt | DateTime | date when post is created (default field) |
+| createdAt | DateTime | date when topic is created (default field) |
 
 Prompt
 | Property  | Type     | Description |
@@ -138,49 +165,73 @@ Prompt
 | objectId  | String | unique id for the user post (default field) |
 | topic | String | category prompt is in |
 | question | String | question by admin |
-| agreeCount| Number | number of people who have liked the question  |
-| agreeArray | Array of user IDs | users who are agree with this prompt |
-| savedArray | Array of user IDs | users who have saved this prompt |
-| createdAt | DateTime | date when post is created (default field) |
+| hasComments | bool | if the prompt has any comments |
+| commentsCount | Number | number of comments |
+| createdAt | DateTime | date when prompt is created (default field) |
 
 Poll
 | Property  | Type     | Description |
 | --------  | -------- | --------    |
 | objectId  | String | unique id for the user poll (default field) |
-| topic | String | category prompt is in |
+| topic | String | category poll is in |
 | question | String | question by admin |
-| agreeCount| Number | number of people who have liked the question |
-| agreeArray | Array of user IDs | users who are agree with this poll |
-| savedArray | Array of user IDs | users who have saved this poll |
 | firstAnswer| String | first answer to poll |
 | secondAnswer| String | second answer to poll |
 | thirdAnswer| String | third answer to poll |
-| firstCount| Number | number of users who have selected the first answer |
-| secondCount| Number | number of users who have selected the second answer |
-| thirdCount| Number | number of users who have selected the third answer |
-| createdAt | DateTime | date when post is created (default field) |
+| fourthAnswer| String | fourth answer to poll |
+| firstArray| Array of users | users who have voted for the first answer |
+| secondArray| Array of users | users who have voted for the second answer |
+| thirdArray| Array of users | users who have voted for the third answer |
+| fourthArray| Array of users | users who have voted for the fourth answer |
+| firstPlace| Number | which option has the most votes |
+| secondPlace| Number | which option has the second most votes |
+| thirdPlace| Number | which option has the second least votes |
+| fourthPlace| Number | which option has the least votes |
+| multipleSelection| bool | if users can vote for multiple options |
+| numberOfOptions| Number | how many options the poll has |
+| createdAt | DateTime | date when poll is created (default field) |
 
 Comment
 | Property  | Type     | Description |
 | --------  | -------- | --------    |
 | objectId | String | unique id for the comment (default field) |
-| user  | Type Pointer | pointer to the user who commented |
-| post  | Type Pointer | pointer to the post the comment is for |
+| user  | User Pointer | pointer to the user who commented |
+| post  | Prompt Pointer | pointer to the post the comment is for |
+| poll  | Poll Pointer | pointer to the poll the comment is for |
 | text | String | comment text |
 | agreeCount | Number | number of people who have agreed with (liked) the question |
 | agreeArray | Array of user IDs | users who are agree with this comment |
 | savedArray | Array of user IDs | users who have saved this comment |
+| createdAt | DateTime | date when comment is created (default field) |
 
 Replies
 | Property  | Type     | Description |
 | --------  | -------- | --------    |
 | objectId | String | unique id for the reply (default field) |
-| user  | Type Pointer | pointer to the user who replied |
-| post  | Type Pointer | pointer to the post the reply is for |
+| user  | User Pointer | pointer to the user who replied |
+| comment  | Comment Pointer | pointer to the comment the reply is for |
 | text | String | comment text |
 | agreeCount | Number | number of people who have agreed with (liked) the question |
 | agreeArray | Array of user IDs | users who are agree with this reply |
 | savedArray | Array of user IDs | users who have saved this reply |
+| createdAt | DateTime | date when reply is created (default field) |
+
+Request
+| Property  | Type     | Description |
+| --------  | -------- | --------    |
+| objectId | String | unique id for the reply (default field) |
+| request  | String | request from the user |
+| createdAt | DateTime | date when request is created (default field) |
+
+Report
+| Property  | Type     | Description |
+| --------  | -------- | --------    |
+| objectId | String | unique id for the reply (default field) |
+| message | String | what the comment / reply says |
+| messageAuthor  | User Pointer | the user who created the comment / reply |
+| commentId  | Comment Pointer | the comment that is being reported |
+| replyID | Reply Pointer | the reply that is being reported |
+| createdAt | DateTime | date when report is created (default field) |
 
 
 ### Networking
@@ -215,6 +266,9 @@ Replies
     * (Update) User information. Changes their profile color.
 
 ### [Optional] APIs Requests
+
+Facebook Instagram API to share feelings to your instragram story.
+Google Auth API to login with your google account.
 
 ### Colors
 
