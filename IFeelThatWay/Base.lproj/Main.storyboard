@@ -542,7 +542,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EST-di-pjC">
-                                <rect key="frame" x="137" y="632.5" width="140" height="60"/>
+                                <rect key="frame" x="137" y="601.5" width="140" height="60"/>
                                 <color key="backgroundColor" red="0.97254901959999995" green="0.56078431370000004" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ESP-az-Rs1"/>
@@ -556,17 +556,6 @@
                                     <action selector="submitTapped:" destination="Arv-gi-npQ" eventType="touchUpInside" id="qsd-oZ-lUu"/>
                                 </connections>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="Av0-LD-jbb">
-                                <rect key="frame" x="82" y="551.5" width="250" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="oag-CP-cmz"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="New Topic"/>
-                                    <segment title="New Prompt"/>
-                                </segments>
-                                <color key="selectedSegmentTintColor" red="0.97254901959999995" green="0.56078431370000004" blue="0.59607843140000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you like to see?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEl-Nk-jMz">
                                 <rect key="frame" x="103" y="280.5" width="208" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
@@ -580,13 +569,11 @@
                         <constraints>
                             <constraint firstItem="yEl-Nk-jMz" firstAttribute="top" secondItem="dPj-9a-G7N" secondAttribute="bottom" constant="150" id="6nz-nS-89R"/>
                             <constraint firstItem="yEl-Nk-jMz" firstAttribute="centerX" secondItem="Ohh-S4-Vou" secondAttribute="centerX" id="9bY-eT-hPQ"/>
-                            <constraint firstItem="EST-di-pjC" firstAttribute="top" secondItem="Av0-LD-jbb" secondAttribute="bottom" constant="50" id="9c1-1k-3cv"/>
                             <constraint firstItem="YjY-6a-OTL" firstAttribute="centerX" secondItem="Ohh-S4-Vou" secondAttribute="centerX" id="Ox3-rA-uKP"/>
                             <constraint firstItem="YjY-6a-OTL" firstAttribute="top" secondItem="yEl-Nk-jMz" secondAttribute="bottom" constant="50" id="V0c-UF-6lv"/>
                             <constraint firstItem="dPj-9a-G7N" firstAttribute="top" secondItem="Idg-N2-8jp" secondAttribute="top" id="YXh-FX-T9N"/>
-                            <constraint firstItem="Av0-LD-jbb" firstAttribute="top" secondItem="YjY-6a-OTL" secondAttribute="bottom" constant="50" id="bNn-Eb-Xw5"/>
-                            <constraint firstItem="Av0-LD-jbb" firstAttribute="centerX" secondItem="Ohh-S4-Vou" secondAttribute="centerX" id="bSU-W4-z7x"/>
                             <constraint firstItem="JlW-UE-BFr" firstAttribute="leading" secondItem="Idg-N2-8jp" secondAttribute="leading" constant="20" id="jWb-b6-sWm"/>
+                            <constraint firstItem="EST-di-pjC" firstAttribute="top" secondItem="YjY-6a-OTL" secondAttribute="bottom" constant="100" id="kEI-Q6-yGB"/>
                             <constraint firstItem="EST-di-pjC" firstAttribute="centerX" secondItem="Ohh-S4-Vou" secondAttribute="centerX" id="oQe-9k-win"/>
                             <constraint firstItem="JlW-UE-BFr" firstAttribute="top" secondItem="Idg-N2-8jp" secondAttribute="top" constant="20" id="wrv-di-EK7"/>
                             <constraint firstItem="dPj-9a-G7N" firstAttribute="centerX" secondItem="Ohh-S4-Vou" secondAttribute="centerX" id="y1i-f0-CK9"/>
@@ -598,7 +585,6 @@
                     <connections>
                         <outlet property="request" destination="YjY-6a-OTL" id="lWo-77-OK0"/>
                         <outlet property="requestButton" destination="EST-di-pjC" id="ye5-f7-Ka5"/>
-                        <outlet property="type" destination="Av0-LD-jbb" id="c7a-a6-ysY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jg5-fI-ydQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

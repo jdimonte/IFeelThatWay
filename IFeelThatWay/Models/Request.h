@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *request;
-@property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSDate *createdAt;
 
 @end

@@ -11,7 +11,6 @@
 
 @dynamic objectId;
 @dynamic request;
-@dynamic type;
 @dynamic createdAt;
 
 + (nonnull NSString *)parseClassName {

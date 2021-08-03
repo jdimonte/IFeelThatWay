@@ -63,6 +63,14 @@
     [self.questionTableView insertSubview:self.refreshControl atIndex:0];
     [self.questionTableView addSubview:self.refreshControl];
     
+//    if([self.poll[@"numberOfOptions"] intValue] == 3){
+//        self.fourthView.hidden = YES;
+//    }
+//    if([self.poll[@"numberOfOptions"] intValue] == 2){
+//        self.thirdView.hidden = YES;
+//        self.fourthView.hidden = YES;
+//    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 }
 

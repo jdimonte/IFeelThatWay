@@ -44,6 +44,14 @@
     } else{
         self.state = NOTFIRSTTIME;
     }
+    
+//    if([self.optionFour.titleLabel isEqual:@""]){
+//        self.fourthView.hidden = YES;
+//    }
+//    if([self.optionThree.titleLabel isEqual:@""]){
+//        self.thirdView.hidden = YES;
+//        self.fourthView.hidden = YES;
+//    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

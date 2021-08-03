@@ -14,6 +14,17 @@
     User *user = [PFUser currentUser];
     UIImage * colorPicture = [UIImage imageNamed:color];
     [self.displayedPicture setImage:colorPicture];
+    [UIView animateWithDuration:1
+                     animations:^{
+        self.displayedPicture.transform = CGAffineTransformMakeScale(1.5, 1.5);
+                     }
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:1
+                                          animations:^{
+                             self.displayedPicture.transform = CGAffineTransformIdentity;
+                                              
+                                          }];
+                     }];
     user[@"profilePicture"] = color;
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (error != nil) {

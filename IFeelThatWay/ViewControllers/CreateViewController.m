@@ -43,7 +43,21 @@
 
 - (IBAction)submitTapped:(id)sender {
     [self.optionsTableView reloadData];
-    if(![self.questionTextBox.text isEqual: @""] && ![self.firstAnswer isEqual:@""] && ![self.secondAnswer isEqual:@""] && ![self.thirdAnswer isEqual:@""] && ![self.fourthAnswer isEqual:@""]){
+    bool check = true;
+    if([self.questionTextBox.text isEqual: @""] || [self.firstAnswer isEqual:@""]){
+        check = false;
+    }
+    if(self.numberOfOptions.value >= 3 && check){
+        if([self.thirdAnswer isEqual:@""]){
+            check = false;
+        }
+    }
+    if(self.numberOfOptions.value == 4 && check){
+        if([self.fourthAnswer isEqual:@""]){
+            check = false;
+        }
+    }
+    if(check){
         [self createPoll];
     }
 }

@@ -10,7 +10,6 @@
 
 @interface RequestViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *request;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *type;
 @property (strong, nonatomic) IBOutlet UIButton *requestButton;
 
 @end
@@ -40,8 +39,6 @@
 - (void) submitRequest {
     Request *request = [Request new];
     request.request = self.request.text;
-    NSString *requestTypes[] = {@"topic", @"prompt"};
-    request.type = requestTypes[self.type.selectedSegmentIndex];
     [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
         }
