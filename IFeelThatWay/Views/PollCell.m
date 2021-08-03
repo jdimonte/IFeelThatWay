@@ -18,6 +18,7 @@
     self.secondView.layer.cornerRadius = 0.05 * self.secondView.bounds.size.width;
     self.thirdView.layer.cornerRadius = 0.05 * self.thirdView.bounds.size.width;
     self.fourthView.layer.cornerRadius = 0.05 * self.fourthView.bounds.size.width;
+    self.submitButton.layer.cornerRadius = 0.2 * self.submitButton.bounds.size.width;
     
     self.firstView.layer.borderWidth = 3.0f;
     self.secondView.layer.borderWidth = 3.0f;

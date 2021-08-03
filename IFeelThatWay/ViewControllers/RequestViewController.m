@@ -7,6 +7,8 @@
 
 #import "RequestViewController.h"
 #import "Request.h"
+#import <lottie-ios-umbrella.h>
+#import <Lottie/Lottie-Swift.h>
 
 @interface RequestViewController ()
 @property (strong, nonatomic) IBOutlet UITextView *request;
@@ -41,6 +43,7 @@
     request.request = self.request.text;
     [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
+            self.request.text = @"";
         }
         else {
             NSLog(@"%@", error.localizedDescription);

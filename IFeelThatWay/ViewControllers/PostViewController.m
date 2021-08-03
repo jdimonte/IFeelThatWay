@@ -117,7 +117,7 @@
 - (void) createNewComment {
     if(![self.commentText.text isEqual:@""]){
         Comment *comment = [Comment new];
-        
+
         comment.text = self.commentText.text;
         User *user = [PFUser currentUser];
         comment.user = user;
@@ -154,14 +154,11 @@
 
 - (void) loadQueryComments: (int)numberCount{
     PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
-
     [query includeKey:@"author"];
     [query includeKey:@"user"];
     [query whereKey:@"post" equalTo:self.prompt];
     [query orderByDescending:@"createdAt"];
-
     query.limit = numberCount;
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
         if (comments != nil) {
             self.commentsArray = comments;

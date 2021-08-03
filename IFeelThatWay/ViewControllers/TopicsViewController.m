@@ -47,13 +47,10 @@
 
 - (void) loadQueryTopics{
     PFQuery *query = [PFQuery queryWithClassName:@"Topic"];
-
     [query includeKey:@"author"];
     [query includeKey:@"followersArray"];
     [query orderByAscending:@"createdAt"];
-
     query.limit = 20;
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *topics, NSError *error) {
         if (topics != nil) {
             self.topicsArray = topics;

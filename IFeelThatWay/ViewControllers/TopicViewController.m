@@ -29,6 +29,8 @@
 @property (weak, nonatomic) NSString *currentLimit;
 @property (strong, nonatomic) IBOutlet UIView *createView;
 @property bool createOptionsShowing;
+@property (strong, nonatomic) IBOutlet UIButton *pollButton;
+@property (strong, nonatomic) IBOutlet UIButton *promptButton;
 
 
 @end
@@ -55,6 +57,9 @@
     [self.createView.layer setShadowOpacity:0.8];
     [self.createView.layer setShadowRadius:3.0];
     [self.createView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
+    
+    self.pollButton.layer.cornerRadius = 0.2 * self.pollButton.bounds.size.width;
+    self.promptButton.layer.cornerRadius = 0.12 * self.promptButton.bounds.size.width;
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryPrompts:) forControlEvents:UIControlEventValueChanged];
@@ -113,16 +118,13 @@
 
 - (void) queryPrompts: (int)numberCount {
     PFQuery *queryPrompts = [PFQuery queryWithClassName:@"Prompt"];
-
     [queryPrompts includeKey:@"author"];
     [queryPrompts includeKey:@"topic"];
     [queryPrompts includeKey:@"question"];
     [queryPrompts includeKey:@"hasComments"];
     [queryPrompts whereKey:@"topic" equalTo:self.topic.category];
     [queryPrompts orderByDescending:@"createdAt"];
-
     queryPrompts.limit = numberCount;
-    
     [queryPrompts findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {
         if (prompts != nil) {
             self.promptsArray = prompts;
@@ -135,16 +137,13 @@
 
 - (void) queryPolls {
     PFQuery *queryPolls = [PFQuery queryWithClassName:@"Poll"];
-
     [queryPolls includeKey:@"author"];
     [queryPolls includeKey:@"topic"];
     [queryPolls includeKey:@"hasComments"];
     [queryPolls includeKey:@"numberOfOptions"];
     [queryPolls whereKey:@"topic" equalTo:self.topic.category];
     [queryPolls orderByDescending:@"createdAt"];
-
     queryPolls.limit = 20;
-    
     [queryPolls findObjectsInBackgroundWithBlock:^(NSArray *polls, NSError *error) {
         if (polls != nil) {
             self.pollsArray = polls;

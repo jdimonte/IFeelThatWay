@@ -138,14 +138,11 @@
 
 - (void) loadQueryReplies: (int)numberCount{
     PFQuery *query = [PFQuery queryWithClassName:@"Reply"];
-
     [query includeKey:@"author"];
     [query includeKey:@"user"];
     [query whereKey:@"comment" equalTo:self.comment];
     [query orderByDescending:@"createdAt"];
-
     query.limit = numberCount;
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *replies, NSError *error) {
         if (replies != nil) {
             self.repliesArray = replies;

@@ -49,6 +49,7 @@ typedef enum {
 @property (strong, nonatomic) NSNumber *second;
 @property (strong, nonatomic) NSNumber *third;
 @property (strong, nonatomic) NSNumber *fourth;
+@property (strong, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 

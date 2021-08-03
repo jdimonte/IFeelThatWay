@@ -11,6 +11,7 @@ target 'IFeelThatWay' do
   pod 'MBProgressHUD', '~> 1.2.0'
   pod 'GoogleSignIn'
   pod 'SCLAlertView-Objective-C'
+  pod 'lottie-ios'
 
   target 'IFeelThatWayTests' do
     inherit! :search_paths
