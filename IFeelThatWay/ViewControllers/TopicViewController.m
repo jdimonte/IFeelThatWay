@@ -13,6 +13,7 @@
 #import "PostViewController.h"
 #import "PollViewController.h"
 #import "CreateViewController.h"
+#import "CreatePromptViewController.h"
 #import "Comment.h"
 #import "MBProgressHUD.h"
 #import <objc/runtime.h>
@@ -26,6 +27,9 @@
 @property (strong, nonatomic) NSMutableArray *postsArray;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) NSString *currentLimit;
+@property (strong, nonatomic) IBOutlet UIView *createView;
+@property bool createOptionsShowing;
+
 
 @end
 
@@ -42,6 +46,11 @@
     [self loadQueryPrompts:20];
     
     self.category.text = self.topic[@"category"];
+    self.createOptionsShowing = false;
+    CGRect textFrame = self.createView.frame;
+    textFrame.origin.x += -120;
+    self.createView.frame = textFrame;
+    self.createView.layer.cornerRadius = 0.09 * self.createView.bounds.size.width;
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
     [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
@@ -59,6 +68,19 @@
 
 - (IBAction)backTapped:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)createButtonTapped:(id)sender {
+    int change = 120;
+    if(self.createOptionsShowing){
+        change = -120;
+    }
+    [UIView animateWithDuration: 1 animations:^{
+        CGRect textFrame = self.createView.frame;
+        textFrame.origin.x += change;
+        self.createView.frame = textFrame;
+    }];
+    self.createOptionsShowing = !self.createOptionsShowing;
 }
 
 - (IBAction)followTapped:(id)sender {
@@ -448,7 +470,11 @@
         Poll *poll = self.pollsArray[indexPath.row];
         PollViewController *pollViewController = [segue destinationViewController];
         pollViewController.poll = poll;
-    } else if([segue.identifier isEqual:@"createPost"]){
+    } else if([segue.identifier isEqual:@"createPrompt"]){
+        Topic *topic = self.topic;
+        CreatePromptViewController *createPromptViewController = [segue destinationViewController];
+        createPromptViewController.topic = topic.category;
+    } else if([segue.identifier isEqual:@"createPoll"]){
         Topic *topic = self.topic;
         CreateViewController *createViewController = [segue destinationViewController];
         createViewController.topic = topic.category;

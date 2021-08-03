@@ -13,8 +13,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
-    self.commentView.layer.cornerRadius = 0.09 * self.commentView.bounds.size.width;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

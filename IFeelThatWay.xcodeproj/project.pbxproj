@@ -18,6 +18,7 @@
 		51569D6526A90F380025E19F /* BalooTamma2-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51569D5F26A90F380025E19F /* BalooTamma2-SemiBold.ttf */; };
 		51569D6826A9BE680025E19F /* PollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51569D6726A9BE680025E19F /* PollViewController.m */; };
 		51569D6B26AA20CD0025E19F /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 51569D6A26AA20CD0025E19F /* Report.m */; };
+		51643EA626B9B10100249BAC /* CreatePromptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51643EA526B9B10100249BAC /* CreatePromptViewController.m */; };
 		51815BBB269CAC8100BFCA08 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815BBA269CAC8100BFCA08 /* AppDelegate.m */; };
 		51815BBE269CAC8100BFCA08 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51815BBD269CAC8100BFCA08 /* SceneDelegate.m */; };
 		51815BC4269CAC8100BFCA08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51815BC2269CAC8100BFCA08 /* Main.storyboard */; };
@@ -97,6 +98,8 @@
 		51569D6726A9BE680025E19F /* PollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PollViewController.m; sourceTree = "<group>"; };
 		51569D6926AA20CD0025E19F /* Report.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		51569D6A26AA20CD0025E19F /* Report.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
+		51643EA426B9B10100249BAC /* CreatePromptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePromptViewController.h; sourceTree = "<group>"; };
+		51643EA526B9B10100249BAC /* CreatePromptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePromptViewController.m; sourceTree = "<group>"; };
 		51815BB6269CAC8100BFCA08 /* IFeelThatWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IFeelThatWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51815BB9269CAC8100BFCA08 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51815BBA269CAC8100BFCA08 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -374,6 +377,8 @@
 				51569D6726A9BE680025E19F /* PollViewController.m */,
 				51C845A626AF18E5009CC0B4 /* CreateViewController.h */,
 				51C845A726AF18E5009CC0B4 /* CreateViewController.m */,
+				51643EA426B9B10100249BAC /* CreatePromptViewController.h */,
+				51643EA526B9B10100249BAC /* CreatePromptViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -717,6 +722,7 @@
 				51815C29269CDFDA00BFCA08 /* SavedViewController.m in Sources */,
 				51815C23269CDFBD00BFCA08 /* TopicsViewController.m in Sources */,
 				51815C41269E20D700BFCA08 /* TopCommentCell.m in Sources */,
+				51643EA626B9B10100249BAC /* CreatePromptViewController.m in Sources */,
 				51815C20269CDFA900BFCA08 /* TopViewController.m in Sources */,
 				51815C50269F504500BFCA08 /* FollowingPromptCell.m in Sources */,
 				51815C35269D11DB00BFCA08 /* TopicViewController.m in Sources */,
