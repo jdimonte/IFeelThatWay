@@ -60,10 +60,8 @@
     cell.colorsArray = self.colorsArray;
     cell.index = indexPath.row;
     cell.displayedPicture = self.profilePicture;
-    if(0 <= indexPath.row && indexPath.row <= 6){
-        UIImage * colorPicture = [UIImage imageNamed:self.colorsArray[indexPath.row]];
-        [cell.profilePicture setImage:colorPicture];
-    }
+    UIImage * colorPicture = [UIImage imageNamed:self.colorsArray[indexPath.row]];
+    [cell.profilePicture setImage:colorPicture];
     
     return cell;
 }

@@ -35,6 +35,11 @@
     [self.savedTableView addSubview:self.refreshControl];
     
     [self.savedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
+    [self.savedContent setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+    [self.savedContent setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
 }
 
 - (IBAction)contentTypeSwitched:(id)sender {

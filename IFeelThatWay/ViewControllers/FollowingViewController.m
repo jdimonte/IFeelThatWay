@@ -39,7 +39,7 @@
     [self loadQueryPrompts:20];
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
-    [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(loadQueryPrompts:) forControlEvents:UIControlEventValueChanged];
     [self.followingTableView insertSubview:self.refreshControl atIndex:0];
     [self.followingTableView addSubview:self.refreshControl];
 }

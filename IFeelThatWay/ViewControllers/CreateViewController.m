@@ -65,8 +65,8 @@
 - (IBAction)numberOfOptionsChanged:(id)sender {
     if(self.numberOfOptions.value < 2){
         self.numberOfOptions.value = 2;
-    } else if(self.numberOfOptions.value > 5){
-        self.numberOfOptions.value = 5;
+    } else if(self.numberOfOptions.value > 4){
+        self.numberOfOptions.value = 4;
     }
     NSString *first = [NSString stringWithFormat:@"%.f", self.numberOfOptions.value];
     NSString *second = @" options";

@@ -51,9 +51,13 @@
     textFrame.origin.x += -120;
     self.createView.frame = textFrame;
     self.createView.layer.cornerRadius = 0.09 * self.createView.bounds.size.width;
+    [self.createView.layer setShadowColor:[UIColor blackColor].CGColor];
+    [self.createView.layer setShadowOpacity:0.8];
+    [self.createView.layer setShadowRadius:3.0];
+    [self.createView.layer setShadowOffset:CGSizeMake(2.0, 2.0)];
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
-    [self.refreshControl addTarget:self action:@selector(loadQueryPrompts) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(loadQueryPrompts:) forControlEvents:UIControlEventValueChanged];
     [self.promptsTableView insertSubview:self.refreshControl atIndex:0];
     [self.promptsTableView addSubview:self.refreshControl];
     

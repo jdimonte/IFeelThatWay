@@ -43,7 +43,7 @@
     [self loadQueryComments:20];
     
     self.refreshControl = [[UIRefreshControl alloc ] init];
-    [self.refreshControl addTarget:self action:@selector(loadQueryComments) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(loadQueryComments:) forControlEvents:UIControlEventValueChanged];
     [self.questionTableView insertSubview:self.refreshControl atIndex:0];
     [self.questionTableView addSubview:self.refreshControl];
     
@@ -62,6 +62,14 @@
 {
     self.keyboardDuration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     self.keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+    
+    NSLog(@"%lg", self.keyboardHeight);
+//    CGRect textFrame = self.commentText.frame;
+//    textFrame.origin.y = self.keyboardHeight;
+//    self.commentText.frame = textFrame;
+//    CGRect buttonFrame = self.commentButton.frame;
+//    buttonFrame.origin.y = self.keyboardHeight;
+//    self.commentButton.frame = buttonFrame;
 }
 
 - (IBAction)commentTextBoxTapped:(UITapGestureRecognizer *)sender {
