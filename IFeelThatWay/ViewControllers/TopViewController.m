@@ -50,6 +50,10 @@
     //[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadQueryTopComments) userInfo:nil repeats:true];
 }
 
+- (void)setLoginViewController:(LoginViewController *)loginViewController{
+    self.loginViewController = loginViewController;
+}
+
 - (IBAction)contentTypeSwitched:(id)sender {
     [self loadQueryTopComments];
 }
