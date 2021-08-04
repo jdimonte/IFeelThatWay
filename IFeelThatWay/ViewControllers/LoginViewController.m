@@ -31,6 +31,14 @@
     [super viewDidLoad];
     
     self.loginButton.layer.cornerRadius = 0.2 * self.loginButton.bounds.size.width;
+    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){ //FIX
+        self.username.layer.borderColor = [UIColor colorNamed:@"loginoutline"].CGColor;
+        self.username.layer.borderWidth = 3.0f;
+        self.username.layer.cornerRadius = 7.0f;
+        self.password.layer.borderColor = [UIColor colorNamed:@"loginoutline"].CGColor;
+        self.password.layer.borderWidth = 3.0f;
+        self.password.layer.cornerRadius = 7.0f;
+    }
 }
 
 - (IBAction)loginTapped:(id)sender {

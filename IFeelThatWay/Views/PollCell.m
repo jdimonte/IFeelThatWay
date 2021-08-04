@@ -110,18 +110,18 @@
 }
 
 - (void) decorateViews {
-    self.firstView.backgroundColor = [UIColor whiteColor];
-    self.secondView.backgroundColor = [UIColor whiteColor];
-    self.thirdView.backgroundColor = [UIColor whiteColor];
-    self.fourthView.backgroundColor = [UIColor whiteColor];
-    [self.optionOne setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-    [self.optionTwo setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-    [self.optionThree setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-    [self.optionFour setTitleColor: [UIColor blackColor] forState:UIControlStateNormal];
-    self.optionOnePercent.textColor = [UIColor blackColor];
-    self.optionTwoPercent.textColor = [UIColor blackColor];
-    self.optionThreePercent.textColor = [UIColor blackColor];
-    self.optionFourPercent.textColor = [UIColor blackColor];
+    self.firstView.backgroundColor = [UIColor colorNamed:@"option"];
+    self.secondView.backgroundColor = [UIColor colorNamed:@"option"];
+    self.thirdView.backgroundColor = [UIColor colorNamed:@"option"];
+    self.fourthView.backgroundColor = [UIColor colorNamed:@"option"];
+    [self.optionOne setTitleColor: [UIColor colorNamed:@"black"] forState:UIControlStateNormal];
+    [self.optionTwo setTitleColor: [UIColor colorNamed:@"black"] forState:UIControlStateNormal];
+    [self.optionThree setTitleColor: [UIColor colorNamed:@"black"] forState:UIControlStateNormal];
+    [self.optionFour setTitleColor: [UIColor colorNamed:@"black"] forState:UIControlStateNormal];
+    self.optionOnePercent.textColor = [UIColor colorNamed:@"black"];
+    self.optionTwoPercent.textColor = [UIColor colorNamed:@"black"];
+    self.optionThreePercent.textColor = [UIColor colorNamed:@"black"];
+    self.optionFourPercent.textColor = [UIColor colorNamed:@"black"];
     
     if(self.state == NOTFIRSTTIME || self.state == POSTCHANGE){
         if(self.oneIsSelected){
@@ -401,22 +401,22 @@
 - (void) decorateLocation:(NSNumber*)i {
     if([i isEqual: @1]){
         self.optionOnePercent.textColor = [UIColor whiteColor];
-        self.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+        self.firstView.backgroundColor = [UIColor colorNamed:@"pink"];
         [self.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
     }
     else if([i isEqual: @2]){
         self.optionTwoPercent.textColor = [UIColor whiteColor];
-        self.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+        self.secondView.backgroundColor = [UIColor colorNamed:@"pink"];
         [self.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
     }
     else if([i isEqual: @3]){
         self.optionThreePercent.textColor = [UIColor whiteColor];
-        self.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+        self.thirdView.backgroundColor = [UIColor colorNamed:@"pink"];
         [self.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
     }
     else {
         self.optionFourPercent.textColor = [UIColor whiteColor];
-        self.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+        self.fourthView.backgroundColor = [UIColor colorNamed:@"pink"];
         [self.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
     }
 }

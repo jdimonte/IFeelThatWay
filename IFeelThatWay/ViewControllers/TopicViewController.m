@@ -168,18 +168,18 @@
         [cell.optionThree setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
         [cell.optionFour setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
         
-        cell.firstView.backgroundColor = [UIColor whiteColor];
-        cell.secondView.backgroundColor = [UIColor whiteColor];
-        cell.thirdView.backgroundColor = [UIColor whiteColor];
-        cell.fourthView.backgroundColor = [UIColor whiteColor];
+        cell.firstView.backgroundColor = [UIColor colorNamed:@"option"];
+        cell.secondView.backgroundColor = [UIColor colorNamed:@"option"];
+        cell.thirdView.backgroundColor = [UIColor colorNamed:@"option"];
+        cell.fourthView.backgroundColor = [UIColor colorNamed:@"option"];
         
         User *user = [PFUser currentUser];
         bool answered = [pollInfo[@"firstArray"] containsObject:user.objectId] || [pollInfo[@"secondArray"] containsObject:user.objectId] || [pollInfo[@"thirdArray"] containsObject:user.objectId] || [pollInfo[@"fourthArray"] containsObject:user.objectId];
         if(answered){
-            cell.optionOnePercent.textColor = [UIColor blackColor];
-            cell.optionTwoPercent.textColor = [UIColor blackColor];
-            cell.optionThreePercent.textColor = [UIColor blackColor];
-            cell.optionFourPercent.textColor = [UIColor blackColor];
+            cell.optionOnePercent.textColor = [UIColor colorNamed:@"black"];
+            cell.optionTwoPercent.textColor = [UIColor colorNamed:@"black"];
+            cell.optionThreePercent.textColor = [UIColor colorNamed:@"black"];
+            cell.optionFourPercent.textColor = [UIColor colorNamed:@"black"];
         } else {
             cell.optionOnePercent.textColor = [UIColor whiteColor];
             cell.optionTwoPercent.textColor = [UIColor whiteColor];
@@ -197,7 +197,7 @@
                 cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionOne setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
                 if([pollInfo[@"firstArray"] containsObject:user.objectId]){
-                    cell.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.firstView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionOnePercent.textColor = [UIColor whiteColor];
                 }
@@ -206,7 +206,7 @@
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
                 if([pollInfo[@"firstArray"] containsObject:user.objectId]){
-                    cell.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.secondView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionTwoPercent.textColor = [UIColor whiteColor];
                 }
@@ -215,7 +215,7 @@
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
                 if([pollInfo[@"firstArray"] containsObject:user.objectId]){
-                    cell.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.thirdView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionThreePercent.textColor = [UIColor whiteColor];
                 }
@@ -223,7 +223,7 @@
                 cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionOneCount*100)/total];
                 [cell.optionFour setTitle:pollInfo[@"firstAnswer"] forState:UIControlStateNormal];
                 if([pollInfo[@"firstArray"] containsObject:user.objectId]){
-                    cell.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.fourthView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionFourPercent.textColor = [UIColor whiteColor];
                 }
@@ -233,7 +233,7 @@
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
-                    cell.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.secondView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionTwoPercent.textColor = [UIColor whiteColor];
                 }
@@ -241,7 +241,7 @@
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
-                    cell.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.thirdView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionThreePercent.textColor = [UIColor whiteColor];
                 }
@@ -249,7 +249,7 @@
                 cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
                 [cell.optionFour setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
-                    cell.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.fourthView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionFourPercent.textColor = [UIColor whiteColor];
                 }
@@ -257,7 +257,7 @@
                 cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionTwoCount*100)/total];
                 [cell.optionOne setTitle:pollInfo[@"secondAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"secondArray"] containsObject:user.objectId]){
-                    cell.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.firstView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionOnePercent.textColor = [UIColor whiteColor];
                 }
@@ -267,7 +267,7 @@
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
-                    cell.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.thirdView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionThreePercent.textColor = [UIColor whiteColor];
                 }
@@ -275,7 +275,7 @@
                 cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
                 [cell.optionFour setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
-                    cell.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.fourthView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionFourPercent.textColor = [UIColor whiteColor];
                 }
@@ -283,7 +283,7 @@
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
-                    cell.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.secondView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionTwoPercent.textColor = [UIColor whiteColor];
                 }
@@ -291,7 +291,7 @@
                 cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionThreeCount*100)/total];
                 [cell.optionOne setTitle:pollInfo[@"thirdAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"thirdArray"] containsObject:user.objectId]) {
-                    cell.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.firstView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionOnePercent.textColor = [UIColor whiteColor];
                 }
@@ -301,7 +301,7 @@
                 cell.optionFourPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
                 [cell.optionFour setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
-                    cell.fourthView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.fourthView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionFour setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionFourPercent.textColor = [UIColor whiteColor];
                 }
@@ -309,7 +309,7 @@
                 cell.optionThreePercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
                 [cell.optionThree setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
-                    cell.thirdView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.thirdView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionThree setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionThreePercent.textColor = [UIColor whiteColor];
                 }
@@ -317,7 +317,7 @@
                 cell.optionTwoPercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
                 [cell.optionTwo setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
-                    cell.secondView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.secondView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionTwo setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionTwoPercent.textColor = [UIColor whiteColor];
                 }
@@ -325,7 +325,7 @@
                 cell.optionOnePercent.text = [NSString stringWithFormat:@"%lu%%",(optionFourCount*100)/total];
                 [cell.optionOne setTitle:pollInfo[@"fourthAnswer"] forState:UIControlStateNormal];
                 if ([pollInfo[@"fourthArray"] containsObject:user.objectId]) {
-                    cell.firstView.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:143.0/255.0 blue:152.0/255.0 alpha:1.0];
+                    cell.firstView.backgroundColor = [UIColor colorNamed:@"pink"];
                     [cell.optionOne setTitleColor: [UIColor whiteColor] forState:UIControlStateNormal];
                     cell.optionOnePercent.textColor = [UIColor whiteColor];
                 }

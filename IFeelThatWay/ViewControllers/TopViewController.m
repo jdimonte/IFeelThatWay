@@ -38,10 +38,13 @@
     [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateNormal];
     [self.topCommentsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
-    [self.topContent setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
-    [self.topContent setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+    //UIFont *font = [UIFont boldSystemFontOfSize:12.0f]; font forKey:NSFontAttributeName
+    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight){ //FIX
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
+        [self.topContent setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+        [self.topContent setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+    }
     
     //Commented out for less parse calls during development
     //[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadQueryTopComments) userInfo:nil repeats:true];
@@ -50,14 +53,10 @@
 - (void) loadQueryTopComments{
     NSString *contentTypes[] = {@"Comment", @"Reply"};
     NSString *contentType = contentTypes[self.topContent.selectedSegmentIndex];
-    
     PFQuery *query = [PFQuery queryWithClassName:contentType];
-
     [query includeKey:@"author"];
     [query orderByDescending:@"agreesCount"];
-
     query.limit = 10;
-    
     [query findObjectsInBackgroundWithBlock:^(NSArray *comments, NSError *error) {
         if (comments != nil) {
             self.topCommentsArray = comments;

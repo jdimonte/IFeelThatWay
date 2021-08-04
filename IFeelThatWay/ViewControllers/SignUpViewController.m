@@ -24,6 +24,20 @@
     [super viewDidLoad];
     
     self.signUpButton.layer.cornerRadius = 0.2 * self.signUpButton.bounds.size.width;
+    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){ //check if it is dark mode
+        self.email.layer.borderColor = [UIColor colorNamed:@"loginoutline"].CGColor;
+        self.email.layer.borderWidth = 3.0f;
+        self.email.layer.cornerRadius = 7.0f;
+        self.username.layer.borderColor = [UIColor colorNamed:@"loginoutline"].CGColor;
+        self.username.layer.borderWidth = 3.0f;
+        self.username.layer.cornerRadius = 7.0f;
+        self.password.layer.borderColor = [UIColor colorNamed:@"loginoutline"].CGColor;
+        self.password.layer.borderWidth = 3.0f;
+        self.password.layer.cornerRadius = 7.0f;
+        self.confirmPassword.layer.borderColor = [UIColor colorNamed:@"loginoutline"].CGColor;
+        self.confirmPassword.layer.borderWidth = 3.0f;
+        self.confirmPassword.layer.cornerRadius = 7.0f;
+    }
 }
 
 - (IBAction)backTapped:(id)sender {
