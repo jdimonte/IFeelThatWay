@@ -22,7 +22,7 @@
 @property (nonatomic, strong) PFQuery *topicsFollowingQuery;
 @property (nonatomic, strong) Comment *featuredComment;
 @property (weak, nonatomic) NSString *currentLimit;
-@property (strong, nonatomic) IBOutlet UISwitch *sortSwitch;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *followingContent;
 
 @end
 
@@ -44,7 +44,7 @@
     [self.followingTableView addSubview:self.refreshControl];
 }
 
-- (IBAction)sortSwitchChanged:(id)sender {
+- (IBAction)contentTypeSwitched:(id)sender {
     [self loadQueryPrompts:20];
 }
 
@@ -74,12 +74,20 @@
     PFQuery *postQuery = [PFQuery queryWithClassName:@"Prompt"];
     [postQuery includeKey:@"author"];
     [postQuery includeKey:@"topic"];
-    [postQuery whereKey:@"topic" matchesKey:@"category" inQuery:self.topicsFollowingQuery];
-    if(self.sortSwitch.on){
+    
+    NSString *contentTypes[] = {@"Recent", @"Popular", @"Mine"};
+    NSString *contentType = contentTypes[self.followingContent.selectedSegmentIndex];
+    if([contentType isEqual:@"Recent"]){
+        [postQuery whereKey:@"topic" matchesKey:@"category" inQuery:self.topicsFollowingQuery];
+        [postQuery orderByDescending:@"createdAt"];
+    }
+    else if([contentType isEqual:@"Popular"]){
+        [postQuery whereKey:@"topic" matchesKey:@"category" inQuery:self.topicsFollowingQuery];
         [postQuery orderByDescending:@"commentsCount"];
     }
     else{
-        [postQuery orderByDescending:@"createdAt"];
+        User *user = [PFUser currentUser];
+        [postQuery whereKey:@"createdBy" equalTo:user];
     }
     postQuery.limit = numberCount;
     [postQuery findObjectsInBackgroundWithBlock:^(NSArray *prompts, NSError *error) {

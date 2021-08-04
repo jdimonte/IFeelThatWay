@@ -18,6 +18,7 @@
 @dynamic createdAt;
 @dynamic hasComments;
 @dynamic commentsCount;
+@dynamic createdBy;
 
 + (nonnull NSString *)parseClassName {
     return @"Prompt";

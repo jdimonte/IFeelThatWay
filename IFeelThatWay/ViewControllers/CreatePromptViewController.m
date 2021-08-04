@@ -7,6 +7,7 @@
 
 #import "CreatePromptViewController.h"
 #import "Prompt.h"
+#import "User.h"
 
 @interface CreatePromptViewController ()
 
@@ -33,9 +34,11 @@
 }
 
 - (void) createPrompt {
+    User *user = [PFUser currentUser];
     Prompt *prompt = [Prompt new];
     prompt.question = self.questionTextBox.text;
     prompt.topic = self.topic;
+    prompt.createdBy = user;
     [prompt saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             [self dismissViewControllerAnimated:true completion:nil];

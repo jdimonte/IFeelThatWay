@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSMutableArray *savedArray;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *savedContent;
+@property (weak, nonatomic) NSString *currentLimit;
 
 @end
 
@@ -28,9 +29,10 @@
     self.savedTableView.dataSource = self;
     self.savedTableView.delegate = self;
     
-    [self loadQueryComments];
+    self.currentLimit = [NSString stringWithFormat: @"%d", 20];
+    [self loadQueryComments:20];
     self.refreshControl = [[UIRefreshControl alloc ] init];
-    [self.refreshControl addTarget:self action:@selector(loadQueryComments) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(loadQueryComments:) forControlEvents:UIControlEventValueChanged];
     [self.savedTableView insertSubview:self.refreshControl atIndex:0];
     [self.savedTableView addSubview:self.refreshControl];
     
@@ -45,10 +47,10 @@
 }
 
 - (IBAction)contentTypeSwitched:(id)sender {
-    [self loadQueryComments];
+    [self loadQueryComments:20];
 }
 
-- (void) loadQueryComments{
+- (void) loadQueryComments: (int)numberCount{
     NSString *contentTypes[] = {@"Comment", @"Reply"};
     NSString *contentType = contentTypes[self.savedContent.selectedSegmentIndex];
     
@@ -58,7 +60,7 @@
     [query includeKey:@"user"];
     [query includeKey:@"savesArray"];
     [query whereKey:@"savesArray" equalTo:user.objectId];
-    query.limit = 20;
+    query.limit = numberCount;
     [query findObjectsInBackgroundWithBlock:^(NSArray *content, NSError *error) {
         if (content != nil) {
             self.savedArray = content;
@@ -84,6 +86,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.savedArray.count;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row + 1 == [self.savedArray count] && self.savedArray.count >= [self.currentLimit intValue]){
+        NSUInteger *count = (long)self.savedArray.count;
+        count += 20;
+        self.currentLimit = [NSString stringWithFormat:@"%d", count];
+        [self loadQueryComments:count];
+    }
 }
 
 /*

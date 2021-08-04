@@ -50,6 +50,10 @@
     //[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(loadQueryTopComments) userInfo:nil repeats:true];
 }
 
+- (IBAction)contentTypeSwitched:(id)sender {
+    [self loadQueryTopComments];
+}
+
 - (void) loadQueryTopComments{
     NSString *contentTypes[] = {@"Comment", @"Reply"};
     NSString *contentType = contentTypes[self.topContent.selectedSegmentIndex];

@@ -213,7 +213,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Popular" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J3u-ae-I41">
-                                <rect key="frame" x="120.5" y="44" width="173.5" height="100"/>
+                                <rect key="frame" x="119" y="44" width="176" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="c47-jh-ffv"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BalooTamma2-Bold" family="Baloo Tamma 2" pointSize="50"/>
                                 <color key="textColor" name="pink"/>
                                 <nil key="highlightedColor"/>
@@ -270,7 +273,7 @@
                                                             <color key="highlightedColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leaderboard" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Be4-Fl-5F0">
-                                                            <rect key="frame" x="40" y="35.5" width="334" height="23.5"/>
+                                                            <rect key="frame" x="40" y="35.5" width="334" height="34.5"/>
                                                             <fontDescription key="fontDescription" name="BalooTamma2-Regular" family="Baloo Tamma 2" pointSize="20"/>
                                                             <color key="textColor" name="black"/>
                                                             <nil key="highlightedColor"/>
@@ -323,6 +326,9 @@
                                 </segments>
                                 <color key="tintColor" name="white"/>
                                 <color key="selectedSegmentTintColor" name="pink"/>
+                                <connections>
+                                    <action selector="contentTypeSwitched:" destination="m4R-nU-tn5" eventType="valueChanged" id="iQM-6l-qat"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnH-cX-3KR">
                                 <rect key="frame" x="20" y="76.5" width="35" height="35"/>
@@ -409,14 +415,14 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="red" translatesAutoresizingMaskIntoConstraints="NO" id="mhc-6n-XfA">
-                                <rect key="frame" x="82" y="252.5" width="250" height="250"/>
+                                <rect key="frame" x="82" y="280.5" width="250" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="4pi-LL-CuZ"/>
                                     <constraint firstAttribute="height" constant="250" id="Fok-eu-aaB"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBu-aL-sVa">
-                                <rect key="frame" x="136.5" y="44" width="141" height="58.5"/>
+                                <rect key="frame" x="131" y="44" width="152.5" height="86.5"/>
                                 <fontDescription key="fontDescription" name="BalooTamma2-Bold" family="Baloo Tamma 2" pointSize="50"/>
                                 <color key="textColor" name="pink"/>
                                 <nil key="highlightedColor"/>
@@ -432,7 +438,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kTQ-TH-0Uz">
-                                <rect key="frame" x="20" y="602.5" width="374" height="90"/>
+                                <rect key="frame" x="20" y="630.5" width="374" height="90"/>
                                 <color key="backgroundColor" name="blue"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="trl-0k-uyd"/>
@@ -530,13 +536,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dPj-9a-G7N">
-                                <rect key="frame" x="114" y="44" width="186.5" height="58.5"/>
+                                <rect key="frame" x="114.5" y="44" width="185.5" height="86.5"/>
                                 <fontDescription key="fontDescription" name="BalooTamma2-Bold" family="Baloo Tamma 2" pointSize="50"/>
                                 <color key="textColor" name="pink"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YjY-6a-OTL">
-                                <rect key="frame" x="82" y="323.5" width="250" height="150"/>
+                                <rect key="frame" x="82" y="351.5" width="250" height="150"/>
                                 <color key="backgroundColor" name="white"/>
                                 <color key="tintColor" name="black"/>
                                 <constraints>
@@ -548,7 +554,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EST-di-pjC">
-                                <rect key="frame" x="137" y="573.5" width="140" height="60"/>
+                                <rect key="frame" x="137" y="601.5" width="140" height="60"/>
                                 <color key="backgroundColor" name="pink"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="ESP-az-Rs1"/>
@@ -563,7 +569,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you like to see?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEl-Nk-jMz">
-                                <rect key="frame" x="103" y="252.5" width="208" height="21"/>
+                                <rect key="frame" x="103" y="280.5" width="208" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <color key="textColor" name="black"/>
                                 <nil key="highlightedColor"/>
@@ -610,8 +616,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZL-gF-xIL">
-                                <rect key="frame" x="20" y="76.5" width="35" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZL-gF-xIL">
+                                <rect key="frame" x="20" y="76" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="I9D-um-Fo4"/>
                                     <constraint firstAttribute="height" constant="35" id="bgO-Ep-LNX"/>
@@ -624,8 +630,8 @@
                                     <segue destination="C5L-QN-mCl" kind="presentation" modalPresentationStyle="fullScreen" id="MEm-fH-Wfb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wy9-RD-ouc">
-                                <rect key="frame" x="359" y="76.5" width="35" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wy9-RD-ouc">
+                                <rect key="frame" x="359" y="76" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="ELH-wb-ZF2"/>
                                     <constraint firstAttribute="width" constant="35" id="iSQ-ZU-Ei3"/>
@@ -639,7 +645,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QDV-d7-otS">
-                                <rect key="frame" x="0.0" y="188" width="414" height="625"/>
+                                <rect key="frame" x="0.0" y="174.5" width="414" height="638.5"/>
                                 <color key="backgroundColor" name="blue"/>
                                 <color key="sectionIndexBackgroundColor" name="blue"/>
                                 <prototypes>
@@ -651,7 +657,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8CR-KF-FeD">
-                                                    <rect key="frame" x="120" y="39.5" width="82" height="23.5"/>
+                                                    <rect key="frame" x="120" y="34" width="79" height="34.5"/>
                                                     <fontDescription key="fontDescription" name="BalooTamma2-Regular" family="Baloo Tamma 2" pointSize="20"/>
                                                     <color key="textColor" name="black"/>
                                                     <nil key="highlightedColor"/>
@@ -698,8 +704,11 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topics" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ok-gC-Yew">
-                                <rect key="frame" x="135" y="44" width="144.5" height="100"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Topics" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ok-gC-Yew">
+                                <rect key="frame" x="135" y="44" width="145" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="sJF-Jk-Grt"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="BalooTamma2-Bold" family="Baloo Tamma 2" pointSize="50"/>
                                 <color key="textColor" name="pink"/>
                                 <nil key="highlightedColor"/>
@@ -717,7 +726,7 @@
                         <constraints>
                             <constraint firstItem="QDV-d7-otS" firstAttribute="leading" secondItem="jaH-zD-xh9" secondAttribute="leading" id="089-df-ZAR"/>
                             <constraint firstItem="FZL-gF-xIL" firstAttribute="leading" secondItem="jaH-zD-xh9" secondAttribute="leading" constant="20" id="4v1-Pe-IBI"/>
-                            <constraint firstItem="eWE-Mz-JNO" firstAttribute="top" secondItem="jaH-zD-xh9" secondAttribute="top" constant="100" id="88i-28-fq0"/>
+                            <constraint firstItem="eWE-Mz-JNO" firstAttribute="top" secondItem="jaH-zD-xh9" secondAttribute="top" constant="90" id="88i-28-fq0"/>
                             <constraint firstItem="QDV-d7-otS" firstAttribute="trailing" secondItem="jaH-zD-xh9" secondAttribute="trailing" id="G4N-TT-qNH"/>
                             <constraint firstItem="9ok-gC-Yew" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FZL-gF-xIL" secondAttribute="trailing" constant="20" id="H91-Qk-5bV"/>
                             <constraint firstItem="Wy9-RD-ouc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9ok-gC-Yew" secondAttribute="trailing" constant="20" id="MIj-r5-pTq"/>
@@ -1982,7 +1991,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yoa-bN-VRg">
-                                <rect key="frame" x="20" y="76.5" width="35" height="35"/>
+                                <rect key="frame" x="20" y="70" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="4IG-0I-Wee"/>
                                     <constraint firstAttribute="height" constant="35" id="64k-Fo-Ah8"/>
@@ -1996,7 +2005,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o5G-aY-s4L">
-                                <rect key="frame" x="359" y="76.5" width="35" height="35"/>
+                                <rect key="frame" x="359" y="70" width="35" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="NSr-Iz-oWy"/>
                                     <constraint firstAttribute="width" constant="35" id="lks-st-Qkh"/>
@@ -2010,7 +2019,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="osX-CS-C5z">
-                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <rect key="frame" x="0.0" y="180" width="414" height="633"/>
                                 <color key="backgroundColor" name="blue"/>
                                 <color key="sectionIndexBackgroundColor" name="blue"/>
                                 <prototypes>
@@ -2079,49 +2088,50 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Following" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xZ9-ee-k86">
-                                <rect key="frame" x="100" y="44" width="214" height="100"/>
+                                <rect key="frame" x="97" y="44" width="220.5" height="86.5"/>
                                 <fontDescription key="fontDescription" name="BalooTamma2-Bold" family="Baloo Tamma 2" pointSize="50"/>
                                 <color key="textColor" name="pink"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="JQW-f5-QVM">
-                                <rect key="frame" x="268" y="113" width="49" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="onTintColor" name="pink"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Gdr-hE-x3U">
+                                <rect key="frame" x="0.0" y="144" width="414" height="32"/>
+                                <color key="backgroundColor" name="blue"/>
+                                <segments>
+                                    <segment title="Recent"/>
+                                    <segment title="Popular"/>
+                                    <segment title="My Posts"/>
+                                </segments>
+                                <color key="tintColor" name="white"/>
+                                <color key="selectedSegmentTintColor" name="pink"/>
                                 <connections>
-                                    <action selector="sortSwitchChanged:" destination="kKA-WR-xky" eventType="valueChanged" id="miz-19-PPm"/>
+                                    <action selector="contentTypeSwitched:" destination="kKA-WR-xky" eventType="valueChanged" id="hsI-Cb-LzB"/>
                                 </connections>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sort by most popular" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5AL-po-MGb">
-                                <rect key="frame" x="100" y="118" width="160" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <color key="highlightedColor" name="black"/>
-                            </label>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rOm-QH-cyO"/>
                         <color key="backgroundColor" name="blue"/>
                         <constraints>
                             <constraint firstItem="xZ9-ee-k86" firstAttribute="centerY" secondItem="Yoa-bN-VRg" secondAttribute="centerY" id="6ZH-2H-0Oa"/>
-                            <constraint firstItem="osX-CS-C5z" firstAttribute="top" secondItem="xZ9-ee-k86" secondAttribute="bottom" id="84d-dF-bYf"/>
                             <constraint firstItem="Yoa-bN-VRg" firstAttribute="leading" secondItem="rOm-QH-cyO" secondAttribute="leading" constant="20" id="Cfz-9F-Y28"/>
+                            <constraint firstItem="osX-CS-C5z" firstAttribute="top" secondItem="Gdr-hE-x3U" secondAttribute="bottom" constant="5" id="Eo3-5K-Cjd"/>
                             <constraint firstItem="o5G-aY-s4L" firstAttribute="centerY" secondItem="xZ9-ee-k86" secondAttribute="centerY" id="FCB-Is-vn2"/>
+                            <constraint firstItem="Gdr-hE-x3U" firstAttribute="leading" secondItem="rOm-QH-cyO" secondAttribute="leading" id="Ksh-dC-aza"/>
                             <constraint firstItem="osX-CS-C5z" firstAttribute="trailing" secondItem="rOm-QH-cyO" secondAttribute="trailing" id="Kv5-l8-BjS"/>
                             <constraint firstItem="o5G-aY-s4L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xZ9-ee-k86" secondAttribute="trailing" constant="20" id="PZ8-i7-3My"/>
                             <constraint firstItem="xZ9-ee-k86" firstAttribute="centerX" secondItem="1Jp-iq-9Hf" secondAttribute="centerX" id="QrV-gK-gLw"/>
                             <constraint firstItem="osX-CS-C5z" firstAttribute="leading" secondItem="rOm-QH-cyO" secondAttribute="leading" id="Rbt-sf-2hm"/>
+                            <constraint firstItem="Gdr-hE-x3U" firstAttribute="top" secondItem="rOm-QH-cyO" secondAttribute="top" constant="100" id="SKR-7t-9D2"/>
                             <constraint firstItem="osX-CS-C5z" firstAttribute="bottom" secondItem="rOm-QH-cyO" secondAttribute="bottom" id="Vh7-5w-gJL"/>
                             <constraint firstItem="rOm-QH-cyO" firstAttribute="trailing" secondItem="o5G-aY-s4L" secondAttribute="trailing" constant="20" id="g3n-f2-zw2"/>
                             <constraint firstItem="xZ9-ee-k86" firstAttribute="top" secondItem="rOm-QH-cyO" secondAttribute="top" id="jV5-zJ-hRY"/>
-                            <constraint firstItem="osX-CS-C5z" firstAttribute="top" secondItem="rOm-QH-cyO" secondAttribute="top" constant="100" id="weM-e9-ewX"/>
+                            <constraint firstItem="Gdr-hE-x3U" firstAttribute="trailing" secondItem="rOm-QH-cyO" secondAttribute="trailing" id="w5K-Kf-Rdf"/>
                             <constraint firstItem="xZ9-ee-k86" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yoa-bN-VRg" secondAttribute="trailing" constant="20" id="xAj-6n-cBU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Following" image="checkmark.square" catalog="system" selectedImage="checkmark.square.fill" id="Ccr-5D-grd"/>
                     <connections>
+                        <outlet property="followingContent" destination="Gdr-hE-x3U" id="U68-1j-6oq"/>
                         <outlet property="followingTableView" destination="osX-CS-C5z" id="YN3-40-Xn1"/>
-                        <outlet property="sortSwitch" destination="JQW-f5-QVM" id="ipZ-GE-3Fy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9l-k0-eY7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2137,7 +2147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUq-ru-xxV">
-                                <rect key="frame" x="136.5" y="44" width="141" height="100"/>
+                                <rect key="frame" x="139" y="44" width="136.5" height="100"/>
                                 <fontDescription key="fontDescription" name="BalooTamma2-Bold" family="Baloo Tamma 2" pointSize="50"/>
                                 <color key="textColor" name="pink"/>
                                 <nil key="highlightedColor"/>
@@ -2186,7 +2196,7 @@
                                                     <rect key="frame" x="0.0" y="5" width="414" height="98"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FEe-4s-W4O">
-                                                            <rect key="frame" x="25" y="10" width="379" height="23.5"/>
+                                                            <rect key="frame" x="25" y="10" width="379" height="34.5"/>
                                                             <fontDescription key="fontDescription" name="BalooTamma2-Regular" family="Baloo Tamma 2" pointSize="20"/>
                                                             <color key="textColor" name="black"/>
                                                             <nil key="highlightedColor"/>
@@ -2483,9 +2493,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="UVq-QA-C4X"/>
         <segue reference="vtB-VV-XoR"/>
-        <segue reference="0pi-b0-hrH"/>
-        <segue reference="cKO-66-dIc"/>
-        <segue reference="xL8-Ki-VTb"/>
+        <segue reference="FOe-03-tAH"/>
+        <segue reference="poM-UT-Zps"/>
+        <segue reference="me4-JD-FzK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
