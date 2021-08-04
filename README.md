@@ -235,35 +235,50 @@ Report
 
 
 ### Networking
+
 * Login Screen
    * (READ) User information. Takes in username and password and knows which user is signed in.
-<img width="769" alt="login" src="https://user-images.githubusercontent.com/67511953/125112063-8d4b3100-e09b-11eb-801e-dbe85a455c5a.png">
+<img width="848" alt="login" src="https://user-images.githubusercontent.com/67511953/128100937-12b545c6-1fed-4816-88f0-ba86c5f2ff6b.png">
 
 * Create Account Screen
    * (CREATE) User. Sets the user's username, password, and email information.
-<img width="767" alt="newuser" src="https://user-images.githubusercontent.com/67511953/125112034-7f95ab80-e09b-11eb-9f1a-74e5711bc477.png">
+<img width="879" alt="signup" src="https://user-images.githubusercontent.com/67511953/128101025-cb00e8ed-036a-466f-aeca-f0175297443c.png">
 
 * Topics Screen
    * (READ) Topics. Grabs all of the topics from the Query. Set each topic in a table view, that leads to the specific prompts screen.
-<img width="653" alt="gettingtopics" src="https://user-images.githubusercontent.com/67511953/125112110-9936f300-e09b-11eb-9eff-03e1a3372cff.png">
+<img width="583" alt="topicsquery" src="https://user-images.githubusercontent.com/67511953/128100998-249bc43e-df38-4309-9d26-7579ef7aa9c3.png">
 
-* Prompts Screen
-   * (READ) Prompts. Grabs all of the prompts from within a specific topic from the query.
-<img width="615" alt="gettingprompts" src="https://user-images.githubusercontent.com/67511953/125112105-976d2f80-e09b-11eb-9036-fef0e184e01b.png">
+* Topic Screen
+   * (READ) Prompts and Polls. Grabs all of the prompts / polls from within a specific topic from the query.
+   * (READ) Featured comment. Grabs the comment with the most reactions from within a specific prompt/poll from the query.
+<img width="644" alt="prompts" src="https://user-images.githubusercontent.com/67511953/128101000-3e725e8c-f0a6-4d40-ab5f-e41c08eb5bdd.png">
+<img width="606" alt="polls" src="https://user-images.githubusercontent.com/67511953/128101002-7a1689ef-589e-40b7-842f-7b04b91e3760.png">
+<img width="684" alt="featuredcomment" src="https://user-images.githubusercontent.com/67511953/128101010-513f2f46-5217-408d-91f8-903256856bcb.png">
 
-* Prompt Screen
+* Prompt Screen (There is one for the Poll Screen as well)
    * (READ) Comments. Grabs all of the comments from a specific prompt from the query.
+<img width="595" alt="comments" src="https://user-images.githubusercontent.com/67511953/128101004-5acba232-ba2b-4829-b017-d8d22dd63918.png">
 
-### Extra
+* Comments Screen
+   * (READ) Replies. Grabs all of the replies from a specific comment from the query.
+<img width="585" alt="replies" src="https://user-images.githubusercontent.com/67511953/128101007-b49ade3b-ca76-42a2-abf4-de55ffe49ea6.png">
+
 * Saved Screen
    * (READ) User's saved. Grabs all of the saved comments from the User with query.
+<img width="581" alt="saved" src="https://user-images.githubusercontent.com/67511953/128100997-ba2eba59-2d10-40b9-92b9-ff9790085c5b.png">
+
+* Following Screen
+   * (READ) Prompts for topics the user is following. Grabs all of the topics the user is following with query, and then grabs all of the prompts for those topics with query.
+<img width="662" alt="followingtwo" src="https://user-images.githubusercontent.com/67511953/128100993-80e781f7-2e26-4b2d-9ee4-3ecee070cfa7.png">
+<img width="629" alt="followingone" src="https://user-images.githubusercontent.com/67511953/128100996-8f12fdb0-2bda-4714-867d-a7350132decb.png">
 
 * Top Feelings Screen
-   * (READ) Comments by number of interactions. Sorts the comments by the top 10 for number of people who have positively interacted with it.
+   * (READ) Comments by number of interactions. Sorts the comments by the top 10 for number of people who have positively interacted with it. (There is one for replies as well)
+<img width="598" alt="top" src="https://user-images.githubusercontent.com/67511953/128101605-accc198c-d74a-46bd-8066-8a57447367d9.png">
 
 * Profile Screen
-    * (READ) User information. Grabs their profile color.
-    * (Update) User information. Changes their profile color.
+   * (READ) User information. Grabs their profile color.
+   * (Update) User information. Changes their profile color.
 
 ### [Optional] APIs Requests
 
@@ -272,8 +287,4 @@ Google Auth API to login with your google account.
 
 ### Colors
 
-8A81B1 //Light purple
-DEF8F5 //Light blue
-5C6199 //Dark blue
-020202 //Black
-E58B98 //pink
+8A81B1 (Light purple), DEF8F5 (Light blue), 5C6199 (Dark blue), 020202 (Black), E58B98 (pink)
