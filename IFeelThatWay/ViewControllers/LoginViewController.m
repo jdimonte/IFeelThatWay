@@ -12,7 +12,6 @@
 #import <GoogleSignIn.h>
 #import "SignUpUtil.h"
 #import "AuthDelegate.h"
-#import "TopViewController.h"
 
 @interface LoginViewController () <PFUserAuthenticationDelegate>
 @property (strong, nonatomic) IBOutlet UITextField *username;
@@ -65,29 +64,24 @@
 
         [PFUser registerAuthenticationDelegate:self
                                    forAuthType:@"google"];
-        //update access token user.authentication.accessToken
-        //@"email": user.profile.email
+        //update access token
         [[PFUser logInWithAuthTypeInBackground:@"google"
-                                      authData:@{@"id": user.userID, @"access_token": user.authentication.accessToken}] continueWithSuccessBlock:^id(BFTask *task) {
-            //[self performSegueWithIdentifier:@"login" sender:nil];
+                                      authData:@{@"id": user.userID, @"accesstoken": @"199283860183-otfaodus4qg8g974rtpd6tdqd5i11ca0", @"email": user.profile.email}] continueWithSuccessBlock:^id(BFTask *task) {
 
                 return nil;
             }];
         
-//        [self performSegueWithIdentifier:@"login" sender:nil];
+        [self performSegueWithIdentifier:@"login" sender:nil];
       }];
-    //[self performSegueWithIdentifier:@"login" sender:nil];
 }
-
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    //TopViewController *topViewController = [segue destinationViewController];
-    //topViewController.loginViewController = self;
-    //[topViewController setLoginViewController:self];
 }
+*/
 
 @end
