@@ -66,7 +66,7 @@
                                    forAuthType:@"google"];
         //update access token
         [[PFUser logInWithAuthTypeInBackground:@"google"
-                                      authData:@{@"id": user.userID, @"accesstoken": @"199283860183-otfaodus4qg8g974rtpd6tdqd5i11ca0", @"email": user.profile.email}] continueWithSuccessBlock:^id(BFTask *task) {
+                                      authData:@{@"id": user.userID, @"access_token": user.authentication.accessToken}] continueWithSuccessBlock:^id(BFTask *task) {
 
                 return nil;
             }];
