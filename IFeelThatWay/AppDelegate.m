@@ -35,15 +35,6 @@
 
     [Parse initializeWithConfiguration:config];
     
-    [GIDSignIn.sharedInstance restorePreviousSignInWithCallback:^(GIDGoogleUser * _Nullable user,
-                                                                    NSError * _Nullable error) {
-        if (error) {
-          // Show the app's signed-out state.
-        } else {
-          // Show the app's signed-in state.
-        }
-      }];
-    
     return YES;
 }
 

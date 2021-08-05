@@ -23,9 +23,11 @@
 
 @implementation LoginViewController
 
-- (bool) restoreAuthenticationWithAuthData {
+- (BOOL)restoreAuthenticationWithAuthData:
+(nullable NSDictionary<NSString *, NSString *> *)authData{
     return true;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
