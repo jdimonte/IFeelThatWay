@@ -12,8 +12,6 @@
 
 @interface CreateViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (strong, nonatomic) IBOutlet UIStepper *numberOfOptions;
-@property (strong, nonatomic) IBOutlet UILabel *optionsCount;
 @property (strong, nonatomic) IBOutlet UITableView *optionsTableView;
 @property (strong, nonatomic) IBOutlet UITextView *questionTextBox;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *multipleSelection;
@@ -22,6 +20,7 @@
 @property (strong, nonatomic) NSString *thirdAnswer;
 @property (strong, nonatomic) NSString *fourthAnswer;
 @property (strong, nonatomic) IBOutlet UIButton *submitButton;
+@property int numberOfOptions;
 
 @end
 
@@ -29,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.numberOfOptions.value = 4;
+    self.numberOfOptions = 4;
     self.optionsTableView.delegate = self;
     self.optionsTableView.dataSource = self;
     [self.optionsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -50,35 +49,9 @@
 
 - (IBAction)submitTapped:(id)sender {
     [self.optionsTableView reloadData];
-    bool check = true;
-    if([self.questionTextBox.text isEqual: @""] || [self.firstAnswer isEqual:@""]){
-        check = false;
+    if([self.questionTextBox.text isEqual: @""] || [self.firstAnswer isEqual:@""] || [self.thirdAnswer isEqual:@""] || [self.fourthAnswer isEqual:@""]){
+            [self createPoll];
     }
-    if(self.numberOfOptions.value >= 3 && check){
-        if([self.thirdAnswer isEqual:@""]){
-            check = false;
-        }
-    }
-    if(self.numberOfOptions.value == 4 && check){
-        if([self.fourthAnswer isEqual:@""]){
-            check = false;
-        }
-    }
-    if(check){
-        [self createPoll];
-    }
-}
-
-- (IBAction)numberOfOptionsChanged:(id)sender {
-    if(self.numberOfOptions.value < 2){
-        self.numberOfOptions.value = 2;
-    } else if(self.numberOfOptions.value > 4){
-        self.numberOfOptions.value = 4;
-    }
-    NSString *first = [NSString stringWithFormat:@"%.f", self.numberOfOptions.value];
-    NSString *second = @" options";
-    self.optionsCount.text = [first stringByAppendingString:second];
-    [self.optionsTableView reloadData];
 }
 
 - (void) createPoll {
@@ -103,7 +76,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.numberOfOptions.value;
+    return self.numberOfOptions;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
