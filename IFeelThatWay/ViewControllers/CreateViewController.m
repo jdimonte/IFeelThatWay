@@ -35,6 +35,13 @@
     [self.optionsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     self.submitButton.layer.cornerRadius = 0.2 * self.submitButton.bounds.size.width;
+    
+    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight){
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
+        [self.multipleSelection setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+        [self.multipleSelection setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+    }
 }
 
 - (IBAction)backTapped:(id)sender {

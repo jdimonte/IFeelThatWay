@@ -33,13 +33,14 @@
     [super viewDidLoad];
     
     self.loginButton.layer.cornerRadius = 0.2 * self.loginButton.bounds.size.width;
-    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){ //FIX
-        self.username.layer.borderColor = [UIColor colorNamed:@"loginoutline"].CGColor;
+    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark){
+        self.username.layer.borderColor = [UIColor colorNamed:@"pink"].CGColor;
         self.username.layer.borderWidth = 3.0f;
         self.username.layer.cornerRadius = 7.0f;
-        self.password.layer.borderColor = [UIColor colorNamed:@"loginoutline"].CGColor;
+        self.password.layer.borderColor = [UIColor colorNamed:@"pink"].CGColor;
         self.password.layer.borderWidth = 3.0f;
         self.password.layer.cornerRadius = 7.0f;
+
     }
 }
 
@@ -66,7 +67,7 @@
 
         [PFUser registerAuthenticationDelegate:self
                                    forAuthType:@"google"];
-        //update access token
+        
         [[PFUser logInWithAuthTypeInBackground:@"google"
                                       authData:@{@"id": user.userID, @"access_token": user.authentication.accessToken}] continueWithSuccessBlock:^id(BFTask *task) {
 

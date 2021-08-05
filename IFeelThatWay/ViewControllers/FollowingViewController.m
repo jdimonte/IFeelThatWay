@@ -42,6 +42,13 @@
     [self.refreshControl addTarget:self action:@selector(loadQueryPrompts:) forControlEvents:UIControlEventValueChanged];
     [self.followingTableView insertSubview:self.refreshControl atIndex:0];
     [self.followingTableView addSubview:self.refreshControl];
+    
+    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight){
+        NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
+        [self.followingContent setTitleTextAttributes:attributes forState:UIControlStateNormal];
+        NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+        [self.followingContent setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+    }
 }
 
 - (IBAction)contentTypeSwitched:(id)sender {

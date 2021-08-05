@@ -38,7 +38,7 @@
     
     [self.savedTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight){ //FIX
+    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight){
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
         [self.savedContent setTitleTextAttributes:attributes forState:UIControlStateNormal];
         NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];

@@ -39,7 +39,7 @@
     [self.topCommentsTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     //UIFont *font = [UIFont boldSystemFontOfSize:12.0f]; font forKey:NSFontAttributeName
-    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight){ //FIX
+    if(self.traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight){
         NSDictionary *attributes = [NSDictionary dictionaryWithObject:[UIColor blackColor] forKey:NSForegroundColorAttributeName];
         [self.topContent setTitleTextAttributes:attributes forState:UIControlStateNormal];
         NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];

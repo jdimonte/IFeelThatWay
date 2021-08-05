@@ -24,6 +24,8 @@
 @property (strong, nonatomic) NSNumber *keyboardDuration;
 @property bool keyboardUp;
 @property (weak, nonatomic) NSString *currentLimit;
+@property CGFloat oldHeight;
+@property CGFloat difference;
 
 @end
 
@@ -38,6 +40,8 @@
     
     self.question.text = self.prompt[@"question"];
     self.keyboardUp = NO;
+    self.oldHeight = 0;
+    self.difference = 0;
     
     self.currentLimit = [NSString stringWithFormat: @"%d", 20];
     [self loadQueryComments:20];
@@ -48,6 +52,9 @@
     [self.questionTableView addSubview:self.refreshControl];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+             selector:@selector(changeInputMode:)
+                 name:UITextInputCurrentInputModeDidChangeNotification object:nil];
 }
 
 - (IBAction)longPressToReport:(id)sender {
@@ -63,55 +70,103 @@
     self.keyboardDuration = [notification.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     self.keyboardHeight = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
     
-    NSLog(@"%lg", self.keyboardHeight);
-//    CGRect textFrame = self.commentText.frame;
-//    textFrame.origin.y = self.keyboardHeight;
-//    self.commentText.frame = textFrame;
-//    CGRect buttonFrame = self.commentButton.frame;
-//    buttonFrame.origin.y = self.keyboardHeight;
-//    self.commentButton.frame = buttonFrame;
+    NSString *inputMethod = [[UITextInputMode currentInputMode] primaryLanguage];
+    BOOL isEmoji = [inputMethod isEqualToString:@"emoji"];
+    if (isEmoji)
+    {
+        self.difference = self.keyboardHeight - self.oldHeight;
+        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
+            CGRect textFrame = self.commentText.frame;
+            textFrame.origin.y -= self.keyboardHeight - self.oldHeight; //395-346;
+            self.commentText.frame = textFrame;
+            CGRect buttonFrame = self.commentButton.frame;
+            buttonFrame.origin.y -= self.keyboardHeight - self.oldHeight;
+            self.commentButton.frame = buttonFrame;
+        }];
+    }
+    else{
+        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
+            CGRect textFrame = self.commentText.frame;
+            textFrame.origin.y += self.difference;
+            self.commentText.frame = textFrame;
+            CGRect buttonFrame = self.commentButton.frame;
+            buttonFrame.origin.y += self.difference;
+            self.commentButton.frame = buttonFrame;
+        }];
+    }
+}
+
+-(void)changeInputMode:(NSNotification *)notification
+{
+//    NSString *inputMethod = [[UITextInputMode currentInputMode] primaryLanguage];
+//    BOOL isEmoji = [inputMethod isEqualToString:@"emoji"];
+//    NSLog(@"%f", self.keyboardHeight);
+//    NSLog(@"%f", self.oldHeight);
+//    if (isEmoji && self.keyboardHeight != 0)
+//    {
+//        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
+//            CGRect textFrame = self.commentText.frame;
+//            textFrame.origin.y -= 395-346;
+//            self.commentText.frame = textFrame;
+//            CGRect buttonFrame = self.commentButton.frame;
+//            buttonFrame.origin.y -= 395-346;
+//            self.commentButton.frame = buttonFrame;
+//        }];
+//    }
+//    else if (self.keyboardHeight != 0){
+//        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
+//            CGRect textFrame = self.commentText.frame;
+//            textFrame.origin.y += 395-346;
+//            self.commentText.frame = textFrame;
+//            CGRect buttonFrame = self.commentButton.frame;
+//            buttonFrame.origin.y += 395-346;
+//            self.commentButton.frame = buttonFrame;
+//        }];
+//    }
 }
 
 - (IBAction)commentTextBoxTapped:(UITapGestureRecognizer *)sender {
     [self.commentText becomeFirstResponder];
-    [self moveTextUp];
+    [self moveTextUp:self.keyboardHeight];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
-    [self moveTextDown];
+    [self moveTextDown:self.keyboardHeight];
 }
 
 - (IBAction)commentTapped:(id)sender {
     [self createNewComment];
 }
 
-- (void) moveTextUp{
+- (void) moveTextUp: (int)height {
     if(!self.keyboardUp){
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
-            textFrame.origin.y -= self.keyboardHeight;
+            textFrame.origin.y -= height;
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
-            buttonFrame.origin.y -= self.keyboardHeight;
+            buttonFrame.origin.y -= height;
             self.commentButton.frame = buttonFrame;
         }];
         self.keyboardUp = YES;
     }
+    self.oldHeight = self.keyboardHeight;
 }
 
-- (void) moveTextDown{
+- (void) moveTextDown: (int)height {
     if(self.keyboardUp){
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
-            textFrame.origin.y += self.keyboardHeight;;
+            textFrame.origin.y += height;;
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
-            buttonFrame.origin.y += self.keyboardHeight;;
+            buttonFrame.origin.y += height;;
             self.commentButton.frame = buttonFrame;
         }];
         self.keyboardUp = NO;
     }
+    self.oldHeight = self.keyboardHeight;
 }
 
 - (void) createNewComment {
@@ -132,7 +187,7 @@
                 [self loadQueryComments:20];
                 self.commentText.text = @"";
                 [self.view endEditing:YES];
-                [self moveTextDown];
+                [self moveTextDown: self.keyboardHeight];
                 
                 if(!self.prompt.hasComments){
                     self.prompt.hasComments = !self.prompt.hasComments;
@@ -202,7 +257,7 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    [self moveTextDown];
+    [self moveTextDown: self.keyboardHeight];
     if ([segue.identifier isEqual:@"questionToComment"]){
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.questionTableView indexPathForCell:tappedCell];
