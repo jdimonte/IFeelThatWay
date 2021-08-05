@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *commentPrompt;
 @property (strong, nonatomic) IBOutlet UITextView *replyText;
 @property (strong, nonatomic) IBOutlet UIButton *replyButton;
+@property (strong, nonatomic) IBOutlet UIView *subCommentView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property CGFloat keyboardHeight;
 @property (strong, nonatomic) NSNumber *keyboardDuration;
@@ -48,6 +49,9 @@
     [self.commentsTableView addSubview:self.refreshControl];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    self.replyButton.layer.cornerRadius = 0.5 * self.replyButton.bounds.size.width;
+    self.replyText.layer.cornerRadius = 0.02 * self.replyText.bounds.size.width;
 }
 
 - (IBAction)longPressToReport:(id)sender {
@@ -88,6 +92,9 @@
             CGRect buttonFrame = self.replyButton.frame;
             buttonFrame.origin.y -= self.keyboardHeight;
             self.replyButton.frame = buttonFrame;
+            CGRect viewFrame = self.subCommentView.frame;
+            viewFrame.origin.y -= self.keyboardHeight;
+            self.subCommentView.frame = viewFrame;
         }];
         self.keyboardUp = YES;
     }
@@ -102,6 +109,9 @@
             CGRect buttonFrame = self.replyButton.frame;
             buttonFrame.origin.y += self.keyboardHeight;
             self.replyButton.frame = buttonFrame;
+            CGRect viewFrame = self.subCommentView.frame;
+            viewFrame.origin.y += self.keyboardHeight;
+            self.subCommentView.frame = viewFrame;
         }];
         self.keyboardUp = NO;
     }

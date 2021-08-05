@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSMutableArray *commentsArray;
 @property (strong, nonatomic) IBOutlet UITextView *commentText;
 @property (strong, nonatomic) IBOutlet UIButton *commentButton;
+@property (strong, nonatomic) IBOutlet UIView *subCommentView;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property CGFloat keyboardHeight;
 @property (strong, nonatomic) NSNumber *keyboardDuration;
@@ -52,9 +53,9 @@
     [self.questionTableView addSubview:self.refreshControl];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-             selector:@selector(changeInputMode:)
-                 name:UITextInputCurrentInputModeDidChangeNotification object:nil];
+    
+    self.commentButton.layer.cornerRadius = 0.5 * self.commentButton.bounds.size.width;
+    self.commentText.layer.cornerRadius = 0.02 * self.commentText.bounds.size.width;
 }
 
 - (IBAction)longPressToReport:(id)sender {
@@ -77,11 +78,14 @@
         self.difference = self.keyboardHeight - self.oldHeight;
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
-            textFrame.origin.y -= self.keyboardHeight - self.oldHeight; //395-346;
+            textFrame.origin.y -= self.keyboardHeight - self.oldHeight;
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
             buttonFrame.origin.y -= self.keyboardHeight - self.oldHeight;
             self.commentButton.frame = buttonFrame;
+            CGRect viewFrame = self.subCommentView.frame;
+            viewFrame.origin.y -= self.keyboardHeight - self.oldHeight;
+            self.subCommentView.frame = viewFrame;
         }];
     }
     else{
@@ -92,37 +96,11 @@
             CGRect buttonFrame = self.commentButton.frame;
             buttonFrame.origin.y += self.difference;
             self.commentButton.frame = buttonFrame;
+            CGRect viewFrame = self.subCommentView.frame;
+            viewFrame.origin.y += self.difference;
+            self.subCommentView.frame = viewFrame;
         }];
     }
-}
-
--(void)changeInputMode:(NSNotification *)notification
-{
-//    NSString *inputMethod = [[UITextInputMode currentInputMode] primaryLanguage];
-//    BOOL isEmoji = [inputMethod isEqualToString:@"emoji"];
-//    NSLog(@"%f", self.keyboardHeight);
-//    NSLog(@"%f", self.oldHeight);
-//    if (isEmoji && self.keyboardHeight != 0)
-//    {
-//        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
-//            CGRect textFrame = self.commentText.frame;
-//            textFrame.origin.y -= 395-346;
-//            self.commentText.frame = textFrame;
-//            CGRect buttonFrame = self.commentButton.frame;
-//            buttonFrame.origin.y -= 395-346;
-//            self.commentButton.frame = buttonFrame;
-//        }];
-//    }
-//    else if (self.keyboardHeight != 0){
-//        [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
-//            CGRect textFrame = self.commentText.frame;
-//            textFrame.origin.y += 395-346;
-//            self.commentText.frame = textFrame;
-//            CGRect buttonFrame = self.commentButton.frame;
-//            buttonFrame.origin.y += 395-346;
-//            self.commentButton.frame = buttonFrame;
-//        }];
-//    }
 }
 
 - (IBAction)commentTextBoxTapped:(UITapGestureRecognizer *)sender {
@@ -143,11 +121,14 @@
     if(!self.keyboardUp){
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
-            textFrame.origin.y -= height;
+            textFrame.origin.y -= height + self.difference;
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
-            buttonFrame.origin.y -= height;
+            buttonFrame.origin.y -= height + self.difference;
             self.commentButton.frame = buttonFrame;
+            CGRect viewFrame = self.subCommentView.frame;
+            viewFrame.origin.y  -= height + self.difference;
+            self.subCommentView.frame = viewFrame;
         }];
         self.keyboardUp = YES;
     }
@@ -158,11 +139,14 @@
     if(self.keyboardUp){
         [UIView animateWithDuration: [self.keyboardDuration doubleValue] animations:^{
             CGRect textFrame = self.commentText.frame;
-            textFrame.origin.y += height;;
+            textFrame.origin.y += height;
             self.commentText.frame = textFrame;
             CGRect buttonFrame = self.commentButton.frame;
-            buttonFrame.origin.y += height;;
+            buttonFrame.origin.y += height;
             self.commentButton.frame = buttonFrame;
+            CGRect viewFrame = self.subCommentView.frame;
+            viewFrame.origin.y  += height;
+            self.subCommentView.frame = viewFrame;
         }];
         self.keyboardUp = NO;
     }
