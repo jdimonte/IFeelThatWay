@@ -100,7 +100,7 @@
 		51569D6A26AA20CD0025E19F /* Report.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		51643EA426B9B10100249BAC /* CreatePromptViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePromptViewController.h; sourceTree = "<group>"; };
 		51643EA526B9B10100249BAC /* CreatePromptViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePromptViewController.m; sourceTree = "<group>"; };
-		51815BB6269CAC8100BFCA08 /* IFeelThatWay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IFeelThatWay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51815BB6269CAC8100BFCA08 /* Likewise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Likewise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51815BB9269CAC8100BFCA08 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		51815BBA269CAC8100BFCA08 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		51815BBC269CAC8100BFCA08 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
@@ -250,7 +250,7 @@
 		51815BB7269CAC8100BFCA08 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				51815BB6269CAC8100BFCA08 /* IFeelThatWay.app */,
+				51815BB6269CAC8100BFCA08 /* Likewise.app */,
 				51815BD1269CAC8200BFCA08 /* IFeelThatWayTests.xctest */,
 				51815BDC269CAC8200BFCA08 /* IFeelThatWayUITests.xctest */,
 			);
@@ -439,7 +439,7 @@
 			);
 			name = IFeelThatWay;
 			productName = IFeelThatWay;
-			productReference = 51815BB6269CAC8100BFCA08 /* IFeelThatWay.app */;
+			productReference = 51815BB6269CAC8100BFCA08 /* Likewise.app */;
 			productType = "com.apple.product-type.application";
 		};
 		51815BD0269CAC8200BFCA08 /* IFeelThatWayTests */ = {
@@ -917,7 +917,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.comcast.IFeelThatWay;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Likewise;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -936,7 +936,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.comcast.IFeelThatWay;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Likewise;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

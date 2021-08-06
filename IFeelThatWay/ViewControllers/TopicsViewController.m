@@ -66,6 +66,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     TopicCell *cell = (TopicCell *)[tableView dequeueReusableCellWithIdentifier:@"TopicCell" forIndexPath:indexPath];
     cell.topic = self.topicsArray[indexPath.row];
+    NSString *first  = @"pink-";
+    NSString *second =[NSString stringWithFormat: @"%ld", (long)indexPath.row+2];
+    NSString *combined = [first stringByAppendingString:second];
+    NSLog(@"%@", combined);
+    [cell.topicImage setImage:[UIImage imageNamed:combined]];
     if(self.filteredTopicsArray){
         cell.topic = self.filteredTopicsArray[indexPath.row];
     }
