@@ -31,7 +31,7 @@
         [self.comment removeObject:user.objectId forKey:@"savesArray"];
         [self.comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [self.savedViewController loadQueryComments];
+                //[self.savedViewController loadQueryComments:20];
             }
             else {
                 NSLog(@"%@", error.localizedDescription);
